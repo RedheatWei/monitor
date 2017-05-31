@@ -12,7 +12,7 @@ type Jolokia struct {
 	jolokiapath,jolokianame string
 }
 //获取Java程序pid
-func GetPid(jok *jolokia) []string{
+func GetPid(jok *Jolokia) []string{
 	jolokia := "java -jar "+jok.jolokiapath+jok.jolokianame+" list | grep -v 'jolokia' | cut -d' ' -f1"
 	//cmd := exec.Command("/bin/sh", "-c", `java -jar /usr/local/jolokia/jolokia-jvm-1.3.6-agent.jar list | grep -v "jolokia" | cut -d' ' -f1`)
 	opBytes := execShell(jolokia)
@@ -20,7 +20,7 @@ func GetPid(jok *jolokia) []string{
 	return pid_slice
 }
 //开启jolokia
-func StartJok(jok *jolokia,pid_slice []string){
+func StartJok(jok *Jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		if(bingPort(jok,pid,len(pid_slice))==0){
 			continue
@@ -30,7 +30,7 @@ func StartJok(jok *jolokia,pid_slice []string){
 	}
 }
 //绑定端口
-func bingPort(jok *jolokia,pid string,pid_num int) int{
+func bingPort(jok *Jolokia,pid string,pid_num int) int{
 	for port := 18000; port < 18000+pid_num; port++ {
 		fmt.Println(pid)
 		jolokia := "java -jar "+jok.jolokiapath+jok.jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
@@ -46,7 +46,7 @@ func bingPort(jok *jolokia,pid string,pid_num int) int{
 }
 
 //停止监听
-func StopJok(jok *jolokia,pid_slice []string){
+func StopJok(jok *Jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		jolokia := "java -jar "+jok.jolokiapath+jok.jolokianame+" stop "+pid
 		opBytes := execShell(jolokia)
@@ -65,11 +65,11 @@ func execShell(shell string) []byte{
 	return opBytes
 }
 
-func main(){
-	jok := &jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
-	pid_slice := getPid(jok)
-	startJok(jok,pid_slice)
-}
+//func main(){
+//	jok := &Jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
+//	pid_slice := GetPid(jok)
+//	StartJok(jok,pid_slice)
+//}
 
 func checkErr(err error) {
 	if err != nil {
