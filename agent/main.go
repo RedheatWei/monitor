@@ -9,7 +9,7 @@ func main() {
 	//jok := &jvm.Jolokia{ReadConfig("jvm","jolokiapath"),ReadConfig("jvm","jolokianame"),ReadConfig("jvm","portstart")}
 	//pid_slice := jvm.GetPid(jok)
 	//jvm.StartJok(jok,pid_slice)
-	port := "18000"
+	port := "18005"
 	url := "http://127.0.0.1:"+port+"/jolokia/"
 	jvm.GetUrlRes(url)
 }
