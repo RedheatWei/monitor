@@ -1,11 +1,17 @@
 package main
 
 import (
-	"monitor/agent/jvm"
+	//"monitor/agent/jvm"
+	"monitor/agent/config"
+	"fmt"
 )
 
 func main() {
-	jok := &jvm.Jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
-	pid_slice := jvm.GetPid(jok)
-	jvm.StartJok(jok,pid_slice)
+	Config := new(conf.Config)
+	Config.InitConfig("config/agent.conf")
+	fmt.Println(Config.Read("default", "path"))
+	fmt.Printf("%v", Config.Mymap)
+	//jok := &jvm.Jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
+	//pid_slice := jvm.GetPid(jok)
+	//jvm.StartJok(jok,pid_slice)
 }
