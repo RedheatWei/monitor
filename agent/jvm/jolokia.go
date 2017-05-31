@@ -8,11 +8,11 @@ import(
 	"strconv"
 )
 
-type jolokia struct {
+type Jolokia struct {
 	jolokiapath,jolokianame string
 }
 //获取Java程序pid
-func getPid(jok *jolokia) []string{
+func GetPid(jok *jolokia) []string{
 	jolokia := "java -jar "+jok.jolokiapath+jok.jolokianame+" list | grep -v 'jolokia' | cut -d' ' -f1"
 	//cmd := exec.Command("/bin/sh", "-c", `java -jar /usr/local/jolokia/jolokia-jvm-1.3.6-agent.jar list | grep -v "jolokia" | cut -d' ' -f1`)
 	opBytes := execShell(jolokia)
@@ -20,7 +20,7 @@ func getPid(jok *jolokia) []string{
 	return pid_slice
 }
 //开启jolokia
-func startJok(jok *jolokia,pid_slice []string){
+func StartJok(jok *jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		if(bingPort(jok,pid,len(pid_slice))==0){
 			continue
@@ -46,7 +46,7 @@ func bingPort(jok *jolokia,pid string,pid_num int) int{
 }
 
 //停止监听
-func stopJok(jok *jolokia,pid_slice []string){
+func StopJok(jok *jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		jolokia := "java -jar "+jok.jolokiapath+jok.jolokianame+" stop "+pid
 		opBytes := execShell(jolokia)
