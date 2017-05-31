@@ -22,10 +22,10 @@ func checkPort(port string) int{
 	url := "http://127.0.0.1:"+port+"/jolokia/"
 	code,msg := getUrlRes(url)
 	if code == 0 {
-		return 1
+		return 0
 	}else{
 		fmt.Println(string(msg))
-		return 0
+		return 1
 	}
 }
 func GetPort(jok *Jolokia,pid_slice []string) []string{
