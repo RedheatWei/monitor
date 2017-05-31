@@ -17,6 +17,6 @@ func main() {
 }
 func ReadConfig(mod,par string) string{
 	config:= new(conf.Config)
-	config.InitConfig("config/agent.conf")
+	config.InitConfig("conf/agent.conf")
 	return config.Read(mod,par)
 }
