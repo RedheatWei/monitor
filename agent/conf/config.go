@@ -72,7 +72,6 @@ func (c *Config) InitConfig(path string) {
 		c.Mymap[key] = strings.TrimSpace(second)
 	}
 }
-
 func (c Config) Read(node, key string) string {
 	key = node + middle + key
 	v, found := c.Mymap[key]

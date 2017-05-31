@@ -9,7 +9,7 @@ import(
 )
 
 type Jolokia struct {
-	Jolokiapath,Jolokianame string
+	Jolokiapath,Jolokianame,Portstart string
 }
 //获取Java程序pid
 func GetPid(jok *Jolokia) []string{
@@ -17,6 +17,7 @@ func GetPid(jok *Jolokia) []string{
 	//cmd := exec.Command("/bin/sh", "-c", `java -jar /usr/local/jolokia/jolokia-jvm-1.3.6-agent.jar list | grep -v "jolokia" | cut -d' ' -f1`)
 	opBytes := execShell(jolokia)
 	pid_slice := strings.Split(string(opBytes),"\n")
+
 	return pid_slice
 }
 //开启jolokia
@@ -31,7 +32,8 @@ func StartJok(jok *Jolokia,pid_slice []string){
 }
 //绑定端口
 func bingPort(jok *Jolokia,pid string,pid_num int) int{
-	for port := 18000; port < 18000+pid_num; port++ {
+	portstart,_ := strconv.Atoi(jok.Portstart)
+	for port := portstart; port < portstart+pid_num; port++ {
 		fmt.Println(pid)
 		jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
 		fmt.Println(jolokia)

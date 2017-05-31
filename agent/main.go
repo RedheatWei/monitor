@@ -1,18 +1,20 @@
 package main
 
 import (
-	//"monitor/agent/jvm"
-	"monitor/agent/config"
-	"fmt"
 	"monitor/agent/conf"
+	"monitor/agent/jvm"
 )
 
 func main() {
-	var Config = new(conf.Config)
-	Config.InitConfig("config/agent.conf")
-	fmt.Println(Config.Read("jvm", "jolokiapath"))
-	fmt.Println(Config.Read("jvm", "portstart"))
-	//jok := &jvm.Jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
+	//jok := &jvm.Jolokia{ReadConfig("jvm","jolokiapath"),ReadConfig("jvm","jolokianame"),ReadConfig("jvm","portstart")}
 	//pid_slice := jvm.GetPid(jok)
 	//jvm.StartJok(jok,pid_slice)
+	port := "18000"
+	url := "http://127.0.0.1:"+port+"/jolokia/"
+	jvm.GetUrlRes(url)
+}
+func ReadConfig(mod,par string) string{
+	config:= new(conf.Config)
+	config.InitConfig("config/agent.conf")
+	return config.Read(mod,par)
 }
