@@ -9,9 +9,14 @@ func getJokPort(jok *Jolokia) string{
 }
 func GetUrlRes(url string) []byte{
 	//url := "http://127.0.0.1:"+port+"/jolokia/"
-	response,_ := http.Get(url)
-	defer response.Body.Close()
-	body,_ := ioutil.ReadAll(response.Body)
-	fmt.Println(string(body))
-	return body
+	response,err := http.Get(url)
+	if err != nil {
+		fmt.Println(err)
+	}else{
+		defer response.Body.Close()
+		body,_ := ioutil.ReadAll(response.Body)
+		fmt.Println(string(body))
+		return body
+	}
+
 }
