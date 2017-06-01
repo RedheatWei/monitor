@@ -22,11 +22,11 @@ func GetPid(jok *Jolokia) []string{
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
-		if(bingPort(jok,pid,len(pid_slice))==0){
-			continue
-		}else{
-			break
-		}
+		bingPort(jok,pid,len(pid_slice))
+		//	continue
+		//}else{
+		//	break
+		//}
 	}
 }
 //绑定端口
