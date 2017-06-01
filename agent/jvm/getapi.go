@@ -3,8 +3,8 @@ package jvm
 import (
 	"monitor/agent/base"
 	"fmt"
-	"encoding/json"
-	"strings"
+	//"encoding/json"
+	//"strings"
 )
 
 func getJson(port,method,arg string) (n int,res []byte){
