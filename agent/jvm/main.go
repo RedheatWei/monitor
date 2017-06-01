@@ -19,5 +19,5 @@ func getBindPort(jok *Jolokia,pid_slice []string) []string{
 func Start() {
 	jok,pid_slice := startJok()
 	portlist := getBindPort(jok,pid_slice)
-
+	GetRuntime(portlist)
 }
