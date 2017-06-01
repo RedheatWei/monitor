@@ -4,6 +4,7 @@ import (
 	"monitor/agent/base"
 	"fmt"
 )
+var PortBinding []string
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{base.ReadConfig("jvm","jolokiapath"),base.ReadConfig("jvm","jolokianame"),base.ReadConfig("jvm","portstart")}
 	pid_slice := GetPid(jok)
@@ -22,6 +23,7 @@ func Start(method string) {
 		portlist := getBindPort(jok,pid_slice)
 		fmt.Println(portlist)
 		GetRuntime(portlist)
+		fmt.Println(PortBinding)
 	}else{
 		StopJok(jok,pid_slice)
 	}

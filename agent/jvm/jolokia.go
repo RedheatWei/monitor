@@ -38,7 +38,8 @@ func bingPort(jok *Jolokia,pid string,pid_num int) int{
 		time.Sleep(2*time.Second)
 		if strings.Contains(string(opBytes),"127.0.0.1"){
 			x := strings.Split(string(opBytes),"\n")
-			fmt.Println("S:",x[len(x)-2],":E")
+			y := x[len(x)-2]
+			PortBinding = append(PortBinding, y[1:len(y)-2])
 			return 0
 		}else{
 			continue
