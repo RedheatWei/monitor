@@ -6,6 +6,7 @@ import(
 	"io/ioutil"
 	"strings"
 	"strconv"
+	"time"
 )
 
 type Jolokia struct {
@@ -34,6 +35,7 @@ func bingPort(jok *Jolokia,pid string,pid_num int) int{
 		fmt.Println(jolokia)
 		opBytes := execShell(jolokia)
 		fmt.Println(string(opBytes))
+		time.Sleep(2*time.Second)
 		if strings.Contains(string(opBytes),"127.0.0.1"){
 			return 0
 		}else{
