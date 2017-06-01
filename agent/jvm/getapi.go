@@ -10,21 +10,18 @@ func getJson(baseurl,method,arg string) (n int,res []byte){
 	url := baseurl+method+"/java.lang:type="+arg
 	return base.HttpGet(url)
 }
-func GetRuntime(portlist []string){
-	for _,port := range portlist{
-		_,res := getJson(port,"read","Threading")
+func getResJson(baseUrl []string,method,arg string){
+	for _,url := range baseUrl{
+		//_,res := getJson(url,"read","Threading")
+		_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
 		js, js_err := simplejson.NewJson(res)
 		if js_err == nil {
 			var nodes= make(map[string]interface{})
 			nodes, _ = js.Map()
-			fmt.Println(nodes["request"])
-			//for key,val := range nodes{
-			//	fmt.Println(key,val)
-			//}
+			fmt.Println(nodes)
 		}
-
-		//fmt.Println(string(res))
-		//dec := json.NewDecoder(strings.NewReader(string(res)))
-		//fmt.Println(dec)
 	}
+}
+func GetRuntime(baseUrl []string){
+	getResJson(baseUrl,"read","ClassLoading")
 }

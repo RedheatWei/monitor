@@ -16,7 +16,7 @@ func getArgs()(*Jolokia,[]string){
 //	portlist := GetPort(jok,pid_slice)
 //	return portlist
 //}
-func getBindPort() []string{
+func getBaseUrl() []string{
 	if len(PortBinding) !=0{
 		return PortBinding
 	}else{
@@ -30,8 +30,8 @@ func Start(method string) {
 	jok,pid_slice := getArgs()
 	if method=="start"{
 		StartJok(jok,pid_slice)
-		portlist := getBindPort()
-		GetRuntime(portlist)
+		baseUrl := getBaseUrl()
+		GetRuntime(baseUrl)
 	}else{
 		StopJok(jok,pid_slice)
 	}
