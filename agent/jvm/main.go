@@ -22,6 +22,7 @@ func getBindPort() []string{
 	}else{
 		fmt.Println("Cannot found bind port!")
 		os.Exit(1)
+		return []string{}
 	}
 }
 //启动
