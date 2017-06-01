@@ -12,6 +12,6 @@ func getJson(port,method,arg string) (n int,res []byte){
 func GetRuntime(portlist []string){
 	for _,port := range portlist{
 		_,res := getJson(port,"read","java.lang:type=Runtime")
-		fmt.Println(res)
+		fmt.Println(string(res))
 	}
 }

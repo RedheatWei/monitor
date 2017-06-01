@@ -23,10 +23,6 @@ func GetPid(jok *Jolokia) []string{
 func StartJok(jok *Jolokia,pid_slice []string){
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		bingPort(jok,pid,len(pid_slice))
-		//	continue
-		//}else{
-		//	break
-		//}
 	}
 }
 //绑定端口
