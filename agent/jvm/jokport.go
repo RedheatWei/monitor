@@ -1,26 +1,13 @@
 package jvm
 import (
 	"fmt"
-	"net/http"
-	"io/ioutil"
 	"strconv"
-	//"net/url"
+	"monitor/agent/base"
 )
-func getUrlRes(url string) (n int,msg []byte){
-	//url := "http://127.0.0.1:"+port+"/jolokia/"
-	response,err := http.Get(url)
-	if err != nil {
-		fmt.Println(err)
-		return 1,[]byte{}
-	}else{
-		defer response.Body.Close()
-		body,_ := ioutil.ReadAll(response.Body)
-		return 0,body
-	}
-}
+//检查端口是否开启
 func checkPort(port string) int{
 	url := "http://127.0.0.1:"+port+"/jolokia/"
-	code,msg := getUrlRes(url)
+	code,msg := base.HttpGet(url)
 	if code == 0 {
 		return 0
 	}else{
@@ -28,6 +15,7 @@ func checkPort(port string) int{
 		return 1
 	}
 }
+//获取绑定jok的端口
 func GetPort(jok *Jolokia,pid_slice []string) []string{
 	var port_list []string
 	portstart,_ := strconv.Atoi(jok.Portstart)
