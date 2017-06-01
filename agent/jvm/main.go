@@ -27,14 +27,12 @@ func getBaseUrl() []string{
 }
 //启动
 func Start(method string) {
+	jok,pid_slice := getArgs()
 	switch os.Args[1] {
-	case "start":
-		jok,pid_slice := getArgs()
-		StartJok(jok,pid_slice)
 	case "stop":
-		jok,pid_slice := getArgs()
 		StopJok(jok,pid_slice)
 	case "get":
+		StartJok(jok,pid_slice)
 		baseUrl := getBaseUrl()
 		GetRuntime(baseUrl)
 	}
