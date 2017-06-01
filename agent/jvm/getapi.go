@@ -1,11 +1,9 @@
 package jvm
 
 import (
+	"github.com/bitly/go-simplejson"
 	"monitor/agent/base"
 	"fmt"
-	"github.com/bitly/go-simplejson"
-	//"encoding/json"
-	//"strings"
 )
 
 func getJson(port,method,arg string) (n int,res []byte){
