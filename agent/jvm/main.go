@@ -2,6 +2,7 @@ package jvm
 
 import (
 	"monitor/agent/base"
+	"fmt"
 )
 //启动jok
 func startJok() (*Jolokia,[]string){
@@ -19,5 +20,6 @@ func getBindPort(jok *Jolokia,pid_slice []string) []string{
 func Start() {
 	jok,pid_slice := startJok()
 	portlist := getBindPort(jok,pid_slice)
+	fmt.Println(portlist)
 	GetRuntime(portlist)
 }
