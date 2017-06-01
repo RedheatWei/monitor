@@ -2,10 +2,9 @@ package main
 
 import (
 	"monitor/agent/jvm"
-	//"monitor/agent/jvm"
-	//"fmt"
+	"os"
 )
 
 func main() {
-	jvm.Start()
+	jvm.Start(os.Args[1])
 }
