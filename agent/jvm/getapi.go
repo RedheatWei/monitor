@@ -14,8 +14,8 @@ func GetRuntime(portlist []string){
 	for _,port := range portlist{
 		_,res := getJson(port,"read","Threading")
 		js, js_err := simplejson.NewJson(res)
-		if js_err != nil{
-			var nodes = make(map[string]interface{})
+		if js_err == nil {
+			var nodes= make(map[string]interface{})
 			nodes, _ = js.Map()
 			fmt.Println(nodes["request"])
 			//for key,val := range nodes{
