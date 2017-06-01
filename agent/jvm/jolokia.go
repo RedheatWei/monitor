@@ -39,7 +39,6 @@ func bingPort(jok *Jolokia,pid string,pid_num int) int{
 		if strings.Contains(string(opBytes),"127.0.0.1"){
 			x := strings.Split(string(opBytes),"\n")
 			y := x[len(x)-2]
-			//PortBinding = append(PortBinding, y[:len(y)-2])
 			PortBinding = append(PortBinding, y)
 			return 0
 		}else{
@@ -68,12 +67,6 @@ func execShell(shell string) []byte{
 	checkErr(err)
 	return opBytes
 }
-
-//func main(){
-//	jok := &Jolokia{"/usr/local/jolokia/","jolokia-jvm-1.3.6-agent.jar"}
-//	pid_slice := GetPid(jok)
-//	StartJok(jok,pid_slice)
-//}
 
 func checkErr(err error) {
 	if err != nil {

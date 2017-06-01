@@ -3,6 +3,7 @@ package jvm
 import (
 	"monitor/agent/base"
 	"fmt"
+	"os"
 )
 var PortBinding []string
 func getArgs()(*Jolokia,[]string){
@@ -11,19 +12,25 @@ func getArgs()(*Jolokia,[]string){
 	return jok,pid_slice
 }
 //获取绑定端口
-func getBindPort(jok *Jolokia,pid_slice []string) []string{
-	portlist := GetPort(jok,pid_slice)
-	return portlist
+//func getBindPort(jok *Jolokia,pid_slice []string) []string{
+//	portlist := GetPort(jok,pid_slice)
+//	return portlist
+//}
+func getBindPort() []string{
+	if len(PortBinding) !=0{
+		return PortBinding
+	}else{
+		fmt.Println("Cannot found bind port!")
+		os.Exit(1)
+	}
 }
 //启动
 func Start(method string) {
 	jok,pid_slice := getArgs()
 	if method=="start"{
 		StartJok(jok,pid_slice)
-		portlist := getBindPort(jok,pid_slice)
-		fmt.Println(portlist)
+		portlist := getBindPort()
 		GetRuntime(portlist)
-		fmt.Println(PortBinding)
 	}else{
 		StopJok(jok,pid_slice)
 	}
