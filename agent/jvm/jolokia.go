@@ -34,9 +34,10 @@ func bingPort(jok *Jolokia,pid string,pid_num int) int{
 		jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
 		fmt.Println(jolokia)
 		opBytes := execShell(jolokia)
-		fmt.Println(string(opBytes))
+		//fmt.Println(string(opBytes))
 		time.Sleep(2*time.Second)
 		if strings.Contains(string(opBytes),"127.0.0.1"){
+			fmt.Println(strings.Split(string(opBytes),"\n"))
 			return 0
 		}else{
 			continue
