@@ -29,6 +29,7 @@ func getBaseUrl() []string{
 func Start(method string) {
 	switch os.Args[1] {
 	case "start":
+		jok,pid_slice := getArgs()
 		StartJok(jok,pid_slice)
 	case "stop":
 		jok,pid_slice := getArgs()
