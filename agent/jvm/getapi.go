@@ -31,7 +31,7 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 //	}
 //}
 func AccceptGet(baseUrl []string){
-	sock.ListenStart()
+	go sock.ListenStart()
 	js := getResJson(baseUrl,"read","ClassLoading")
 	sock.SendMsg(string(js))
 }
