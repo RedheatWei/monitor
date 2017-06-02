@@ -28,6 +28,10 @@ func getBaseUrl() []string{
 //启动
 func Start(method string) {
 	jok,pid_slice := getArgs()
+	if len(pid_slice) == 0{
+		fmt.Println("Cannot found java process!")
+		os.Exit(1)
+	}
 	switch method {
 	case "stop":
 		StopJok(jok,pid_slice)
