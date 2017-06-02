@@ -23,5 +23,6 @@ func getResJson(baseUrl []string,method,arg string){
 	}
 }
 func GetRuntime(baseUrl []string){
+	fmt.Println("Runtime")
 	getResJson(baseUrl,"read","ClassLoading")
 }

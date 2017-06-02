@@ -22,6 +22,7 @@ func GetPid(jok *Jolokia) []string{
 }
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
+	fmt.Println("Jok")
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		bingPort(jok,pid,len(pid_slice))
 	}
