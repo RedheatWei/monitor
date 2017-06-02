@@ -33,6 +33,7 @@ func Start(method string) {
 		StopJok(jok,pid_slice)
 	case "get":
 		StartJok(jok,pid_slice)
+		fmt.Println(PortBinding)
 		baseUrl := getBaseUrl()
 		ch := make(chan []string)
 		//ch <- getBaseUrl()
