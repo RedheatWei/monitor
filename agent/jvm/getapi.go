@@ -22,6 +22,7 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 		//	return nodes
 		//}
 	}
+	return []byte{}
 }
 //func GetRuntime(baseUrl []string){
 //	for{
