@@ -38,6 +38,7 @@ func Start(method string) {
 		ch := make(chan []string)
 		ch <- getBaseUrl()
 		go GetRuntime(<- ch)
+		ch <- getBaseUrl()
 		//GetRuntime(baseUrl)
 	}
 }
