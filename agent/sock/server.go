@@ -3,6 +3,7 @@ package sock
 import (
 	"net"
 	"monitor/agent/base"
+	"io/ioutil"
 )
 func echoServer(c net.Conn) {
 	buf := make([]byte, 512)
@@ -30,15 +31,16 @@ func ListenStart() {
 			println("accept error", err.Error())
 			return
 		}
-		buf := make([]byte, 512)
-		for{
-			nr, err := fd.Read(buf)
-			if err != nil {
-				return
-			}
-			data := buf[0:nr]
-			println("Server got:", string(data))
-		}
+		buf,err := ioutil.ReadAll(&fd)
+		//buf := make([]byte, 512)
+		//for{
+		//	var nr int, _ := fd.Read(buf)
+		//}
+		//if err != nil {
+		//	return
+		//}
+		//data := buf[0:nr]
+		println("Server got:", string(buf))
 
 	}
 }
