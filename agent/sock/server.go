@@ -31,7 +31,7 @@ func ListenStart() {
 			println("accept error", err.Error())
 			return
 		}
-		buf,err := ioutil.ReadAll(&fd)
+		buf,err := ioutil.ReadAll(fd)
 		//buf := make([]byte, 512)
 		//for{
 		//	var nr int, _ := fd.Read(buf)
