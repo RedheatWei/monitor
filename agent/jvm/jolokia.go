@@ -39,7 +39,6 @@ func bingPort(jok *Jolokia,pid string,pid_num int) int{
 			x := strings.Split(string(opBytes),"\n")
 			y := x[len(x)-2]
 			PortBinding = append(PortBinding, y)
-			fmt.Println(PortBinding)
 			return 0
 		}else{
 			continue
