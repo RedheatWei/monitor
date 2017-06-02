@@ -6,11 +6,10 @@ import (
 	"github.com/bitly/go-simplejson"
 	"time"
 )
-
-func getJson(baseurl,method,arg string) (n int,res []byte){
-	url := baseurl+method+"/java.lang:type="+arg
-	return base.HttpGet(url)
-}
+//func getJson(baseurl,method,arg string) (n int,res []byte){
+//	url := baseurl+method+"/java.lang:type="+arg
+//	return base.HttpGet(url)
+//}
 func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
 		//_,res := getJson(url,"read","Threading")
