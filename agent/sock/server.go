@@ -31,11 +31,14 @@ func ListenStart() {
 			return
 		}
 		buf := make([]byte, 512)
-		nr, err := fd.Read(buf)
-		if err != nil {
-			return
+		for{
+			nr, err := fd.Read(buf)
+			if err != nil {
+				return
+			}
+			data := buf[0:nr]
+			println("Server got:", string(data))
 		}
-		data := buf[0:nr]
-		println("Server got:", string(data))
+
 	}
 }
