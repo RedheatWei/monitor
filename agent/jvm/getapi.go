@@ -5,7 +5,7 @@ import (
 	//"github.com/bitly/go-simplejson"
 	"monitor/agent/sock"
 	"time"
-	"fmt"
+	//"fmt"
 )
 //func getJson(baseurl,method,arg string) (n int,res []byte){
 //	url := baseurl+method+"/java.lang:type="+arg
@@ -36,7 +36,6 @@ func AccceptGet(baseUrl []string){
 	js := getResJson(baseUrl,"read","ClassLoading")
 	for{
 		sock.SendMsg(string(js))
-		fmt.Println("send")
 		time.Sleep(5*time.Second)
 	}
 
