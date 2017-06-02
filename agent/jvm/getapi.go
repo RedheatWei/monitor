@@ -4,6 +4,7 @@ import (
 	"monitor/agent/base"
 	"fmt"
 	"github.com/bitly/go-simplejson"
+	"time"
 )
 
 func getJson(baseurl,method,arg string) (n int,res []byte){
@@ -23,6 +24,8 @@ func getResJson(baseUrl []string,method,arg string){
 	}
 }
 func GetRuntime(baseUrl []string){
-	fmt.Println("Runtime")
-	getResJson(baseUrl,"read","ClassLoading")
+	for{
+		getResJson(baseUrl,"read","ClassLoading")
+		time.Sleep(5*time.Second)
+	}
 }

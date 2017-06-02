@@ -22,7 +22,6 @@ func GetPid(jok *Jolokia) []string{
 }
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
-	fmt.Println("Jok")
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		bingPort(jok,pid,len(pid_slice))
 	}
@@ -31,7 +30,6 @@ func StartJok(jok *Jolokia,pid_slice []string){
 func bingPort(jok *Jolokia,pid string,pid_num int) int{
 	portstart,_ := strconv.Atoi(jok.Portstart)
 	for port := portstart; port < portstart+pid_num; port++ {
-		fmt.Println(pid)
 		jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
 		fmt.Println(jolokia)
 		opBytes := execShell(jolokia)
