@@ -10,7 +10,7 @@ func reader(r io.Reader) (n int,res []byte){
 	n, err := r.Read(buf[:])
 	if err != nil {
 		return
-	}else {
+	} else {
 		return 0,buf[0:n]
 	}
 }
