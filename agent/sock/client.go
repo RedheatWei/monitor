@@ -21,6 +21,6 @@ func SendMsg(msg string) {
 		panic(err.Error())
 	}
 	//defer c.Close()
-	//go reader(c)
+	go reader(c)
 	c.Write([]byte(msg))
 }
