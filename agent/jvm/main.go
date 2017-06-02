@@ -28,7 +28,7 @@ func getBaseUrl() []string{
 //启动
 func Start(method string) {
 	jok,pid_slice := getArgs()
-	//baseUrl := getBaseUrl()
+	baseUrl := getBaseUrl()
 
 	switch method {
 	case "stop":
@@ -36,8 +36,8 @@ func Start(method string) {
 	case "get":
 		StartJok(jok,pid_slice)
 		ch := make(chan []string)
-		ch <- getBaseUrl()
-		go GetRuntime(<- ch)
+		//ch <- getBaseUrl()
+		go GetRuntime(baseUrl)
 		ch <- getBaseUrl()
 		//GetRuntime(baseUrl)
 	}
