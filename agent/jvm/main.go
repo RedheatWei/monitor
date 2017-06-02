@@ -29,13 +29,14 @@ func getBaseUrl() []string{
 func Start(method string) {
 	jok,pid_slice := getArgs()
 	//baseUrl := getBaseUrl()
-	ch := make(chan []string)
-	ch <- getBaseUrl()
+
 	switch method {
 	case "stop":
 		StopJok(jok,pid_slice)
 	case "get":
 		StartJok(jok,pid_slice)
+		ch := make(chan []string)
+		ch <- getBaseUrl()
 		go GetRuntime(<- ch)
 		//GetRuntime(baseUrl)
 	}
