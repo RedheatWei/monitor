@@ -2,29 +2,35 @@ package jvm
 
 import (
 	"monitor/agent/base"
-	"fmt"
-	"github.com/bitly/go-simplejson"
-	"time"
+	//"fmt"
+	//"github.com/bitly/go-simplejson"
+	"monitor/agent/sock"
 )
 //func getJson(baseurl,method,arg string) (n int,res []byte){
 //	url := baseurl+method+"/java.lang:type="+arg
 //	return base.HttpGet(url)
 //}
-func getResJson(baseUrl []string,method,arg string){
+func getResJson(baseUrl []string,method,arg string) []byte{
 	for _,url := range baseUrl{
 		//_,res := getJson(url,"read","Threading")
 		_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
-		js, js_err := simplejson.NewJson(res)
-		if js_err == nil {
-			var nodes= make(map[string]interface{})
-			nodes, _ = js.Map()
-			fmt.Println(nodes)
-		}
+		//js, js_err := simplejson.NewJson(res)
+		return res
+		//if js_err == nil {
+		//	var nodes= make(map[string]interface{})
+		//	nodes, _ = js.Map()
+		//	return nodes
+		//}
 	}
 }
-func GetRuntime(baseUrl []string){
-	for{
-		getResJson(baseUrl,"read","ClassLoading")
-		time.Sleep(5*time.Second)
-	}
+//func GetRuntime(baseUrl []string){
+//	for{
+//		getResJson(baseUrl,"read","ClassLoading")
+//		time.Sleep(5*time.Second)
+//	}
+//}
+func AccceptGet(baseUrl []string){
+	sock.ListenStart()
+	js := getResJson(baseUrl,"read","ClassLoading")
+	sock.SendMsg(string(js))
 }

@@ -16,6 +16,7 @@ func getArgs()(*Jolokia,[]string){
 //	portlist := GetPort(jok,pid_slice)
 //	return portlist
 //}
+//检查是否存在成功绑定端口
 func getBaseUrl() []string{
 	if len(PortBinding) !=0{
 		return PortBinding
@@ -39,7 +40,7 @@ func Start(method string) {
 		StartJok(jok,pid_slice)
 		baseUrl := getBaseUrl()
 		ch := make(chan []string)
-		go GetRuntime(baseUrl)
+		go AccceptGet(baseUrl)
 		ch <- getBaseUrl()
 	}
 }
