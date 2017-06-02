@@ -35,10 +35,10 @@ func Start(method string) {
 		StartJok(jok,pid_slice)
 		fmt.Println(PortBinding)
 		baseUrl := getBaseUrl()
-		ch := make(chan []string)
+		//ch := make(chan []string)
 		//ch <- getBaseUrl()
-		go GetRuntime(baseUrl)
-		ch <- getBaseUrl()
-		//GetRuntime(baseUrl)
+		//go GetRuntime(baseUrl)
+		//ch <- getBaseUrl()
+		GetRuntime(baseUrl)
 	}
 }
