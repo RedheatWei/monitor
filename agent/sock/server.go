@@ -37,5 +37,4 @@ func ListenStart() {
 	}
 	data := buf[0:nr]
 	println("Server got:", string(data))
-
 }
