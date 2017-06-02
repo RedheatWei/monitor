@@ -1,8 +1,8 @@
 package main
 
 import (
-	"monitor/agent/jvm"
-	"os"
+"monitor/agent/jvm"
+"os"
 )
 
 func main() {
