@@ -3,7 +3,7 @@ import (
 	"io"
 	"net"
 	"monitor/agent/base"
-	"fmt"
+	//"fmt"
 )
 
 func reader(r io.Reader) (n int,res []byte){
@@ -24,5 +24,5 @@ func SendMsg(msg string) {
 	//defer c.Close()
 	//go reader(c)
 	c.Write([]byte(msg))
-	fmt.Println(msg)
+	//fmt.Println(msg)
 }

@@ -29,12 +29,5 @@ func ListenStart() {
 		println("accept error", err.Error())
 		return
 	}
-	//go echoServer(fd)
-	buf := make([]byte, 512)
-	nr, err := fd.Read(buf)
-	if err != nil {
-		return
-	}
-	data := buf[0:nr]
-	println("Server got:", string(data))
+	go echoServer(fd)
 }
