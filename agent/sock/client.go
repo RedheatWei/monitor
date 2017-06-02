@@ -7,7 +7,7 @@ import (
 )
 
 func reader(r io.Reader) (n int,res []byte){
-	buf := make([]byte, 1024)
+	buf := make([]byte, 512)
 	n, err := r.Read(buf[:])
 	if err != nil {
 		return

@@ -33,7 +33,7 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 //}
 func AccceptGet(baseUrl []string){
 	go sock.ListenStart()
-	js := getResJson(baseUrl,"read","ClassLoading")
+	js := getResJson(baseUrl,"read","OperatingSystem")
 	for{
 		sock.SendMsg(string(js))
 		time.Sleep(5*time.Second)
