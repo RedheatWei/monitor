@@ -22,11 +22,14 @@ func getResJson(baseUrl []string,method,arg string){
 	//return []byte{}
 }
 func AccceptGet(baseUrl []string,method string,args []string){
-	for _,arg := range args{
-		for _,url := range baseUrl {
-			_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
-			fmt.Println(string(res))
+	for{
+		for _,arg := range args{
+			for _,url := range baseUrl {
+				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
+				fmt.Println(string(res))
+			}
 		}
+		time.Sleep(time.Duration(Frequency)*time.Second)
+
 	}
-	time.Sleep(time.Duration(Frequency)*time.Second)
 }

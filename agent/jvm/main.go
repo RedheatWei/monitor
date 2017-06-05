@@ -7,8 +7,7 @@ import (
 	"strconv"
 )
 var PortBinding []string
-var Frequency int64
-var(
+var Frequency int64; var(
 	met string = "read"
 	args = []string{"Memory","OperatingSystem","Runtime","Threading","ClassLoading"}
 )
