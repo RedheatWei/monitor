@@ -31,7 +31,7 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 
 
 
-func AccceptGet(baseUrl []string,method,arg string) []byte{
+func AccceptGet(baseUrl []string,method,arg string){
 	//go sock.ListenStart()
 	fmt.Println(string(getResJson(baseUrl,method,arg)))
 	//return []byte{}
