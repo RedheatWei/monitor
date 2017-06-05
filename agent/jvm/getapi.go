@@ -6,6 +6,7 @@ import (
 	"monitor/agent/sock"
 	"time"
 	//"fmt"
+	"fmt"
 )
 //func getJson(baseurl,method,arg string) (n int,res []byte){
 //	url := baseurl+method+"/java.lang:type="+arg
@@ -31,12 +32,16 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 //		time.Sleep(5*time.Second)
 //	}
 //}
-func AccceptGet(baseUrl []string){
-	go sock.ListenStart()
-	js := getResJson(baseUrl,"read","OperatingSystem")
-	for{
-		sock.SendMsg(string(js))
-		time.Sleep(5*time.Second)
-	}
+
+
+
+func AccceptGet(baseUrl []string,method,arg string) []byte{
+	//go sock.ListenStart()
+	fmt.Println(string(getResJson(baseUrl,method,arg)))
+	return []byte{}
+	//for{
+	//	sock.SendMsg(string(js))
+	//	time.Sleep(5*time.Second)
+	//}
 
 }

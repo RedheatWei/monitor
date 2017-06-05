@@ -36,11 +36,12 @@ func Start(method string) {
 	switch method {
 	case "stop":
 		StopJok(jok,pid_slice)
-	case "get":
+	case "start":
 		StartJok(jok,pid_slice)
+	case "get":
 		baseUrl := getBaseUrl()
 		ch := make(chan []string)
-		go AccceptGet(baseUrl)
+		go AccceptGet(baseUrl,"read","OperatingSystem")
 		ch <- getBaseUrl()
 	}
 }
