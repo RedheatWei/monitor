@@ -3,8 +3,6 @@ package sock
 import (
 	"net"
 	"monitor/agent/base"
-	//"io/ioutil"
-	"io/ioutil"
 )
 func echoServer(c net.Conn) {
 	buf := make([]byte, 512)
