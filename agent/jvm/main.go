@@ -4,18 +4,19 @@ import (
 	"monitor/agent/base"
 	"fmt"
 	"os"
+	"strconv"
 )
 var PortBinding []string
+var Frequency int64
+var(
+	met string = "read"
+	args = []string{"Memory","OperatingSystem","Runtime","Threading","ClassLoading"}
+)
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{base.ReadConfig("jvm","jolokiapath"),base.ReadConfig("jvm","jolokianame"),base.ReadConfig("jvm","portstart")}
 	pid_slice := GetPid(jok)
 	return jok,pid_slice
 }
-//获取绑定端口
-//func getBindPort(jok *Jolokia,pid_slice []string) []string{
-//	portlist := GetPort(jok,pid_slice)
-//	return portlist
-//}
 //检查是否存在成功绑定端口
 func getBaseUrl() []string{
 	if len(PortBinding) !=0{
@@ -29,6 +30,7 @@ func getBaseUrl() []string{
 //启动
 func Start(method string) {
 	jok,pid_slice := getArgs()
+	Frequency,_ = strconv.ParseInt(base.ReadConfig("jvm","frequency"),10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
 		os.Exit(1)
@@ -39,13 +41,8 @@ func Start(method string) {
 	case "start":
 		StartJok(jok,pid_slice)
 		baseUrl := getBaseUrl()
-		//ch := make(chan []string)
-		var met,arg string
-		for{
-			fmt.Println("input:")
-			fmt.Scanln(&met,&arg)
-			GetResJson(baseUrl,met,arg)
-		}
+		ch := make(chan []string)
+		go AccceptGet(baseUrl,met,args)
+		ch <- getBaseUrl()
 	}
-		//ch <- getBaseUrl()
 }

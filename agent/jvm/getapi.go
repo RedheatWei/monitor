@@ -3,12 +3,10 @@ package jvm
 import (
 	"monitor/agent/base"
 	"fmt"
+	//"monitor/agent/sock"
+	"time"
 )
-//func getJson(baseurl,method,arg string) (n int,res []byte){
-//	url := baseurl+method+"/java.lang:type="+arg
-//	return base.HttpGet(url)
-//}
-func GetResJson(baseUrl []string,method,arg string){
+func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
 		//_,res := getJson(url,"read","Threading")
 		_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
@@ -23,22 +21,12 @@ func GetResJson(baseUrl []string,method,arg string){
 	}
 	//return []byte{}
 }
-//func GetRuntime(baseUrl []string){
-//	for{
-//		getResJson(baseUrl,"read","ClassLoading")
-//		time.Sleep(5*time.Second)
-//	}
-//}
-
-
-
-func AccceptGet(baseUrl []string,method,arg string){
-	//go sock.ListenStart()
-	//fmt.Println(string(getResJson(baseUrl,method,arg)))
-	//return []byte{}
-	//for{
-	//	sock.SendMsg(string(js))
-	//	time.Sleep(5*time.Second)
-	//}
-
+func AccceptGet(baseUrl []string,method string,args []string){
+	for _,arg := range args{
+		for _,url := range baseUrl {
+			_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
+			fmt.Println(string(res))
+		}
+	}
+	time.Sleep(time.Duration(Frequency)*time.Second)
 }

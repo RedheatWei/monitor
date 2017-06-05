@@ -19,7 +19,7 @@ func echoServer(c net.Conn) {
 }
 func ListenStart() {
 	l, err := net.Listen("unix",base.ReadConfig("jvm","sock"))
-	//defer l.Close()
+	defer l.Close()
 	if err != nil {
 		println("listen error", err.Error())
 		return
@@ -30,8 +30,6 @@ func ListenStart() {
 			println("accept error", err.Error())
 			return
 		}
-		//go echoServer(fd)
-		//buf,err := ioutil.ReadAll(fd)
 		for{
 			buf := make([]byte, 512)
 			nr ,_ := fd.Read(buf)
@@ -41,7 +39,5 @@ func ListenStart() {
 			data := buf[0:nr]
 			println("Server got:", string(data))
 		}
-
-
 	}
 }
