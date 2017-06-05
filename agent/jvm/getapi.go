@@ -2,10 +2,6 @@ package jvm
 
 import (
 	"monitor/agent/base"
-	//"github.com/bitly/go-simplejson"
-	"monitor/agent/sock"
-	"time"
-	//"fmt"
 	"fmt"
 )
 //func getJson(baseurl,method,arg string) (n int,res []byte){
