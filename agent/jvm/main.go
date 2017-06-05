@@ -38,10 +38,13 @@ func Start(method string) {
 		StopJok(jok,pid_slice)
 	case "start":
 		StartJok(jok,pid_slice)
-	case "get":
 		baseUrl := getBaseUrl()
-		ch := make(chan []string)
-		go AccceptGet(baseUrl,"read","OperatingSystem")
-		ch <- getBaseUrl()
+		//ch := make(chan []string)
+		var met,arg string
+		for{
+			fmt.Scanln(&met,&arg)
+			AccceptGet(baseUrl,met,arg)
+		}
 	}
+		//ch <- getBaseUrl()
 }

@@ -38,7 +38,7 @@ func getResJson(baseUrl []string,method,arg string) []byte{
 func AccceptGet(baseUrl []string,method,arg string) []byte{
 	//go sock.ListenStart()
 	fmt.Println(string(getResJson(baseUrl,method,arg)))
-	return []byte{}
+	//return []byte{}
 	//for{
 	//	sock.SendMsg(string(js))
 	//	time.Sleep(5*time.Second)
