@@ -8,19 +8,20 @@ import (
 //	url := baseurl+method+"/java.lang:type="+arg
 //	return base.HttpGet(url)
 //}
-func getResJson(baseUrl []string,method,arg string) []byte{
+func GetResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
 		//_,res := getJson(url,"read","Threading")
 		_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
 		//js, js_err := simplejson.NewJson(res)
-		return res
+		fmt.Println(string(res))
+		//return res
 		//if js_err == nil {
 		//	var nodes= make(map[string]interface{})
 		//	nodes, _ = js.Map()
 		//	return nodes
 		//}
 	}
-	return []byte{}
+	//return []byte{}
 }
 //func GetRuntime(baseUrl []string){
 //	for{

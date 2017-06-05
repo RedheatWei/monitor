@@ -42,8 +42,9 @@ func Start(method string) {
 		//ch := make(chan []string)
 		var met,arg string
 		for{
+			fmt.Println("input:")
 			fmt.Scanln(&met,&arg)
-			AccceptGet(baseUrl,met,arg)
+			GetResJson(baseUrl,met,arg)
 		}
 	}
 		//ch <- getBaseUrl()
