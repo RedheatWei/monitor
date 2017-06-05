@@ -39,7 +39,7 @@ func hanJson(res []byte){
 	if js_err == nil {
 		var nodes= make(map[string]interface{})
 		nodes, _ = js.Map()
-		fmt.Println(nodes)
+		fmt.Println(nodes["request"])
 	}
 
 }
