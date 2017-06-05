@@ -21,7 +21,8 @@ func StartServer() {
 func handleClient(conn *net.UDPConn) {
 	defer conn.Close()
 	//var buf [512]byte
-	fmt.Println(ioutil.ReadAll(conn))
+	all ,_ := ioutil.ReadAll(conn)
+	fmt.Println(all)
 	//for {
 	//	n, rAddr, err := conn.ReadFromUDP(buf[0:])
 	//	if err != nil {
