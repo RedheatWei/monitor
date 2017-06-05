@@ -20,13 +20,16 @@ func UdpSend(server string,msg []byte){
 	//total := Int64ToBytes(msg.Total)
 	//total := strconv.FormatUint(msg.Total,10)
 	//n, err := conn.Write(S2B(&total))
-	for{
+	for {
 		n, err := conn.Write(msg)
-		checkErr(err)
-		n, err = conn.Read(buf[0:])
-		checkErr(err)
-		fmt.Println("Reply:", rAddr.String(), string(buf[0:n]))
+		if n {
+			checkErr(err)
+			n, err = conn.Read(buf[0:])
+			checkErr(err)
+			fmt.Println("Reply:", rAddr.String(), string(buf[0:n]))
+		}
 	}
+
 	//os.Exit(0)
 }
 func S2B(s *string) []byte {
