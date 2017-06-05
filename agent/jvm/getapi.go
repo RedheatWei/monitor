@@ -42,7 +42,7 @@ func hanJson(res []byte){
 		var nodes= make(map[string]interface{})
 		nodes, _ = js.Map()
 		//network.UdpSend("123.56.92.243:33990",nodes)
-		fmt.Println(nodes["request"])
+		fmt.Println(nodes)
 	}
 
 }
