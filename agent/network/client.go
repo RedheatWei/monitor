@@ -9,7 +9,7 @@ import (
 	"unsafe"
 )
 func UdpSend(server string,msg []byte){
-	var buf [512]byte
+	var buf [1024]byte
 	fmt.Printf("send to %s \n", server)
 	udpAddr, err := net.ResolveUDPAddr("udp4", server)
 	checkErr(err)
@@ -17,15 +17,16 @@ func UdpSend(server string,msg []byte){
 	defer conn.Close()
 	checkErr(err)
 	rAddr := conn.RemoteAddr()
-
 	//total := Int64ToBytes(msg.Total)
 	//total := strconv.FormatUint(msg.Total,10)
 	//n, err := conn.Write(S2B(&total))
-	n, err := conn.Write(msg)
-	checkErr(err)
-	n, err = conn.Read(buf[0:])
-	checkErr(err)
-	fmt.Println("Reply:", rAddr.String(), string(buf[0:n]))
+	for{
+		n, err := conn.Write(msg)
+		checkErr(err)
+		n, err = conn.Read(buf[0:])
+		checkErr(err)
+		fmt.Println("Reply:", rAddr.String(), string(buf[0:n]))
+	}
 	//os.Exit(0)
 }
 func S2B(s *string) []byte {

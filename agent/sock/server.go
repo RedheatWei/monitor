@@ -31,7 +31,7 @@ func ListenStart() {
 			return
 		}
 		for{
-			buf := make([]byte, 512)
+			buf := make([]byte, 1024)
 			nr ,_ := fd.Read(buf)
 			if err != nil {
 				return
