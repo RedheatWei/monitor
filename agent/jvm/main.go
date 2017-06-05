@@ -27,21 +27,26 @@ func getBaseUrl() []string{
 	}
 }
 //启动
-func Start(method string) {
+func Start() {
 	jok,pid_slice := getArgs()
 	Frequency,_ = strconv.ParseInt(base.ReadConfig("jvm","frequency"),10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
 		os.Exit(1)
 	}
-	switch method {
-	case "stop":
-		StopJok(jok,pid_slice)
-	case "start":
-		StartJok(jok,pid_slice)
-		baseUrl := getBaseUrl()
-		ch := make(chan []string)
-		go AccceptGet(baseUrl,met,args)
-		ch <- getBaseUrl()
-	}
+	StartJok(jok,pid_slice)
+	baseUrl := getBaseUrl()
+	ch := make(chan []string)
+	go AccceptGet(baseUrl,met,args)
+	ch <- getBaseUrl()
+	//switch method {
+	//case "stop":
+	//	StopJok(jok,pid_slice)
+	//case "start":
+	//	StartJok(jok,pid_slice)
+	//	baseUrl := getBaseUrl()
+	//	ch := make(chan []string)
+	//	go AccceptGet(baseUrl,met,args)
+	//	ch <- getBaseUrl()
+	//}
 }

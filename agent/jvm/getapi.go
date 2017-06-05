@@ -6,6 +6,7 @@ import (
 	//"monitor/agent/sock"
 	"time"
 	"github.com/bitly/go-simplejson"
+	"monitor/agent/network"
 )
 func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
@@ -27,6 +28,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 		for _,arg := range args{
 			for _,url := range baseUrl {
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
+				network.UdpSend("123.56.92.243:33990",res)
 				hanJson(res)
 			}
 		}
@@ -39,6 +41,7 @@ func hanJson(res []byte){
 	if js_err == nil {
 		var nodes= make(map[string]interface{})
 		nodes, _ = js.Map()
+		//network.UdpSend("123.56.92.243:33990",nodes)
 		fmt.Println(nodes["request"])
 	}
 
