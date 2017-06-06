@@ -11,6 +11,7 @@ func StartServer() {
 	checkErr(err)
 	conn, err := net.ListenUDP("udp", udpAddr)
 	checkErr(err)
+	fmt.Println(conn)
 	for {
 		handleClient(conn)
 	}
