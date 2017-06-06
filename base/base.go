@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	"io/ioutil"
-	"monitor/agent/conf"
+	"monitor/conf"
 )
 
 //get方法

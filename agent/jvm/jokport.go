@@ -2,7 +2,7 @@ package jvm
 import (
 	"fmt"
 	"strconv"
-	"monitor/agent/base"
+	"monitor/base"
 )
 //检查端口是否开启
 func checkPort(port string) int{

@@ -1,7 +1,7 @@
 package jvm
 
 import (
-	"monitor/agent/base"
+	"monitor/base"
 	"fmt"
 	"os"
 	"strconv"
