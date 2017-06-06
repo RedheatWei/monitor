@@ -3,7 +3,6 @@ package network
 import (
 	"fmt"
 	"net"
-	"io/ioutil"
 )
 
 func StartServer() {
@@ -20,18 +19,14 @@ func StartServer() {
 
 func handleClient(conn *net.UDPConn) {
 	defer conn.Close()
-	//var buf [512]byte
-	all ,_ := ioutil.ReadAll(conn)
-	fmt.Println(all)
-	//for {
-	//	n, rAddr, err := conn.ReadFromUDP(buf[0:])
-	//	if err != nil {
-	//		return
-	//	}
-	//	fmt.Println("client:", rAddr.String(),string(buf[0:n]))
-	//	_, err2 := conn.WriteToUDP([]byte("Received"), rAddr)
-	//	if err2 != nil {
-	//		return
-	//	}
-	//}
+	var buf [512]byte
+	n, rAddr, err := conn.ReadFromUDP(buf[0:])
+	if err != nil {
+		return
+	}
+	fmt.Println("client:", rAddr.String(),string(buf[0:n]))
+	_, err2 := conn.WriteToUDP([]byte("Received"), rAddr)
+	if err2 != nil {
+		return
+	}
 }
