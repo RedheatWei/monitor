@@ -29,7 +29,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 			for _,url := range baseUrl {
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
 				network.UdpSend("123.56.92.243:33990",res)
-				hanJson(res)
+				//hanJson(res)
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 )
 func UdpSend(server string,msg []byte){
-	//var buf [512]byte
+	var buf [512]byte
 	fmt.Printf("send to %s \n", server)
 	udpAddr, err := net.ResolveUDPAddr("udp4", server)
 	checkErr(err)
