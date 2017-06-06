@@ -1,16 +1,8 @@
 package main
 
 import (
-"monitor/agent/jvm"
-"os"
-	"monitor/agent/network"
+	"monitor/agent/jvm"
 )
-
 func main() {
-	switch os.Args[1] {
-	case "server":
-		network.StartServer()
-	case "agent":
-		jvm.Start()
-	}
+	jvm.Start()
 }

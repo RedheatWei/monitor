@@ -6,7 +6,7 @@ import (
 	//"monitor/agent/sock"
 	"time"
 	"github.com/bitly/go-simplejson"
-	"monitor/agent/network"
+	"monitor/network"
 )
 func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
