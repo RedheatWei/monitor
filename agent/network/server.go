@@ -20,16 +20,11 @@ func StartServer() {
 func handleClient(conn *net.UDPConn) {
 	//defer conn.Close()
 	buf := make([]byte,512)
-	for{
-		n, _, err := conn.ReadFromUDP(buf)
-		if err != nil {
-			return
-		}
-		if n == 0 {
-			break
-		}
-		fmt.Println(string(buf[0:n]))
+	n, _, err := conn.ReadFromUDP(buf)
+	if err != nil {
+		return
 	}
+	fmt.Println(string(buf[0:n]))
 
 	//_, err2 := conn.WriteToUDP([]byte("Received"), rAddr)
 	//if err2 != nil {
