@@ -8,7 +8,6 @@ import (
 )
 func UdpSend(server string,msg []byte){
 	//var buf [512]byte
-	fmt.Printf("send to %s \n", server)
 	udpAddr, err := net.ResolveUDPAddr("udp4", server)
 	checkErr(err)
 	conn, err := net.DialUDP("udp", nil, udpAddr)
@@ -18,7 +17,7 @@ func UdpSend(server string,msg []byte){
 	//total := Int64ToBytes(msg.Total)
 	//total := strconv.FormatUint(msg.Total,10)
 	//n, err := conn.Write(S2B(&total))
-	conn.Write(msg)
+	conn.Write(append(msg,'\n'))
 	//checkErr(err)
 	//n, err = conn.Read(buf[0:])
 	//checkErr(err)

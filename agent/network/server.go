@@ -3,7 +3,7 @@ package network
 import (
 	"fmt"
 	"net"
-	"syscall"
+	"bufio"
 )
 
 func StartServer() {
@@ -12,7 +12,6 @@ func StartServer() {
 	checkErr(err)
 	conn, err := net.ListenUDP("udp", udpAddr)
 	checkErr(err)
-	fmt.Println(conn)
 	for {
 		handleClient(conn)
 	}
@@ -21,21 +20,10 @@ func StartServer() {
 
 func handleClient(conn *net.UDPConn) {
 	//defer conn.Close()
-
-	oob := make([]byte, 512)
-	buff := make([]byte, 512)
-	_, _, flags, _, _ := conn.ReadMsgUDP(buff, oob)
-	if flags & syscall.MSG_TRUNC != 0 {
-		fmt.Println("truncated read")
-	}
-	fmt.Println(string(buff),string(oob))
-
 	//buf := make([]byte,512)
 	//n, _, err := conn.ReadFromUDP(buf)
-	//if err != nil {
-	//	return
-	//}
-	//fmt.Println(string(buf[0:n]))
+	message, _ := bufio.NewReader(conn).ReadString('\n')
+	fmt.Print(string(message))
 
 	//_, err2 := conn.WriteToUDP([]byte("Received"), rAddr)
 	//if err2 != nil {
