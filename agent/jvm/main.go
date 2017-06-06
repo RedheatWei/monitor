@@ -9,7 +9,7 @@ import (
 var PortBinding []string
 var Frequency int64; var(
 	met string = "read"
-	args = []string{"Memory"}//"OperatingSystem","Runtime","Threading","ClassLoading"}
+	args = []string{"Memory","OperatingSystem","Runtime","Threading","ClassLoading"}
 )
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{base.ReadConfig("jvm","jolokiapath"),base.ReadConfig("jvm","jolokianame"),base.ReadConfig("jvm","portstart")}
