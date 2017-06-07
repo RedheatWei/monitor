@@ -28,7 +28,7 @@ type value struct {
 }
 type request struct {
 	mbean string `json:"mbean"`
-	type_ string `json:"type"`
+	tYpe string `json:"type"`
 }
 type objectname struct {
 	objectname string `json:"objectName"`
