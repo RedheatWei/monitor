@@ -38,12 +38,13 @@ func AccceptGet(baseUrl []string,method string,args []string){
 	}
 }
 func hanJson(res []byte){
-	js,js_err := simplejson.NewJson(res)
-	if js_err == nil {
-		var nodes= make(map[string]interface{})
-		nodes, _ = js.Map()
-		//network.UdpSend("123.56.92.243:33990",nodes)
-		fmt.Println(nodes["value"])
-	}
+	js,_ := simplejson.NewJson(res)
+	var nodes= make(map[string]interface{})
+	nodes, _ = js.Map()
+	//fmt.Println(nodes["value"])
+	js2,_ := simplejson.NewJson([]byte(nodes["value"]))
+	var nodes2 = make(map[string]interface{})
+	nodes2,_ = js2.Map()
+	fmt.Println(nodes2["HeapMemoryUsage"])
 
 }
