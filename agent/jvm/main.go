@@ -8,7 +8,7 @@ import (
 )
 var PortBinding []string
 var Frequency int64; var(
-	met string = "read"
+	//met string = "read"
 	args = []string{"Memory","Runtime","Threading","ClassLoading"} //OperatingSystem
 )
 func getArgs()(*Jolokia,[]string){
@@ -37,16 +37,6 @@ func Start() {
 	StartJok(jok,pid_slice)
 	baseUrl := getBaseUrl()
 	ch := make(chan []string)
-	go AccceptGet(baseUrl,met,args)
+	go AccceptGet(baseUrl,args)
 	ch <- getBaseUrl()
-	//switch method {
-	//case "stop":
-	//	StopJok(jok,pid_slice)
-	//case "start":
-	//	StartJok(jok,pid_slice)
-	//	baseUrl := getBaseUrl()
-	//	ch := make(chan []string)
-	//	go AccceptGet(baseUrl,met,args)
-	//	ch <- getBaseUrl()
-	//}
 }
