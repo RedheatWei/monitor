@@ -12,23 +12,26 @@ type Memory struct {
 	Value value `json:"value"`
 }
 type memoryusage struct {
-	init string
-	committed string
-	max string
-	used string
+	init string `json:"init"`
+	committed string `json:"committed"`
+	max string `json:"max"`
+	used string `json:"used"`
 }
 type value struct {
-	ObjectPendingFinalizationCount string
-	Verbose string
-	HeapMemoryUsage memoryusage
-	NonHeapMemoryUsage memoryusage
-	ObjectName string
-	TimeStamp string
-	Status string
+	objectpendingfinalizationcount string `json:"ObjectPendingFinalizationCount"`
+	verbose string `json:"Verbose"`
+	heapmemoryusage memoryusage `json:"HeapMemoryUsage"`
+	nonheapmemoryusage memoryusage `json:"NonHeapMemoryUsage"`
+	ObjectName objectname `json:"ObjectName"`
 }
 type request struct {
 	Mbean string `json:"mbean"`
 	Type string `json:"type"`
+	TimeStamp string `json:"timestamp"`
+	Status string `json:"status"`
+}
+type objectname struct {
+	objectname string `json:"objectName"`
 }
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
