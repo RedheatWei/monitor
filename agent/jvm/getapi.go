@@ -30,7 +30,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
 				//fmt.Println(string(res))
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
-				//hanJson(res)
+				hanJson(res)
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
