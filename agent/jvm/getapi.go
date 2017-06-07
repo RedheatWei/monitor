@@ -8,32 +8,7 @@ import (
 	"fmt"
 	"encoding/json"
 )
-type Memory struct {
-	Request request `json:"request"`
-	Value value `json:"value"`
-	TimeStamp int32 `json:"timestamp"`
-	Status int32 `json:"status"`
-}
-type memoryusage struct {
-	Init int64 `json:"init"`
-	Committed int64 `json:"committed"`
-	Max int64 `json:"max"`
-	Used int64 `json:"used"`
-}
-type value struct {
-	ObjectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
-	Verbose bool `json:"Verbose"`
-	HeapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
-	NonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
-	ObjectName objectname `json:"ObjectName"`
-}
-type request struct {
-	Mbean string `json:"mbean"`
-	Type string `json:"type"`
-}
-type objectname struct {
-	ObjectName string `json:"objectName"`
-}
+
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
 		for _,arg := range args{
