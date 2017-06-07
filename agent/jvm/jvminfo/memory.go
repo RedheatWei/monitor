@@ -31,7 +31,7 @@ type objectname struct {
 	ObjectName string `json:"objectName"`
 }
 func GetMemory(baseUrl string) Memory{
-	res := resGet(baseUrl,"Memory")
+	res := ResGet(baseUrl,"Memory")
 	var memoryUsage Memory
 	json.Unmarshal(res,&memoryUsage)
 	return memoryUsage
