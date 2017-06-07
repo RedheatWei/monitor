@@ -31,7 +31,7 @@ type request struct {
 	Type string `json:"type"`
 }
 type objectname struct {
-	objectname string `json:"objectName"`
+	objectName string `json:"objectName"`
 }
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
