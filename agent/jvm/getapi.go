@@ -9,6 +9,21 @@ import (
 	"monitor/network"
 	"encoding/json"
 )
+type Memory struct {
+	ObjectPendingFinalizationCount string
+	Verbose string
+	HeapMemoryUsage memoryusage
+	NonHeapMemoryUsage memoryusage
+	ObjectName string
+	TimeStamp string
+	Status string
+}
+type memoryusage struct {
+	init string
+	committed string
+	max string
+	used string
+}
 func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
 		//_,res := getJson(url,"read","Threading")
@@ -33,7 +48,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 				resJson := string(res)
-				var memoryUsage base.Memory
+				var memoryUsage Memory
 				json.Unmarshal([]byte(resJson),&memoryUsage)
 				fmt.Println(memoryUsage.HeapMemoryUsage)
 			}
