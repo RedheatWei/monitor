@@ -42,8 +42,8 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 				//resJson := string(res)
-				js,err := simplejson.NewJson(res)
-				fmt.Println(js,err)
+				js,_ := simplejson.NewJson(res)
+				fmt.Printf("%#v",js)
 				//fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
 				//fmt.Println(memoryUsage)
 			}
