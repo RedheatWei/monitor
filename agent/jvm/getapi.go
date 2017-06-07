@@ -22,9 +22,9 @@ type memoryusage struct {
 type value struct {
 	objectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
 	verbose bool `json:"Verbose"`
-	heapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
-	nonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
-	objectName objectname `json:"ObjectName"`
+	heapMemoryUsage interface{} `json:"HeapMemoryUsage"`
+	nonHeapMemoryUsage interface{} `json:"NonHeapMemoryUsage"`
+	objectName interface{} `json:"ObjectName"`
 }
 type request struct {
 	Mbean string `json:"mbean"`
