@@ -14,17 +14,17 @@ type Memory struct {
 	Status int32 `json:"status"`
 }
 type memoryusage struct {
-	init int64 `json:"init"`
-	committed int64 `json:"committed"`
-	max int64 `json:"max"`
-	used int64 `json:"used"`
+	init int `json:"init"`
+	committed int `json:"committed"`
+	max int `json:"max"`
+	used int `json:"used"`
 }
 type value struct {
 	objectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
 	verbose bool `json:"Verbose"`
-	heapMemoryUsage string `json:"HeapMemoryUsage"`
-	nonHeapMemoryUsage string `json:"NonHeapMemoryUsage"`
-	objectName string `json:"ObjectName"`
+	heapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
+	nonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
+	objectName objectname `json:"ObjectName"`
 }
 type request struct {
 	Mbean string `json:"mbean"`
