@@ -14,10 +14,10 @@ type Memory struct {
 	Status int32 `json:"status"`
 }
 type memoryusage struct {
-	init bool `json:"init"`
-	committed bool `json:"committed"`
-	max bool `json:"max"`
-	used bool `json:"used"`
+	init int64 `json:"init"`
+	committed int64 `json:"committed"`
+	max int64 `json:"max"`
+	used int64 `json:"used"`
 }
 type value struct {
 	objectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
