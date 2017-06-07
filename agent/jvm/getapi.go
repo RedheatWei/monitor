@@ -5,8 +5,9 @@ import (
 	"fmt"
 	//"monitor/agent/sock"
 	"time"
-	"github.com/bitly/go-simplejson"
+	//"github.com/bitly/go-simplejson"
 	"monitor/network"
+	"encoding/json"
 )
 func getResJson(baseUrl []string,method,arg string){
 	for _,url := range baseUrl{
@@ -30,21 +31,25 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
 				//fmt.Println(string(res))
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
-				hanJson(res)
+				//hanJson(res)
+				resJson := string(res)
+				var memoryUsage base.Memory
+				json.Unmarshal([]byte(resJson),&memoryUsage)
+				fmt.Println(memoryUsage.HeapMemoryUsage)
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
 
 	}
 }
-func hanJson(res []byte){
-	js,_ := simplejson.NewJson(res)
-	var nodes= make(map[string]interface{})
-	nodes, _ = js.Map()
-	//fmt.Println(nodes["value"])
-	js2,_ := simplejson.NewJson([]byte(nodes["value"].(string)))
-	var nodes2 = make(map[string]interface{})
-	nodes2,_ = js2.Map()
-	fmt.Println(nodes2["HeapMemoryUsage"])
-
-}
+//func hanJson(res []byte){
+//	js,_ := simplejson.NewJson(res)
+//	var nodes= make(map[string]interface{})
+//	nodes, _ = js.Map()
+//	//fmt.Println(nodes["value"])
+//	js2,_ := simplejson.NewJson([]byte(nodes["value"].(map)))
+//	var nodes2 = make(map[string]interface{})
+//	nodes2,_ = js2.Map()
+//	fmt.Println(nodes2["HeapMemoryUsage"])
+//
+//}
