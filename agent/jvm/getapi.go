@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"time"
 	"monitor/network"
-	"encoding/json"
 	"github.com/bitly/go-simplejson"
 )
 //type Memory struct {
