@@ -8,6 +8,16 @@ import (
 	"encoding/json"
 )
 type Memory struct {
+	Request request `json:"request"`
+	Value value `json:"value"`
+}
+type memoryusage struct {
+	init string
+	committed string
+	max string
+	used string
+}
+type value struct {
 	ObjectPendingFinalizationCount string
 	Verbose string
 	HeapMemoryUsage memoryusage
@@ -16,11 +26,9 @@ type Memory struct {
 	TimeStamp string
 	Status string
 }
-type memoryusage struct {
-	init string
-	committed string
-	max string
-	used string
+type request struct {
+	Mbean string `json:"mbean"`
+	Type string `json:"type"`
 }
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
@@ -33,21 +41,17 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				resJson := string(res)
 				var memoryUsage Memory
 				json.Unmarshal([]byte(resJson),&memoryUsage)
-				fmt.Println(memoryUsage.ObjectPendingFinalizationCount)
+				fmt.Println(memoryUsage.Value.ObjectPendingFinalizationCount)
+
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
 
 	}
 }
-//func hanJson(res []byte){
+//func hanJson(res []byte) []byte{
 //	js,_ := simplejson.NewJson(res)
 //	var nodes= make(map[string]interface{})
 //	nodes, _ = js.Map()
-//	//fmt.Println(nodes["value"])
-//	js2,_ := simplejson.NewJson([]byte(nodes["value"].(map)))
-//	var nodes2 = make(map[string]interface{})
-//	nodes2,_ = js2.Map()
-//	fmt.Println(nodes2["HeapMemoryUsage"])
-//
+//	return nodes["value"]
 //}
