@@ -42,7 +42,7 @@ func hanJson(res []byte){
 	var nodes= make(map[string]interface{})
 	nodes, _ = js.Map()
 	//fmt.Println(nodes["value"])
-	js2,_ := simplejson.NewJson([]byte(nodes["value"]))
+	js2,_ := simplejson.NewJson(nodes["value"].([]byte))
 	var nodes2 = make(map[string]interface{})
 	nodes2,_ = js2.Map()
 	fmt.Println(nodes2["HeapMemoryUsage"])
