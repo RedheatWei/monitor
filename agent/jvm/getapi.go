@@ -45,8 +45,8 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				js,_ := simplejson.NewJson(res)
 				var nodes = make(map[string]interface{})
 				nodes, _ = js.Map()
-				for key,val := range nodes {
-					fmt.Printf(key,val)
+				for key,_ := range nodes {
+					fmt.Printf(key)
 				}
 				//fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
 				//fmt.Println(memoryUsage)
