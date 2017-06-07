@@ -50,7 +50,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				resJson := string(res)
 				var memoryUsage Memory
 				json.Unmarshal([]byte(resJson),&memoryUsage)
-				fmt.Println(memoryUsage.HeapMemoryUsage)
+				fmt.Println(memoryUsage.ObjectPendingFinalizationCount,memoryUsage.Verbose)
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
