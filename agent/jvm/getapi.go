@@ -10,6 +10,8 @@ import (
 type Memory struct {
 	Request request `json:"request"`
 	Value value `json:"value"`
+	TimeStamp string `json:"timestamp"`
+	Status string `json:"status"`
 }
 type memoryusage struct {
 	init string `json:"init"`
@@ -27,8 +29,6 @@ type value struct {
 type request struct {
 	Mbean string `json:"mbean"`
 	Type string `json:"type"`
-	TimeStamp string `json:"timestamp"`
-	Status string `json:"status"`
 }
 type objectname struct {
 	objectname string `json:"objectName"`
