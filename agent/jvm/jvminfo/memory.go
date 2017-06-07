@@ -5,7 +5,7 @@ import (
 )
 //"Memory"
 type Memory struct {
-	Request interface{} `json:"request"`
+	//Request interface{} `json:"request"`
 	Value memoryValue `json:"value"`
 	TimeStamp int32 `json:"timestamp"`
 	Status int32 `json:"status"`
