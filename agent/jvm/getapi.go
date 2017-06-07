@@ -5,34 +5,33 @@ import (
 	"fmt"
 	"time"
 	"monitor/network"
-	"github.com/bitly/go-simplejson"
 )
-//type Memory struct {
-//	Request request `json:"request"`
-//	Value value `json:"value"`
-//	TimeStamp int32 `json:"timestamp"`
-//	Status int32 `json:"status"`
-//}
-//type memoryusage struct {
-//	init int64 `json:"init"`
-//	committed int64 `json:"committed"`
-//	max int64 `json:"max"`
-//	used int64 `json:"used"`
-//}
-//type value struct {
-//	objectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
-//	verbose bool `json:"Verbose"`
-//	heapMemoryUsage interface{} `json:"HeapMemoryUsage"`
-//	nonHeapMemoryUsage interface{} `json:"NonHeapMemoryUsage"`
-//	objectName interface{} `json:"ObjectName"`
-//}
-//type request struct {
-//	Mbean string `json:"mbean"`
-//	Type string `json:"type"`
-//}
-//type objectname struct {
-//	objectName string `json:"objectName"`
-//}
+type Memory struct {
+	Request request `json:"request"`
+	Value value `json:"value"`
+	TimeStamp int32 `json:"timestamp"`
+	Status int32 `json:"status"`
+}
+type memoryusage struct {
+	Init int64 `json:"init"`
+	Committed int64 `json:"committed"`
+	Max int64 `json:"max"`
+	Used int64 `json:"used"`
+}
+type value struct {
+	ObjectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
+	Verbose bool `json:"Verbose"`
+	HeapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
+	NonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
+	ObjectName memoryusage `json:"ObjectName"`
+}
+type request struct {
+	Mbean string `json:"mbean"`
+	Type string `json:"type"`
+}
+type objectname struct {
+	objectName string `json:"objectName"`
+}
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
 		for _,arg := range args{
@@ -42,12 +41,6 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 				//resJson := string(res)
-				js,_ := simplejson.NewJson(res)
-				var nodes = make(map[string]interface{})
-				nodes, _ = js.Map()
-				for key,_ := range nodes {
-					fmt.Printf(key)
-				}
 				//fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
 				//fmt.Println(memoryUsage)
 			}
