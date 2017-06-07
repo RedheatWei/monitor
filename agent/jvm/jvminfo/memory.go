@@ -19,7 +19,7 @@ type memoryusage struct {
 type memoryValue struct {
 	ObjectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
 	Verbose bool `json:"Verbose"`
-	HeapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
+	//HeapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
 	NonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
 	ObjectName objectname `json:"ObjectName"`
 }
