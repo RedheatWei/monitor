@@ -1,10 +1,7 @@
 package jvm
 
 import (
-	"monitor/base"
-	//"fmt"
 	"time"
-	//"monitor/network"
 	"fmt"
 	"monitor/agent/jvm/jvminfo"
 )
@@ -23,7 +20,3 @@ func AccceptGet(baseUrl []string,args []string){
 	}
 }
 
-func ResGet(url,arg string) []byte{
-	_,res := base.HttpGet(url+"read/java.lang:type="+arg)
-	return  res
-}

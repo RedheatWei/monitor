@@ -2,7 +2,6 @@ package jvminfo
 
 import (
 	"encoding/json"
-	"monitor/agent/jvm"
 )
 //"Memory"
 type Memory struct {
@@ -32,7 +31,7 @@ type objectname struct {
 	ObjectName string `json:"objectName"`
 }
 func GetMemory(baseUrl string) Memory{
-	res := jvm.ResGet(baseUrl,"Memory")
+	res := resGet(baseUrl,"Memory")
 	var memoryUsage Memory
 	json.Unmarshal(res,&memoryUsage)
 	return memoryUsage
