@@ -5,6 +5,8 @@ import (
 	//"fmt"
 	"time"
 	"monitor/network"
+	"fmt"
+	"encoding/json"
 )
 type Memory struct {
 	Request request `json:"request"`
@@ -41,8 +43,9 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 				//resJson := string(res)
-				//fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
-				//fmt.Println(memoryUsage)
+				var memoryUsage Memory
+				fmt.Println(json.Unmarshal(res,&memoryUsage))
+				fmt.Println(memoryUsage)
 			}
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
