@@ -22,12 +22,12 @@ func HttpGet(url string) (n int,res []byte){
 //读取配置文件
 func ReadAgentConfig(mod,par string) string{
 	config:= new(conf.Config)
-	config.InitConfig("conf/agent.conf")
+	config.InitConfig("../conf/agent.conf")
 	return config.Read(mod,par)
 }
 //读取服务端配置文件
 func ReadServerConfig(mod,par string) string{
 	config:= new(conf.Config)
-	config.InitConfig("conf/server.conf")
+	config.InitConfig("../conf/server.conf")
 	return config.Read(mod,par)
 }
