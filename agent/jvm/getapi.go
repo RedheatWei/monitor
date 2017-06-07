@@ -43,7 +43,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				//hanJson(res)
 				resJson := string(res)
 				var memoryUsage Memory
-				json.Unmarshal([]byte(resJson),&memoryUsage)
+				fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
 				fmt.Println(memoryUsage)
 			}
 		}
