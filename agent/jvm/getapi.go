@@ -28,7 +28,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 		for _,arg := range args{
 			for _,url := range baseUrl {
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
-				fmt.Println(string(res))
+				//fmt.Println(string(res))
 				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 			}
@@ -43,7 +43,7 @@ func hanJson(res []byte){
 		var nodes= make(map[string]interface{})
 		nodes, _ = js.Map()
 		//network.UdpSend("123.56.92.243:33990",nodes)
-		fmt.Println(nodes)
+		fmt.Println(nodes["value"])
 	}
 
 }
