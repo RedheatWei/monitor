@@ -17,7 +17,7 @@ func reader(r io.Reader) (n int,res []byte){
 }
 
 func SendMsg(msg string) {
-	c, err := net.Dial("unix",base.ReadConfig("jvm","sock"))
+	c, err := net.Dial("unix",base.ReadAgentConfig("jvm","sock"))
 	if err != nil {
 		panic(err.Error())
 	}

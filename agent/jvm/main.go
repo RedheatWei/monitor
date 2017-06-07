@@ -12,7 +12,7 @@ var Frequency int64; var(
 	args = []string{"Memory","OperatingSystem","Runtime","Threading","ClassLoading"}
 )
 func getArgs()(*Jolokia,[]string){
-	jok := &Jolokia{base.ReadConfig("jvm","jolokiapath"),base.ReadConfig("jvm","jolokianame"),base.ReadConfig("jvm","portstart")}
+	jok := &Jolokia{base.ReadAgentConfig("jvm","jolokiapath"),base.ReadAgentConfig("jvm","jolokianame"),base.ReadAgentConfig("jvm","portstart")}
 	pid_slice := GetPid(jok)
 	return jok,pid_slice
 }
@@ -29,7 +29,7 @@ func getBaseUrl() []string{
 //启动
 func Start() {
 	jok,pid_slice := getArgs()
-	Frequency,_ = strconv.ParseInt(base.ReadConfig("jvm","frequency"),10,64)
+	Frequency,_ = strconv.ParseInt(base.ReadAgentConfig("jvm","frequency"),10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
 		os.Exit(1)

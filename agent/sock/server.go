@@ -20,7 +20,7 @@ func echoServer(c net.Conn) {
 	//}
 }
 func ListenStart() {
-	l, err := net.Listen("unix",base.ReadConfig("jvm","sock"))
+	l, err := net.Listen("unix",base.ReadAgentConfig("jvm","sock"))
 	//defer l.Close()
 	if err != nil {
 		println("listen error", err.Error())

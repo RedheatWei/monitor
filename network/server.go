@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"net"
 	"bufio"
+	"monitor/base"
 )
 
 func StartServer() {
-	service := ":33990"
+	service := ":"+base.ReadServerConfig("default","port")
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
 	checkErr(err)
 	conn, err := net.ListenUDP("udp", udpAddr)
@@ -19,14 +20,6 @@ func StartServer() {
 
 
 func handleClient(conn *net.UDPConn) {
-	//defer conn.Close()
-	//buf := make([]byte,512)
-	//n, _, err := conn.ReadFromUDP(buf)
 	message, _ := bufio.NewReader(conn).ReadString('\n')
 	fmt.Print(string(message))
-
-	//_, err2 := conn.WriteToUDP([]byte("Received"), rAddr)
-	//if err2 != nil {
-	//	return
-	//}
 }

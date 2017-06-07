@@ -28,7 +28,7 @@ func AccceptGet(baseUrl []string,method string,args []string){
 		for _,arg := range args{
 			for _,url := range baseUrl {
 				_,res := base.HttpGet(url+method+"/java.lang:type="+arg)
-				network.UdpSend("123.56.92.243:33990",res)
+				network.UdpSend(base.ReadAgentConfig("default","server"),res)
 				//hanJson(res)
 			}
 		}
