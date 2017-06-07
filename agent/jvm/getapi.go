@@ -25,14 +25,14 @@ type value struct {
 	Verbose bool `json:"Verbose"`
 	HeapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
 	NonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
-	ObjectName memoryusage `json:"ObjectName"`
+	ObjectName objectname `json:"ObjectName"`
 }
 type request struct {
 	Mbean string `json:"mbean"`
 	Type string `json:"type"`
 }
 type objectname struct {
-	objectName string `json:"objectName"`
+	ObjectName string `json:"objectName"`
 }
 func AccceptGet(baseUrl []string,method string,args []string){
 	for{
