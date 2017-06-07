@@ -10,8 +10,8 @@ import (
 type Memory struct {
 	Request request `json:"request"`
 	Value value `json:"value"`
-	TimeStamp string `json:"timestamp"`
-	Status string `json:"status"`
+	TimeStamp int32 `json:"timestamp"`
+	Status int32 `json:"status"`
 }
 type memoryusage struct {
 	init string `json:"init"`
