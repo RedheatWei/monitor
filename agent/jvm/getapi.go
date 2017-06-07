@@ -43,7 +43,11 @@ func AccceptGet(baseUrl []string,method string,args []string){
 				//hanJson(res)
 				//resJson := string(res)
 				js,_ := simplejson.NewJson(res)
-				fmt.Printf("%#v",js)
+				var nodes = make(map[string]interface{})
+				nodes, _ = js.Map()
+				for key,val := range nodes {
+					fmt.Printf(key,val)
+				}
 				//fmt.Println(json.Unmarshal([]byte(resJson),&memoryUsage))
 				//fmt.Println(memoryUsage)
 			}
