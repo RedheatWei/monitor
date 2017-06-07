@@ -20,15 +20,15 @@ type memoryusage struct {
 	used int64 `json:"used"`
 }
 type value struct {
-	objectpendingfinalizationcount int `json:"ObjectPendingFinalizationCount"`
+	objectPendingFinalizationCount int `json:"ObjectPendingFinalizationCount"`
 	verbose bool `json:"Verbose"`
-	heapmemoryusage memoryusage `json:"HeapMemoryUsage"`
-	nonheapmemoryusage memoryusage `json:"NonHeapMemoryUsage"`
-	ObjectName objectname `json:"ObjectName"`
+	heapMemoryUsage memoryusage `json:"HeapMemoryUsage"`
+	nonHeapMemoryUsage memoryusage `json:"NonHeapMemoryUsage"`
+	objectName objectname `json:"ObjectName"`
 }
 type request struct {
-	Mbean string `json:"mbean"`
-	Type string `json:"type"`
+	mbean string `json:"mbean"`
+	type_ string `json:"type"`
 }
 type objectname struct {
 	objectname string `json:"objectName"`
