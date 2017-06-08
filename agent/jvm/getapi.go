@@ -10,10 +10,10 @@ import (
 )
 
 func dataHandle(url string) []byte{
-	n,info := jvminfo.GetInfo(url)
-	if n != 1{
-		return
-	}
+	_,info := jvminfo.GetInfo(url)
+	//if n != 1{
+	//	return
+	//}
 	memory := jvminfo.GetMemory(url)
 	runtime := jvminfo.GetRuntime(url)
 	threading := jvminfo.GetThreading(url)
