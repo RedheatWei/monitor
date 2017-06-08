@@ -26,7 +26,7 @@ func handleClient(conn *net.UDPConn) {
 	if err != nil {
 		return
 	}
-	fmt.Println(conn.LocalAddr())
+	fmt.Println(conn.RemoteAddr())
 	//if checkIp(allow_iplist,conn.LocalAddr().Network()){
 	//	go handler.ToJson(buf[:n],conn.LocalAddr())
 	//}
