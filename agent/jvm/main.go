@@ -36,7 +36,6 @@ func Start() {
 	}
 	StartJok(jok,pid_slice)
 	baseUrl := getBaseUrl()
-	ch := make(chan []string)
-	go AccceptGet(baseUrl,args)
-	ch <- getBaseUrl()
+	//ch := make(chan []string)
+	go CollectInfo(baseUrl,args)
 }
