@@ -4,6 +4,7 @@ import (
 	"net"
 	"monitor/base"
 	"fmt"
+	"monitor/server/handler"
 )
 
 var allow_iplist = []string{"192.168.1.238"}
@@ -21,15 +22,14 @@ func StartServer() {
 
 func handleClient(conn *net.UDPConn) {
 	var buf [1024]byte
-	_, _, err := conn.ReadFromUDP(buf[:])
-
+	n, addr, err := conn.ReadFromUDP(buf[:])
 	if err != nil {
 		return
 	}
-	fmt.Println(conn.RemoteAddr())
-	//if checkIp(allow_iplist,conn.LocalAddr().Network()){
-	//	go handler.ToJson(buf[:n],conn.LocalAddr())
-	//}
+	fmt.Println(addr.IP.String())
+	if checkIp(allow_iplist,addr.IP.String()){
+		go handler.ToJson(buf[:n],addr.IP.String())
+	}
 }
 
 func checkIp(allow_iplist []string,ip string) bool{
