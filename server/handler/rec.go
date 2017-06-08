@@ -35,7 +35,8 @@ func ToJson(rec []byte) JsonInfo{
 	var js JsonInfo
 	str := string(rec)
 	fmt.Println(str)
-	json.Unmarshal([]byte(str),&js)
+	err := json.Unmarshal([]byte(str),&js)
 	fmt.Println(js)
+	fmt.Println(err)
 	return js
 }
