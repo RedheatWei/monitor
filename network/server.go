@@ -1,10 +1,9 @@
 package network
 
 import (
-	"fmt"
 	"net"
-	"bufio"
 	"monitor/base"
+	"monitor/server/handler"
 )
 
 func StartServer() {
@@ -18,8 +17,12 @@ func StartServer() {
 	}
 }
 
-
 func handleClient(conn *net.UDPConn) {
-	message, _ := bufio.NewReader(conn).ReadString('\n')
-	fmt.Print(string(message))
+	var buf [1024]byte
+	n, addr, err := conn.ReadFromUDP(buf[0:])
+	if err != nil {
+		return
+	}
+	tmp := buf[:n]
+	handler.ToJson(tmp)
 }
