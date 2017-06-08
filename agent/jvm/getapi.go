@@ -47,8 +47,9 @@ func dataHandle(url string) []byte{
 	allinfo.ThreadCount = threading.Value.ThreadCount
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
 	fmt.Println(allinfo)
-	i,_ := json.Marshal(allinfo)
+	i,err := json.Marshal(allinfo)
 	fmt.Println(string(i))
+	fmt.Println(err)
 	return i
 }
 
@@ -57,10 +58,6 @@ func AccceptGet(baseUrl []string,args []string){
 		//for _,arg := range args{
 			for _,url := range baseUrl {
 				data := dataHandle(url)
-				fmt.Println(string(data))
-				//fmt.Println(string(data))
-				//fmt.Println(jvminfo.GetMemory(url).Value.HeapMemoryUsage.Committed)
-				//_,res := base.HttpGet(url+"read/java.lang:type="+arg)
 				network.UdpSend(base.ReadAgentConfig("default","server"),data)
 			}
 		//}
