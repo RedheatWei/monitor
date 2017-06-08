@@ -7,7 +7,8 @@ import (
 )
 
 func ConnDB(){
-	db, err := sql.Open("mysql", "root:vv231@tcp(localhost:3306)/monitor")
+	db, err := sql.Open("mysql", "root:vv231@tcp(localhost:3306)/monitor?charset=utf8")
+	defer db.Close()
 	if err != nil{
 		fmt.Println(err)
 	}
