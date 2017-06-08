@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"monitor/server/db"
+	"net"
 )
 type JsonInfo struct {
 	//class
@@ -32,10 +33,10 @@ type JsonInfo struct {
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
-func ToJson(rec []byte) JsonInfo{
+func ToJson(rec []byte,addr *net.UDPAddr) JsonInfo{
 	var js JsonInfo
 	json.Unmarshal(rec,&js)
 	fmt.Println(js.ClassPath)
-	db.ConnDB()
+	db.InsertDB(js,addr)
 	return js
 }
