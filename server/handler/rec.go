@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"monitor/server/db"
-	"net"
 	"monitor/base"
 )
 
