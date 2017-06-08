@@ -10,7 +10,10 @@ import (
 )
 
 func dataHandle(url string) []byte{
-	info := jvminfo.GetInfo(url)
+	n,info := jvminfo.GetInfo(url)
+	if n != 1{
+		return
+	}
 	memory := jvminfo.GetMemory(url)
 	runtime := jvminfo.GetRuntime(url)
 	threading := jvminfo.GetThreading(url)
@@ -45,6 +48,7 @@ func dataHandle(url string) []byte{
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
 	fmt.Println(allinfo)
 	i,_ := json.Marshal(allinfo)
+	fmt.Println(i)
 	return i
 }
 

@@ -18,9 +18,14 @@ type config struct {
 	AgentId string `json:"agentId"`
 }
 
-func GetInfo(baseUrl string) Info{
-	_,res := base.HttpGet(baseUrl)
+func GetInfo(baseUrl string) (n int,info Info){
+	n,res := base.HttpGet(baseUrl)
 	var info Info
-	json.Unmarshal(res,&info)
-	return info
+	if n==0{
+		json.Unmarshal(res,&info)
+		return 0,info
+	}else {
+		return 1,info
+	}
+
 }
