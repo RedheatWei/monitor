@@ -50,7 +50,7 @@ func InsertDB(js JsonInfo,addr *net.UDPAddr){
 	if err != nil{
 		fmt.Println(err)
 	}
-	id,er := res.LastInsertId()
+	id,err := res.LastInsertId()
 	if err!=  nil{
 		fmt.Println(err)
 	}
