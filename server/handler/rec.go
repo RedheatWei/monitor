@@ -35,5 +35,6 @@ func ToJson(rec []byte) JsonInfo{
 	var js JsonInfo
 	json.Unmarshal(rec,&js)
 	fmt.Println(js.ClassPath)
+	ConnDB()
 	return js
 }
