@@ -24,10 +24,9 @@ func handleClient(conn *net.UDPConn) {
 	if err != nil {
 		return
 	}
-	tmp := buf[:n]
-
-	handler.ToJson(tmp)
-	fmt.Println(addr)
-	fmt.Println(tmp)
-	fmt.Println(string(buf[:]))
+	//tmp := buf[:n]
+	handler.ToJson(buf[:])
+	//fmt.Println(addr)
+	//fmt.Println(tmp)
+	//fmt.Println(string(buf[:]))
 }
