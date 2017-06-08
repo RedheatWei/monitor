@@ -3,6 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
+	"monitor/server/db"
 )
 type JsonInfo struct {
 	//class
@@ -35,6 +36,6 @@ func ToJson(rec []byte) JsonInfo{
 	var js JsonInfo
 	json.Unmarshal(rec,&js)
 	fmt.Println(js.ClassPath)
-	ConnDB()
+	db.ConnDB()
 	return js
 }
