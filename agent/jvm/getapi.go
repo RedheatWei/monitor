@@ -3,6 +3,7 @@ import (
 	"time"
 	"fmt"
 	"monitor/agent/jvm/jvminfo"
+	"encoding/json"
 )
 type jsoninfo struct {
 	//class
@@ -32,7 +33,7 @@ type jsoninfo struct {
 	TimeStamp int64 `json:"TimeStamp"`
 
 }
-func dataHandle(url string) jsoninfo{
+func dataHandle(url string) ([]byte,err){
 	info := jvminfo.GetInfo(url)
 	memory := jvminfo.GetMemory(url)
 	runtime := jvminfo.GetRuntime(url)
@@ -65,15 +66,18 @@ func dataHandle(url string) jsoninfo{
 	allinfo.CurrentThreadCpuTime = threading.Value.CurrentThreadCpuTime
 	allinfo.ThreadCount = threading.Value.ThreadCount
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
-	return allinfo
+	return json.Marshal(allinfo)
 }
 
 func AccceptGet(baseUrl []string,args []string){
 	for{
 		//for _,arg := range args{
 			for _,url := range baseUrl {
-				data := dataHandle(url)
-				fmt.Println(data)
+				data,_ := dataHandle(url)
+				if err!= nil{
+					fmt.Println(err)
+				}
+				fmt.Println(string(data))
 				//fmt.Println(jvminfo.GetMemory(url).Value.HeapMemoryUsage.Committed)
 				//_,res := base.HttpGet(url+"read/java.lang:type="+arg)
 				//network.UdpSend(base.ReadAgentConfig("default","server"),res)
