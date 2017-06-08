@@ -7,14 +7,15 @@ import (
 //"Threading","ClassLoading" OperatingSystem
 type Info struct {
 	//Request runtimeRequest `json:"request"`
-	Value classLoadingValue `json:"value"`
+	Value infoValue `json:"value"`
 	TimeStamp int64 `json:"timestamp"`
 	Status int32 `json:"status"`
 }
-type InfoValue struct {
-	LoadedClassCount int32 `json:"LoadedClassCount"`
-	UnloadedClassCount int32 `json:"UnloadedClassCount"`
-	TotalLoadedClassCount int32 `json:"TotalLoadedClassCount"`
+type infoValue struct {
+	Config config `json:"config"`
+}
+type config struct {
+	AgentId string `json:"agentId"`
 }
 
 func GetInfo(baseUrl string) Info{
