@@ -33,7 +33,7 @@ type jsoninfo struct {
 	TimeStamp int64 `json:"TimeStamp"`
 
 }
-func dataHandle(url string) ([]byte,err){
+func dataHandle(url string) []byte{
 	info := jvminfo.GetInfo(url)
 	memory := jvminfo.GetMemory(url)
 	runtime := jvminfo.GetRuntime(url)
@@ -66,17 +66,15 @@ func dataHandle(url string) ([]byte,err){
 	allinfo.CurrentThreadCpuTime = threading.Value.CurrentThreadCpuTime
 	allinfo.ThreadCount = threading.Value.ThreadCount
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
-	return json.Marshal(allinfo)
+	i,_ := json.Marshal(allinfo)
+	return i
 }
 
 func AccceptGet(baseUrl []string,args []string){
 	for{
 		//for _,arg := range args{
 			for _,url := range baseUrl {
-				data,_ := dataHandle(url)
-				if err!= nil{
-					fmt.Println(err)
-				}
+				data := dataHandle(url)
 				fmt.Println(string(data))
 				//fmt.Println(jvminfo.GetMemory(url).Value.HeapMemoryUsage.Committed)
 				//_,res := base.HttpGet(url+"read/java.lang:type="+arg)
