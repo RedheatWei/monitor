@@ -29,5 +29,5 @@ func handleClient(conn *net.UDPConn) {
 	handler.ToJson(tmp)
 	fmt.Println(addr)
 	fmt.Println(tmp)
-	fmt.Println(buf)
+	fmt.Println(string(buf))
 }
