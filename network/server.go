@@ -6,6 +6,8 @@ import (
 	"monitor/server/handler"
 )
 
+var allow_iplist = []string{"192.168.1.238"}
+
 func StartServer() {
 	service := ":"+base.ReadServerConfig("default","port")
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
@@ -23,9 +25,17 @@ func handleClient(conn *net.UDPConn) {
 	if err != nil {
 		return
 	}
-	//tmp := buf[:n]
-	handler.ToJson(buf[:n],addr)
-	//fmt.Println(addr)
-	//fmt.Println(tmp)
-	//fmt.Println(string(buf[:]))
+	if checkIp(allow_iplist,string(addr.IP)){
+		go handler.ToJson(buf[:n],addr)
+	}
+}
+func checkIp(allow_iplist []string,ip string) bool{
+	var is_in = bool(false)
+	for _,ipaddr := range allow_iplist{
+		if ipaddr == ip {
+			is_in = true
+			return is_in
+		}
+	}
+	return is_in
 }
