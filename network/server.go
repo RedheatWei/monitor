@@ -4,6 +4,7 @@ import (
 	"net"
 	"monitor/base"
 	"monitor/server/handler"
+	"fmt"
 )
 
 var allow_iplist = []string{"192.168.1.238"}
@@ -25,6 +26,7 @@ func handleClient(conn *net.UDPConn) {
 	if err != nil {
 		return
 	}
+	fmt.Println(checkIp(allow_iplist,string(addr.IP)))
 	if checkIp(allow_iplist,string(addr.IP)){
 		go handler.ToJson(buf[:n],addr)
 	}
