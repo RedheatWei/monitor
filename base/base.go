@@ -13,14 +13,14 @@ type JsonInfo struct {
 	UnloadedClassCount int32 `json:"UnloadedClassCount"`
 	TotalLoadedClassCount int32 `json:"TotalLoadedClassCount"`
 	//memory
-	HeapMemoryUsageInit int64 `json:"init"`
-	HeapMemoryUsageCommitted int64 `json:"committed"`
-	HeapMemoryUsageMax int64 `json:"max"`
-	HeapMemoryUsageUsed int64 `json:"used"`
-	NonHeapMemoryUsageInit int64 `json:"init"`
-	NonHeapMemoryUsageCommitted int64 `json:"committed"`
-	NonHeapMemoryUsageMax int64 `json:"max"`
-	NonHeapMemoryUsageUsed int64 `json:"used"`
+	HeapMemoryUsageInit float64 `json:"init"`
+	HeapMemoryUsageCommitted float64 `json:"committed"`
+	HeapMemoryUsageMax float64 `json:"max"`
+	HeapMemoryUsageUsed float64 `json:"used"`
+	NonHeapMemoryUsageInit float64 `json:"init"`
+	NonHeapMemoryUsageCommitted float64 `json:"committed"`
+	NonHeapMemoryUsageMax float64 `json:"max"`
+	NonHeapMemoryUsageUsed float64 `json:"used"`
 	//rumtime
 	ClassPath string `json:"ClassPath"`
 	Uptime int64 `json:"Uptime"`
