@@ -34,7 +34,7 @@ type jsoninfo struct {
 }
 func ToJson(rec []byte) jsoninfo{
 	var js jsoninfo
-	json.Unmarshal(rec,js)
+	json.Unmarshal(rec[:],js)
 	fmt.Println(js)
 	return js
 }
