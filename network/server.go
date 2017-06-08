@@ -20,11 +20,14 @@ func StartServer() {
 
 func handleClient(conn *net.UDPConn) {
 	var buf [1024]byte
-	n, addr, err := conn.ReadFromUDP(buf[0:])
+	n, addr, err := conn.ReadFromUDP(buf[:])
 	if err != nil {
 		return
 	}
 	tmp := buf[:n]
+
 	handler.ToJson(tmp)
 	fmt.Println(addr)
+	fmt.Println(tmp)
+	fmt.Println(buf)
 }
