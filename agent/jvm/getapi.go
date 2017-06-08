@@ -15,7 +15,7 @@ func dataHandle(url string) []byte{
 	runtime := jvminfo.GetRuntime(url)
 	threading := jvminfo.GetThreading(url)
 	classLoading := jvminfo.GetClassLoading(url)
-	fmt.Println(memory)
+	fmt.Println(memory.Value.HeapMemoryUsage.Init)
 	var allinfo base.JsonInfo
 	//base
 	allinfo.AgentId = info.Value.Config.AgentId
