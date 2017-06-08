@@ -3,7 +3,6 @@ package network
 import (
 	"net"
 	"monitor/base"
-	"fmt"
 	"monitor/server/handler"
 )
 
