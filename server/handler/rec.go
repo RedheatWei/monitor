@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 )
-type jsoninfo struct {
+type JsonInfo struct {
 	//class
 	LoadedClassCount int32 `json:"LoadedClassCount"`
 	UnloadedClassCount int32 `json:"UnloadedClassCount"`
@@ -30,10 +30,9 @@ type jsoninfo struct {
 	//base
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
-
 }
-func ToJson(rec []byte) jsoninfo{
-	var js jsoninfo
+func ToJson(rec []byte) JsonInfo{
+	var js JsonInfo
 	str := string(rec)
 	fmt.Println(str)
 	json.Unmarshal([]byte(str),&js)
