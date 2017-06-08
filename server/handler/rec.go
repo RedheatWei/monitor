@@ -7,7 +7,7 @@ import (
 	"monitor/base"
 )
 
-func ToJson(rec []byte,addr *net.UDPAddr){
+func ToJson(rec []byte,addr string){
 	var js base.JsonInfo
 	json.Unmarshal(rec,&js)
 	go db.InsertDB(js,addr)

@@ -14,13 +14,13 @@ func connDB() *sql.DB{
 	}
 	return db
 }
-func InsertDB(js base.JsonInfo,addr *net.UDPAddr){
+func InsertDB(js base.JsonInfo,addr string){
 	db := connDB()
 	stmt, err := db.Prepare("INSERT INTO jvm(LoadedClassCount,UnloadedClassCount,TotalLoadedClassCount,HeapMemoryUsageInit,HeapMemoryUsageCommitted,HeapMemoryUsageMax,HeapMemoryUsageUsed,NonHeapMemoryUsageInit,NonHeapMemoryUsageCommitted,NonHeapMemoryUsageMax,NonHeapMemoryUsageUsed,ClassPath,Uptime,TotalStartedThreadCount,PeakThreadCount,CurrentThreadCpuTime,ThreadCount,DaemonThreadCount,AgentId,TimeStamp,ServerIp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 	if err != nil{
 		fmt.Println(err)
 	}
-	res, err := stmt.Exec(js.LoadedClassCount,js.UnloadedClassCount,js.TotalLoadedClassCount,js.HeapMemoryUsageInit,js.HeapMemoryUsageCommitted,js.HeapMemoryUsageMax,js.HeapMemoryUsageUsed,js.NonHeapMemoryUsageInit,js.NonHeapMemoryUsageCommitted,js.NonHeapMemoryUsageMax,js.NonHeapMemoryUsageUsed,js.ClassPath,js.Uptime,js.TotalStartedThreadCount,js.PeakThreadCount,js.CurrentThreadCpuTime,js.ThreadCount,js.DaemonThreadCount,js.AgentId,js.TimeStamp,string(addr.IP))
+	res, err := stmt.Exec(js.LoadedClassCount,js.UnloadedClassCount,js.TotalLoadedClassCount,js.HeapMemoryUsageInit,js.HeapMemoryUsageCommitted,js.HeapMemoryUsageMax,js.HeapMemoryUsageUsed,js.NonHeapMemoryUsageInit,js.NonHeapMemoryUsageCommitted,js.NonHeapMemoryUsageMax,js.NonHeapMemoryUsageUsed,js.ClassPath,js.Uptime,js.TotalStartedThreadCount,js.PeakThreadCount,js.CurrentThreadCpuTime,js.ThreadCount,js.DaemonThreadCount,js.AgentId,js.TimeStamp,addr)
 	if err != nil{
 		fmt.Println(err)
 	}

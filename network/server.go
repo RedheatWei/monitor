@@ -22,14 +22,14 @@ func StartServer() {
 
 func handleClient(conn *net.UDPConn) {
 	var buf [1024]byte
-	n, addr, err := conn.ReadFromUDP(buf[:])
+	n, _, err := conn.ReadFromUDP(buf[:])
+	strRemoteAddr := conn.RemoteAddr().String()
 	if err != nil {
 		return
 	}
-	fmt.Println(checkIp(allow_iplist,string(addr.IP)))
-	fmt.Println(net.String(addr))
-	if checkIp(allow_iplist,string(addr.IP)){
-		go handler.ToJson(buf[:n],addr)
+	fmt.Println(strRemoteAddr)
+	if checkIp(allow_iplist,strRemoteAddr){
+		go handler.ToJson(buf[:n],strRemoteAddr)
 	}
 }
 func checkIp(allow_iplist []string,ip string) bool{
