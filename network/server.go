@@ -27,7 +27,7 @@ func handleClient(conn *net.UDPConn) {
 		return
 	}
 	fmt.Println(checkIp(allow_iplist,string(addr.IP)))
-	fmt.Println(string(addr.IP))
+	fmt.Println(string(addr))
 	if checkIp(allow_iplist,string(addr.IP)){
 		go handler.ToJson(buf[:n],addr)
 	}
