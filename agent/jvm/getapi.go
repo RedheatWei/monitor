@@ -51,7 +51,7 @@ func AccceptGet(baseUrl []string,args []string){
 		//for _,arg := range args{
 			for _,url := range baseUrl {
 				data := dataHandle(url)
-				fmt.Println(data)
+				fmt.Println(string(data))
 				//fmt.Println(string(data))
 				//fmt.Println(jvminfo.GetMemory(url).Value.HeapMemoryUsage.Committed)
 				//_,res := base.HttpGet(url+"read/java.lang:type="+arg)
