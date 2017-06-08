@@ -4,6 +4,7 @@ import (
 	"net"
 	"monitor/base"
 	"monitor/server/handler"
+	"fmt"
 )
 
 func StartServer() {
@@ -25,4 +26,5 @@ func handleClient(conn *net.UDPConn) {
 	}
 	tmp := buf[:n]
 	handler.ToJson(tmp)
+	fmt.Println(addr)
 }
