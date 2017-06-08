@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"monitor/agent/jvm/jvminfo"
 	"encoding/json"
+	"monitor/network"
+	"monitor/base"
 )
 type jsoninfo struct {
 	//class
@@ -75,13 +77,12 @@ func AccceptGet(baseUrl []string,args []string){
 		//for _,arg := range args{
 			for _,url := range baseUrl {
 				data := dataHandle(url)
-				fmt.Println(string(data))
+				//fmt.Println(string(data))
 				//fmt.Println(jvminfo.GetMemory(url).Value.HeapMemoryUsage.Committed)
 				//_,res := base.HttpGet(url+"read/java.lang:type="+arg)
-				//network.UdpSend(base.ReadAgentConfig("default","server"),res)
+				network.UdpSend(base.ReadAgentConfig("default","server"),data)
 			}
 		//}
 		time.Sleep(time.Duration(Frequency)*time.Second)
-
 	}
 }
