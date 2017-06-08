@@ -3,7 +3,6 @@ package network
 import (
 	"net"
 	"monitor/base"
-	"monitor/server/handler"
 	"fmt"
 )
 
@@ -32,9 +31,7 @@ func handleClient(conn *net.UDPConn) {
 	//	go handler.ToJson(buf[:n],conn.LocalAddr())
 	//}
 }
-func toIPv4(addr *UDPAddr){
 
-}
 func checkIp(allow_iplist []string,ip string) bool{
 	var is_in = bool(false)
 	for _,ipaddr := range allow_iplist{
