@@ -20,11 +20,12 @@ type config struct {
 
 func GetInfo(baseUrl string) (n int,info Info){
 	n,res := base.HttpGet(baseUrl)
-	var info Info
 	if n==0{
+		var info Info
 		json.Unmarshal(res,&info)
 		return 0,info
 	}else {
+		var info Info
 		return 1,info
 	}
 
