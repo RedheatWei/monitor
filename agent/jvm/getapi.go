@@ -48,7 +48,7 @@ func dataHandle(url string) []byte{
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
 	fmt.Println(allinfo)
 	i,_ := json.Marshal(allinfo)
-	fmt.Println(i)
+	fmt.Println(string(i))
 	return i
 }
 
