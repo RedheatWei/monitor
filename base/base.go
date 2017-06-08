@@ -17,6 +17,7 @@ type JsonInfo struct {
 	HeapMemoryUsageCommitted int64 `json:"committed"`
 	HeapMemoryUsageMax int64 `json:"max"`
 	HeapMemoryUsageUsed int64 `json:"used"`
+
 	NonHeapMemoryUsageInit int64 `json:"init"`
 	NonHeapMemoryUsageCommitted int64 `json:"committed"`
 	NonHeapMemoryUsageMax int64 `json:"max"`
