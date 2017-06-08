@@ -4,7 +4,6 @@ import (
 	"net"
 	"monitor/base"
 	"monitor/server/handler"
-	"fmt"
 )
 
 func StartServer() {
