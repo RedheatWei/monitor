@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"fmt"
-
+)
 type JsonInfo struct {
 	//class
 	LoadedClassCount int32 `json:"LoadedClassCount"`
@@ -32,7 +32,7 @@ type JsonInfo struct {
 	//base
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
-})
+}
 
 func connDB() *sql.DB{
 	db, err := sql.Open("mysql", "root:vv231@unix(/var/lib/mysql/mysql.sock)/monitor?charset=utf8")
