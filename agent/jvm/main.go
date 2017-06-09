@@ -38,7 +38,5 @@ func Start() {
 
 	StartJok(jok,pid_slice)
 	baseUrl := getBaseUrl()
-	ch := make(chan []string)
-	go CollectJvmInfo(baseUrl,args)
-	ch <- baseUrl
+	CollectJvmInfo(baseUrl,args)
 }
