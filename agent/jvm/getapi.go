@@ -1,7 +1,7 @@
 package jvm
 import (
 	"time"
-	//"fmt"
+	"fmt"
 	"monitor/agent/jvm/jvminfo"
 	"encoding/json"
 	"monitor/network"
@@ -49,6 +49,7 @@ func dataHandle(url string) []byte{
 	data.Type = "jvminfo"
 	data.JvmData = jvminfo
 	i,_ := json.Marshal(data)
+	fmt.Println(i)
 	return i
 }
 func CollectJvmInfo(baseUrl []string,args []string){

@@ -34,7 +34,7 @@ type JvmInfo struct {
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
-type SysInfo struct {
+type SysMemInfo struct {
 	VirtualMemoryStatTotal uint64 `json:"VirtualMemoryStatTotal"`
 	VirtualMemoryStatAvailable  uint64 `json:"VirtualMemoryStatAvailable"`
 	VirtualMemoryStatUsed  uint64 `json:"VirtualMemoryStatUsed"`
@@ -43,8 +43,8 @@ type SysInfo struct {
 }
 type Senddata struct {
 	Type string `json:"type"`
-	JvmData JvmInfo `json:"data"`
-	SysData SysInfo `json:"SysData"`
+	JvmData JvmInfo `json:"JvmData"`
+	SysMemData SysMemInfo `json:"SysMemData"`
 }
 
 //get方法

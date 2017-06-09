@@ -6,7 +6,7 @@ import (
 )
 
 func dataHandle()[]byte{
-	var _ base.SysInfo
+	var _ base.SysMemInfo
 	//mem.VirtualMemory()
 	return []byte{}
 }
