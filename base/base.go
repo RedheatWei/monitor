@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"monitor/conf"
 )
-type JsonInfo struct {
+type JvmInfo struct {
 	//class
 	LoadedClassCount int32 `json:"LoadedClassCount"`
 	UnloadedClassCount int32 `json:"UnloadedClassCount"`
@@ -34,9 +34,13 @@ type JsonInfo struct {
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
+type SysInfo struct {
+
+}
 type Senddata struct {
 	Type string `json:"type"`
-	Data JsonInfo `json:"data"`
+	JvmData JvmInfo `json:"data"`
+	SysData SysInfo `json:"SysData"`
 }
 
 //get方法

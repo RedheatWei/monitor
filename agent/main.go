@@ -4,5 +4,5 @@ import (
 	"monitor/agent/jvm"
 )
 func main() {
-	jvm.Start()
+	go jvm.Start()
 }

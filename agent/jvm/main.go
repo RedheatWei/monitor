@@ -28,15 +28,17 @@ func getBaseUrl() []string{
 }
 //启动
 func Start() {
+
 	jok,pid_slice := getArgs()
-	Frequency,_ = strconv.ParseInt(base.ReadAgentConfig("jvm","frequency"),10,64)
+	Frequency,_ = strconv.ParseInt(base.ReadAgentConfig("default","frequency"),10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
 		os.Exit(1)
 	}
+
 	StartJok(jok,pid_slice)
 	baseUrl := getBaseUrl()
 	ch := make(chan []string)
-	go CollectInfo(baseUrl,args)
+	go CollectJvmInfo(baseUrl,args)
 	ch <- baseUrl
 }
