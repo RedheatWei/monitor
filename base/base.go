@@ -35,7 +35,11 @@ type JvmInfo struct {
 	TimeStamp int64 `json:"TimeStamp"`
 }
 type SysInfo struct {
-
+	VirtualMemoryStatTotal uint64 `json:"VirtualMemoryStatTotal"`
+	VirtualMemoryStatAvailable  uint64 `json:"VirtualMemoryStatAvailable"`
+	VirtualMemoryStatUsed  uint64 `json:"VirtualMemoryStatUsed"`
+	VirtualMemoryStatUsedPercent  float64 `json:"VirtualMemoryStatUsedPercent"`
+	VirtualMemoryStatFree  uint64 `json:"VirtualMemoryStatFree"`
 }
 type Senddata struct {
 	Type string `json:"type"`
