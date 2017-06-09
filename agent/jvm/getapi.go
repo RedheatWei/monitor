@@ -45,7 +45,14 @@ func dataHandle(url string) []byte{
 	allinfo.CurrentThreadCpuTime = threading.Value.CurrentThreadCpuTime
 	allinfo.ThreadCount = threading.Value.ThreadCount
 	allinfo.DaemonThreadCount = threading.Value.DaemonThreadCount
-	i,_ := json.Marshal(allinfo)
+	//i,_ := json.Marshal(allinfo)
+
+	var data base.Senddata
+	data.Type = "jvminfo"
+	data.Data = allinfo
+
+	i,_ := json.Marshal(data)
+
 	return i
 }
 func CollectInfo(baseUrl []string,args []string){

@@ -34,6 +34,10 @@ type JsonInfo struct {
 	AgentId string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
+type Senddata struct {
+	Type string `json:"type"`
+	Data JsonInfo `json:"data"`
+}
 
 //get方法
 func HttpGet(url string) (n int,res []byte){
