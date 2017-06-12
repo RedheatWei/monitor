@@ -18,5 +18,7 @@ func (c *MainController) Get() {
 
 func (c *TestController) Get(){
 	c.Data["test"] = "this is a test"
+	nums := []int{1,2,3,4,5,6,7,8,9}
+	c.Data["nums"] = nums
 	c.TplName = "test.html"
 }
