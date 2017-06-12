@@ -31,7 +31,7 @@ type Jvm struct {
 }
 
 func init(){
-	orm.RegisterDataBase("monitor", "mysql", "root:vv231@unix(/var/lib/mysql/mysql.sock)/monitor?charset=utf8", 30)
+	orm.RegisterDataBase("default", "mysql", "monitor:monitor@/monitor?charset=utf8", 30)
 	orm.RegisterModel(new(Jvm))
 }
 func Sel() orm.RawSeter{
