@@ -34,8 +34,9 @@ func init(){
 	orm.RegisterDataBase("default", "mysql", "monitor:monitor@/monitor?charset=utf8", 30)
 	orm.RegisterModel(new(Jvm))
 }
-func Sel() orm.RawSeter{
+func Sel() []Jvm{
 	o := orm.NewOrm()
-	r := o.Raw("select * from jvm")
-	return  r
+	var val []Jvm
+	o.Raw("select * from jvm").QueryRows(&val)
+	return val
 }

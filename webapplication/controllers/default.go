@@ -21,6 +21,6 @@ func (c *MainController) Get() {
 func (c *TestController) Get(){
 	c.Data["test"] = "this is a test"
 	r := models.Sel()
-	fmt.Printf("%v",r)
+	fmt.Println(r)
 	c.TplName = "test.html"
 }
