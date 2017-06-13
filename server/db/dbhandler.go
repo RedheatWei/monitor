@@ -15,7 +15,7 @@ func connDB() *sql.DB{
 	}
 	return db
 }
-func InsertDB(js base.JsonInfo,addr string){
+func InsertDB(js base.JvmInfo,addr string){
 	db := connDB()
 	defer db.Close()
 	stmt, err := db.Prepare("INSERT INTO jvm(LoadedClassCount,UnloadedClassCount,TotalLoadedClassCount,HeapMemoryUsageInit,HeapMemoryUsageCommitted,HeapMemoryUsageMax,HeapMemoryUsageUsed,NonHeapMemoryUsageInit,NonHeapMemoryUsageCommitted,NonHeapMemoryUsageMax,NonHeapMemoryUsageUsed,ClassPath,Uptime,TotalStartedThreadCount,PeakThreadCount,CurrentThreadCpuTime,ThreadCount,DaemonThreadCount,AgentId,TimeStamp,ServerIp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
