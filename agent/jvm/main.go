@@ -9,7 +9,7 @@ import (
 var PortBinding []string
 var Frequency int64; var(
 	//met string = "read"
-	args = []string{"Memory","Runtime","Threading","ClassLoading"} //OperatingSystem
+	//args = []string{"Memory","Runtime","Threading","ClassLoading"} //OperatingSystem
 )
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{base.ReadAgentConfig("jvm","jolokiapath"),base.ReadAgentConfig("jvm","jolokianame"),base.ReadAgentConfig("jvm","portstart")}
@@ -38,5 +38,5 @@ func Start() {
 
 	StartJok(jok,pid_slice)
 	baseUrl := getBaseUrl()
-	CollectJvmInfo(baseUrl,args)
+	CollectJvmInfo(baseUrl)
 }

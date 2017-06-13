@@ -51,7 +51,7 @@ func dataHandle(url string) []byte{
 	i,_ := json.Marshal(data)
 	return i
 }
-func CollectJvmInfo(baseUrl []string,args []string){
+func CollectJvmInfo(baseUrl []string){
 	for{
 		for _,url := range baseUrl {
 			data := dataHandle(url)
