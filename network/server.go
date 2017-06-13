@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-var allow_iplist = strings.Split(base.ReadAgentConfig("default","allow_iplist"),",")
+var allow_iplist = strings.Split(base.ReadServerConfig("default","allow_iplist"),",")
 
 func StartServer() {
 	service := ":"+base.ReadServerConfig("default","port")
