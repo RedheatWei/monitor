@@ -64,6 +64,7 @@ func execShell(shell string) []byte{
 	checkErr(cmd.Start())
 	opBytes, err := ioutil.ReadAll(stdout)
 	checkErr(err)
+	cmd.Wait()
 	return opBytes
 }
 

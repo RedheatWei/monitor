@@ -4,9 +4,10 @@ import (
 	"net"
 	"monitor/base"
 	"monitor/server/handler"
+	"strings"
 )
 
-var allow_iplist = []string{"111.200.242.210"}
+var allow_iplist = strings.Split(base.ReadAgentConfig("default","allow_iplist"),",")
 
 func StartServer() {
 	service := ":"+base.ReadServerConfig("default","port")
