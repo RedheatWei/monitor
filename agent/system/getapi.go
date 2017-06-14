@@ -11,6 +11,7 @@ import (
 	"monitor/base"
 	"monitor/network"
 	"time"
+	"encoding/json"
 )
 
 func CollectSysMemInfo() base.SysMemInfo{
@@ -86,7 +87,8 @@ func CollectSysInfo(){
 		case "SysNetInfo":
 			data.SysNetInfo = CollectSysNetInfo()
 		}
-		network.UdpSend(base.ReadAgentConfig("default","server"),[]byte(string(data)))
+		i,_ := json.Marshal(data)
+		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
 }
