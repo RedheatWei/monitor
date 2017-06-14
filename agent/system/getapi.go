@@ -72,30 +72,19 @@ func CollectSysInfo(){
 	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
 	var data base.Senddata
 	for _,t := range sysinfo{
-		//data.Type = t
+		data.Type = t
 		switch t {
 		case "SysMemInfo":
-			data.Type = "SysMemInfo"
 			data.SysMemInfo = CollectSysMemInfo()
 		case "SysCpuInfo":
-			data.Type = "SysCpuInfo"
-
 			data.SysCpuInfo = CollectSysCpuInfo()
 		case "SysDiskInfo":
-			data.Type = "SysDiskInfo"
-
 			data.SysDiskInfo = CollectSysDiskInfo()
 		case "SysHostInfo":
-			data.Type = "SysHostInfo"
-
 			data.SysHostInfo = CollectSysHostInfo()
 		case "SysLoadInfo":
-			data.Type = "SysLoadInfo"
-
 			data.SysLoadInfo = CollectSysLoadInfo()
 		case "SysNetInfo":
-			data.Type = "SysNetInfo"
-
 			data.SysNetInfo = CollectSysNetInfo()
 		}
 		i,_ := json.Marshal(data)
