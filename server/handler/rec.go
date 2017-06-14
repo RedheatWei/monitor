@@ -11,8 +11,8 @@ func ToJson(rec []byte,addr string){
 	json.Unmarshal(rec,&js)
 	switch js.Type {
 	case "JvmInfo":
-		go db.InsertJvmDB(js.JvmData,addr)
+		go db.InsertJvmDB(js.JvmInfo,addr)
 	case "jvminfo":
-		go db.InsertJvmDB(js.JvmData,addr)
+		go db.InsertJvmDB(js.JvmInfo,addr)
 	}
 }
