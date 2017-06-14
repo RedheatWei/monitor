@@ -5,6 +5,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"monitor/conf"
+	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/mem"
+	"github.com/shirou/gopsutil/disk"
+	"github.com/shirou/gopsutil/host"
+	"github.com/shirou/gopsutil/load"
+	"github.com/shirou/gopsutil/net"
+	//"github.com/shirou/gopsutil/process"
 )
 type JvmInfo struct {
 	//class
@@ -35,196 +42,42 @@ type JvmInfo struct {
 	TimeStamp int64 `json:"TimeStamp"`
 }
 type SysMemInfo struct {
-	//memory
-	VirtualMemoryStatTotal        uint64 `json:"VirtualMemoryStatTotal"`
-	VirtualMemoryStatAvailable    uint64 `json:"VirtualMemoryStatAvailable"`
-	VirtualMemoryStatUsed         uint64 `json:"VirtualMemoryStatUsed"`
-	VirtualMemoryStatUsedPercent  float64 `json:"VirtualMemoryStatUsedPercent"`
-	VirtualMemoryStatFree         uint64 `json:"VirtualMemoryStatFree"`
-	VirtualMemoryStatBuffers      uint64 `json:"VirtualMemoryStatBuffers"`
-	VirtualMemoryStatCached       uint64 `json:"VirtualMemoryStatCached"`
-	VirtualMemoryStatWriteback    uint64 `json:"VirtualMemoryStatWriteback"`
-	VirtualMemoryStatDirty        uint64 `json:"VirtualMemoryStatDirty"`
-	VirtualMemoryStatWritebackTmp uint64 `json:"VirtualMemoryStatWritebackTmp"`
-	VirtualMemoryStatShared       uint64 `json:"VirtualMemoryStatShared"`
-	VirtualMemoryStatSlab         uint64 `json:"VirtualMemoryStatSlab"`
-	VirtualMemoryStatPageTables   uint64 `json:"VirtualMemoryStatPageTables"`
-	VirtualMemoryStatSwapCached   uint64 `json:"VirtualMemoryStatSwapCached"`
-	//swap
-	SwapMemoryStatTotal       uint64 `json:"SwapMemoryStatTotal"`
-	SwapMemoryStatUsed        uint64 `json:"SwapMemoryStatUsed"`
-	SwapMemoryStatFree        uint64 `json:"SwapMemoryStatFree"`
-	SwapMemoryStatUsedPercent float64 `json:"SwapMemoryStatUsedPercent"`
-	SwapMemoryStatSin         uint64 `json:"SwapMemoryStatSin"`
-	SwapMemoryStatSout        uint64 `json:"SwapMemoryStatSout"`
+	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
+	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
 }
 type SysCpuInfo struct {
-	InfoStatCPU        int32 `json:"InfoStatCPU"`
-	InfoStatStepping   int32 `json:"InfoStatStepping"`
-	InfoStatCores      int32 `json:"InfoStatCores"`
-	InfoStatMhz        float64 `json:"InfoStatMhz"`
-	InfoStatCacheSize  int32 `json:"InfoStatCacheSize"`
-	InfoStatVendorID   string `json:"InfoStatVendorID"`
-	InfoStatFamily     string `json:"InfoStatFamily"`
-	InfoStatModel      string `json:"InfoStatModel"`
-	InfoStatPhysicalID string `json:"InfoStatPhysicalID"`
-	InfoStatCoreID     string `json:"InfoStatCoreID"`
-	InfoStatModelName  string `json:"InfoStatModelName"`
-	InfoStatMicrocode  string `json:"InfoStatMicrocode"`
-	InfoStatFlags      []string `json:"InfoStatFlags"`
-
-	TimesStatCPU       float64 `json:"TimesStatCPU"`
-	TimesStatUser      float64 `json:"TimesStatUser"`
-	TimesStatSystem    float64 `json:"TimesStatSystem"`
-	TimesStatIdle      float64 `json:"TimesStatIdle"`
-	TimesStatNice      float64 `json:"TimesStatNice"`
-	TimesStatIowait    float64 `json:"TimesStatIowait"`
-	TimesStatIrq       float64 `json:"TimesStatIrq"`
-	TimesStatSoftirq   float64 `json:"TimesStatSoftirq"`
-	TimesStatSteal     float64 `json:"TimesStatSteal"`
-	TimesStatGuest     float64 `json:"TimesStatGuest"`
-	TimesStatGuestNice float64 `json:"TimesStatGuestNice"`
-	TimesStatStolen    float64 `json:"TimesStatStolen"`
+	InfoStat []cpu.InfoStat `json:"InfoStat"`
+	//TimesStat []cpu.TimesStat `json:"TimesStat"`
 }
 type SysDiskInfo struct {
-	IOCountersStatReadCount        uint64 `json:"IOCountersStatReadCount"`
-	IOCountersStatMergedReadCount  uint64 `json:"IOCountersStatMergedReadCount"`
-	IOCountersStatWriteCount       uint64 `json:"IOCountersStatWriteCount"`
-	IOCountersStatMergedWriteCount uint64 `json:"IOCountersStatMergedWriteCount"`
-	IOCountersStatReadBytes        uint64 `json:"IOCountersStatReadBytes"`
-	IOCountersStatWriteBytes       uint64 `json:"IOCountersStatWriteBytes"`
-	IOCountersStatReadTime         uint64 `json:"IOCountersStatReadTime"`
-	IOCountersStatWriteTime        uint64 `json:"IOCountersStatWriteTime"`
-	IOCountersStatIopsInProgress   uint64 `json:"IOCountersStatIopsInProgress"`
-	IOCountersStatIoTime           uint64 `json:"IOCountersStatIoTime"`
-	IOCountersStatWeightedIO       uint64 `json:"IOCountersStatWeightedIO"`
-	IOCountersStatName             string `json:"IOCountersStatName"`
-	IOCountersStatSerialNumber     string `json:"IOCountersStatSerialNumber"`
-
-	PartitionStatDevice     string `json:"PartitionStatDevice"`
-	PartitionStatMountpoint string `json:"PartitionStatMountpoint"`
-	PartitionStatFstype     string `json:"PartitionStatFstype"`
-	PartitionStatOpts       string `json:"PartitionStatOpts"`
-
-	UsageStatPath              string `json:"UsageStatPath"`
-	UsageStatFstype            string `json:"UsageStatFstype"`
-	UsageStatTotal             uint64 `json:"UsageStatTotal"`
-	UsageStatFree              uint64 `json:"UsageStatFree"`
-	UsageStatUsed              uint64 `json:"UsageStatUsed"`
-	UsageStatUsedPercent       float64 `json:"UsageStatUsedPercent"`
-	UsageStatInodesTotal       uint64 `json:"UsageStatInodesTotal"`
-	UsageStatInodesUsed        uint64 `json:"UsageStatInodesUsed"`
-	UsageStatInodesFree        uint64 `json:"UsageStatInodesFree"`
-	UsageStatInodesUsedPercent float64 `json:"UsageStatInodesUsedPercent"`
+	IOCountersStat map[string]disk.IOCountersStat `json:"IOCountersStat"`
+	PartitionStat []disk.PartitionStat `json:"PartitionStat"`
+	//UsageStat disk.UsageStat `json:"UsageStat"`
 }
 type SysHostInfo struct {
-	InfoStatHostname             string `json:"InfoStatHostname"`
-	InfoStatUptime               uint64 `json:"InfoStatUptime"`
-	InfoStatBootTime             uint64 `json:"InfoStatBootTime"`
-	InfoStatProcs                uint64 `json:"InfoStatProcs"`
-	InfoStatOS                   string `json:"InfoStatOS"`
-	InfoStatPlatform             string `json:"InfoStatPlatform"`
-	InfoStatPlatformFamily       string `json:"InfoStatPlatformFamily"`
-	InfoStatPlatformVersion      string `json:"InfoStatPlatformVersion"`
-	InfoStatKernelVersion        string `json:"InfoStatKernelVersion"`
-	InfoStatVirtualizationSystem string `json:"InfoStatVirtualizationSystem"`
-	InfoStatVirtualizationRole   string `json:"InfoStatVirtualizationRole"`
-	InfoStatHostID               string `json:"InfoStatHostID"`
-
-	LSBID          string `json:""`
-	LSBRelease     string `json:""`
-	LSBCodename    string `json:""`
-	LSBDescription string `json:""`
-
-	TemperatureStatSensorKey   string `json:"TemperatureStatSensorKey"`
-	TemperatureStatTemperature float64 `json:"TemperatureStatTemperature"`
-
-	UserStatUser     string `json:"UserStatUser"`
-	UserStatTerminal string `json:"UserStatTerminal"`
-	UserStatHost     string `json:"UserStatHost"`
-	UserStatStarted  int `json:"UserStatStarted"`
+	InfoStat host.InfoStat `json:"InfoStat"`
+	TemperatureStat []host.TemperatureStat `json:"TemperatureStat"`
+	UserStat []host.UserStat `json:"UserStat"`
 }
 type SysLoadInfo struct {
-	AvgStatLoad1  float64 `json:"AvgStatLoad1"`
-	AvgStatLoad5  float64 `json:"AvgStatLoad5"`
-	AvgStatLoad15 float64 `json:"AvgStatLoad15"`
-
-	MiscStatProcsRunning int `json:"MiscStatProcsRunning"`
-	MiscStatProcsBlocked int `json:"MiscStatProcsBlocked"`
-	MiscStatCtxt         int `json:"MiscStatCtxt"`
+	AvgStat load.AvgStat `json:"AvgStat"`
+	MiscStat load.MiscStat `json:"MiscStat"`
 }
 type SysNetInfo struct {
-	ConnectionStatFd     uint32 `json:"ConnectionStatFd"`
-	ConnectionStatFamily uint32 `json:"ConnectionStatFamily"`
-	ConnectionStatType   uint32 `json:"ConnectionStatType"`
-	ConnectionStatLaddr  Addr  `json:"ConnectionStatLaddr"`
-	ConnectionStatRaddr  Addr `json:"ConnectionStatRaddr"`
-	ConnectionStatStatus string `json:"ConnectionStatStatus"`
-	ConnectionStatUids   []int32 `json:"ConnectionStatUids"`
-	ConnectionStatPid    int32 `json:"ConnectionStatPid"`
-
-	IOCountersStatName        string `json:"IOCountersStatName"`
-	IOCountersStatBytesSent   uint64 `json:"IOCountersStatBytesSent"`
-	IOCountersStatBytesRecv   uint64 `json:"IOCountersStatBytesRecv"`
-	IOCountersStatPacketsSent uint64 `json:"IOCountersStatPacketsSent"`
-	IOCountersStatPacketsRecv uint64 `json:"IOCountersStatPacketsRecv"`
-	IOCountersStatErrin       uint64 `json:"IOCountersStatErrin"`
-	IOCountersStatErrout      uint64 `json:"IOCountersStatErrout"`
-	IOCountersStatDropin      uint64 `json:"IOCountersStatDropin"`
-	IOCountersStatDropout     uint64 `json:"IOCountersStatDropout"`
-	IOCountersStatFifoin      uint64 `json:"IOCountersStatFifoin"`
-	IOCountersStatFifoout     uint64 `json:"IOCountersStatFifoout"`
-
-	InterfaceStatMTU          int `json:""`
-	InterfaceStatName         string `json:""`
-	InterfaceStatHardwareAddr string `json:""`
-	InterfaceStatFlags        []string `json:""`
-	InterfaceStatAddrs        []InterfaceAddr `json:""`
-
-	ProtoCountersStatProtocol string `json:"ProtoCountersStatProtocol"`
-	ProtoCountersStatStats    map[string]int64 `json:"ProtoCountersStatStats"`
+	//ConnectionStat net.ConnectionStat `json:"ConnectionStat"`
+	IOCountersStat []net.IOCountersStat `json:"IOCountersStat"`
+	InterfaceStat []net.InterfaceStat `json:"InterfaceStat"`
+	//ProtoCountersStat net.ProtoCountersStat `json:"ProtoCountersStat"`
 }
 type SysProcessInfo struct {
-	IOCountersStatReadCount  uint64 `json:"IOCountersStatReadCount"`
-	IOCountersStatWriteCount uint64 `json:"IOCountersStatWriteCount"`
-	IOCountersStatReadBytes  uint64 `json:"IOCountersStatReadBytes"`
-	IOCountersStatWriteBytes uint64 `json:"IOCountersStatWriteBytes"`
-
-	MemoryInfoExStatRSS    uint64 `json:"MemoryInfoExStatRSS"`
-	MemoryInfoExStatVMS    uint64 `json:"MemoryInfoExStatVMS"`
-	MemoryInfoExStatShared uint64 `json:"MemoryInfoExStatShared"`
-	MemoryInfoExStatText   uint64 `json:"MemoryInfoExStatText"`
-	MemoryInfoExStatLib    uint64 `json:"MemoryInfoExStatLib"`
-	MemoryInfoExStatData   uint64 `json:"MemoryInfoExStatData"`
-	MemoryInfoExStatDirty  uint64 `json:"MemoryInfoExStatDirty"`
-
-	MemoryInfoStatRSS  uint64 `json:"MemoryInfoStatRSS"`
-	MemoryInfoStatVMS  uint64 `json:"MemoryInfoStatVMS"`
-	MemoryInfoStatSwap uint64 `json:"MemoryInfoStatSwap"`
-
-	MemoryMapsStatPath         string `json:"MemoryMapsStatPath"`
-	MemoryMapsStatRss          uint64 `json:"MemoryMapsStatRss"`
-	MemoryMapsStatSize         uint64 `json:"MemoryMapsStatSize"`
-	MemoryMapsStatPss          uint64 `json:"MemoryMapsStatPss"`
-	MemoryMapsStatSharedClean  uint64 `json:"MemoryMapsStatSharedClean"`
-	MemoryMapsStatSharedDirty  uint64 `json:"MemoryMapsStatSharedDirty"`
-	MemoryMapsStatPrivateClean uint64 `json:"MemoryMapsStatPrivateClean"`
-	MemoryMapsStatPrivateDirty uint64 `json:"MemoryMapsStatPrivateDirty"`
-	MemoryMapsStatReferenced   uint64 `json:"MemoryMapsStatReferenced"`
-	MemoryMapsStatAnonymous    uint64 `json:"MemoryMapsStatAnonymous"`
-	MemoryMapsStatSwap         uint64 `json:"MemoryMapsStatSwap"`
-
-	NumCtxSwitchesStatVoluntary   int64 `json:"NumCtxSwitchesStatVoluntary"`
-	NumCtxSwitchesStatInvoluntary int64 `json:"NumCtxSwitchesStatInvoluntary"`
-
-	OpenFilesStatPath string `json:"OpenFilesStatPath"`
-	OpenFilesStatFd   uint64 `json:"OpenFilesStatFd"`
-
-	ProcessPid int32 `json:"ProcessPid"`
-
-	RlimitStatResource int32 `json:"RlimitStatResource"`
-	RlimitStatSoft     int32 `json:"RlimitStatSoft"`
-	RlimitStatHard     int32 `json:"RlimitStatHard"`
+	//IOCountersStat process.IOCountersStat `json:"IOCountersStat"`
+	//MemoryInfoExStat process.MemoryInfoExStat `json:"MemoryInfoExStat"`
+	//MemoryInfoStat process.MemoryInfoStat `json:"MemoryInfoStat"`
+	//MemoryMapsStat process.MemoryMapsStat `json:"MemoryMapsStat"`
+	//NumCtxSwitchesStat process.NumCtxSwitchesStat `json:"NumCtxSwitchesStat"`
+	//OpenFilesStat process.OpenFilesStat `json:"OpenFilesStat"`
+	//Process process.Process `json:"Process"`
+	//RlimitStat process.RlimitStat `json:"RlimitStat"`
 }
 type Addr struct {
 	IP   string `json:"ip"`
