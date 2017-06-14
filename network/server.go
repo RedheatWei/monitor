@@ -21,7 +21,7 @@ func StartServer() {
 }
 
 func handleClient(conn *net.UDPConn) {
-	var buf [1024]byte
+	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
 	if err != nil {
 		return
