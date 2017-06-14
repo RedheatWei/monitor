@@ -9,6 +9,8 @@ import (
 	"github.com/shirou/gopsutil/net"
 	//"github.com/shirou/gopsutil/process"
 	"monitor/base"
+	"monitor/network"
+	"time"
 )
 
 func CollectSysMemInfo() base.SysMemInfo{
@@ -19,7 +21,6 @@ func CollectSysMemInfo() base.SysMemInfo{
 	SysMemInfo.VirtualMemoryStat = *v
 	return SysMemInfo
 }
-
 func CollectSysCpuInfo() base.SysCpuInfo{
 	var SysCpuInfo base.SysCpuInfo
 	i,_ := cpu.Info()
@@ -67,5 +68,25 @@ func CollectSysProcessInfo(){
 	//var SysProcessInfo base.SysProcessInfo
 }
 func CollectSysInfo(){
-
+	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
+	for _,t := range sysinfo{
+		var data base.Senddata
+		data.Type = t
+		switch t {
+		case "SysMemInfo":
+			data.SysMemInfo = CollectSysMemInfo()
+		case "SysCpuInfo":
+			data.SysCpuInfo = CollectSysCpuInfo()
+		case "SysDiskInfo":
+			data.SysDiskInfo = CollectSysDiskInfo()
+		case "SysHostInfo":
+			data.SysHostInfo = CollectSysHostInfo()
+		case "SysLoadInfo":
+			data.SysLoadInfo = CollectSysLoadInfo()
+		case "SysNetInfo":
+			data.SysNetInfo = CollectSysNetInfo()
+		}
+		network.UdpSend(base.ReadAgentConfig("default","server"),[]byte(data))
+		time.Sleep(time.Duration(Frequency)*time.Second)
+	}
 }

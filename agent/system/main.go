@@ -8,7 +8,7 @@ var Frequency int64
 //启动
 func Start() {
 	Frequency,_ = strconv.ParseInt(base.ReadAgentConfig("default","frequency"),10,64)
-	//ch := make(chan []string)
-	//go CollectInfo(baseUrl,args)
-	//ch <- baseUrl
+	ch := make(chan int64)
+	go CollectSysInfo()
+	ch <- Frequency
 }
