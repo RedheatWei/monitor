@@ -13,7 +13,7 @@ func ToJson(rec []byte,addr string){
 	switch js.Type {
 	case "JvmInfo":
 		go db.InsertJvmDB(js.JvmData,addr)
-	case "SysMemInfo":
-		go db.InsertMenDB(js.SysMemData,addr)
+	//case "SysMemInfo":
+	//	go db.InsertMemDB(js.SysMemData,addr)
 	}
 }
