@@ -7,11 +7,13 @@ import(
 	"strings"
 	"strconv"
 	"time"
+	"monitor/base"
 )
 
 type Jolokia struct {
 	Jolokiapath,Jolokianame,Portstart string
 }
+
 //获取Java程序pid
 func GetPid(jok *Jolokia) []string{
 	jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" list | grep -v 'jolokia' | cut -d' ' -f1"
@@ -22,15 +24,16 @@ func GetPid(jok *Jolokia) []string{
 }
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
+	javapath := base.ReadAgentConfig("jvm","javapath")
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
-		bingPort(jok,pid,len(pid_slice))
+		bingPort(jok,pid,len(pid_slice),javapath)
 	}
 }
 //绑定端口
-func bingPort(jok *Jolokia,pid string,pid_num int) int{
+func bingPort(jok *Jolokia,pid string,pid_num int,javapath string) int{
 	portstart,_ := strconv.Atoi(jok.Portstart)
 	for port := portstart; port < portstart+pid_num; port++ {
-		jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
+		jolokia := javapath+"java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
 		fmt.Println(jolokia)
 		opBytes := execShell(jolokia)
 		//fmt.Println(string(opBytes))
