@@ -88,7 +88,7 @@ func CollectSysInfo(){
 		case "SysNetInfo":
 			data.SysNetInfo = CollectSysNetInfo()
 		}
-		fmt.Pringln(data)
+		fmt.Println(data)
 		i,_ := json.Marshal(data)
 		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
