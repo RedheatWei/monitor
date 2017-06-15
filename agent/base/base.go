@@ -154,8 +154,8 @@ func GetConfig() AgentConfig{
 	var AgentConfig AgentConfig
 	AgentConfig.Default.Server=readAgentConfig("default","server")
 	AgentConfig.Default.Frequency=readAgentConfig("default","frequency")
-	AgentConfig.Jvm.Javapath=readAgentConfig("db","jolokiapath")
-	AgentConfig.Jvm.Jolokianame=readAgentConfig("db","jolokianame")
-	AgentConfig.Jvm.Portstart=readAgentConfig("db","portstart")
+	AgentConfig.Jvm.Javapath=readAgentConfig("jvm","jolokiapath")
+	AgentConfig.Jvm.Jolokianame=readAgentConfig("jvm","jolokianame")
+	AgentConfig.Jvm.Portstart=readAgentConfig("jvm","portstart")
 	return AgentConfig
 }
