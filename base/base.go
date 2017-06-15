@@ -89,14 +89,14 @@ type InterfaceAddr struct {
 type Senddata struct {
 	Type           string `json:"type"`
 	Data interface{}
-	JvmInfo        JvmInfo `json:"JvmInfo"`
-	SysMemInfo     SysMemInfo `json:"SysMemInfo"`
-	SysCpuInfo     SysCpuInfo `json:"SysCpuInfo"`
-	SysDiskInfo    SysDiskInfo `json:"SysDiskInfo"`
-	SysHostInfo    SysHostInfo `json:"SysHostInfo"`
-	SysLoadInfo    SysLoadInfo `json:"SysLoadInfo"`
-	SysNetInfo     SysNetInfo `json:"SysNetInfo"`
-	SysProcessInfo SysProcessInfo `json:"SysProcessInfo"`
+	//JvmInfo        JvmInfo `json:"JvmInfo"`
+	//SysMemInfo     SysMemInfo `json:"SysMemInfo"`
+	//SysCpuInfo     SysCpuInfo `json:"SysCpuInfo"`
+	//SysDiskInfo    SysDiskInfo `json:"SysDiskInfo"`
+	//SysHostInfo    SysHostInfo `json:"SysHostInfo"`
+	//SysLoadInfo    SysLoadInfo `json:"SysLoadInfo"`
+	//SysNetInfo     SysNetInfo `json:"SysNetInfo"`
+	//SysProcessInfo SysProcessInfo `json:"SysProcessInfo"`
 }
 
 //get方法

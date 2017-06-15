@@ -46,7 +46,8 @@ func dataHandle(url string) []byte{
 	jvminfo.DaemonThreadCount = threading.Value.DaemonThreadCount
 	var data base.Senddata
 	data.Type = "JvmInfo"
-	data.JvmInfo = jvminfo
+	//data.JvmInfo = jvminfo
+	data.Data = jvminfo
 	i,_ := json.Marshal(data)
 	return i
 }
