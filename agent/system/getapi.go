@@ -78,6 +78,7 @@ func CollectSysInfo(){
 		switch t {
 		case "SysMemInfo":
 			data.SysMemInfo = CollectSysMemInfo()
+			data.Data = CollectSysMemInfo()
 		case "SysCpuInfo":
 			data.SysCpuInfo = CollectSysCpuInfo()
 		case "SysDiskInfo":
