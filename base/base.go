@@ -42,6 +42,22 @@ type JvmInfo struct {
 	AgentId   string `json:"agentId"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
+type ServerConfig struct {
+	Default Default
+	DB DB
+}
+type Default struct {
+	Port string
+}
+type DB struct {
+	Type string
+	User string
+	Passwd string
+	Database string
+	Host string
+	Charset string
+	Protocol string
+}
 type SysMemInfo struct {
 	Type           string `json:"Type"`
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
@@ -126,8 +142,20 @@ func ReadAgentConfig(mod,par string) string{
 	return config.Read(mod,par)
 }
 //读取服务端配置文件
-func ReadServerConfig(mod,par string) string{
+func readServerConfig(mod,par string) string{
 	config:= new(conf.Config)
 	config.InitConfig("conf/server.conf")
 	return config.Read(mod,par)
+}
+func GetConfig() ServerConfig{
+	var ServerConfig ServerConfig
+	ServerConfig.Default.Port=readServerConfig("default","port")
+	ServerConfig.DB.Type=readServerConfig("db","type")
+	ServerConfig.DB.User=readServerConfig("db","user")
+	ServerConfig.DB.Passwd=readServerConfig("db","passwd")
+	ServerConfig.DB.Database=readServerConfig("db","database")
+	ServerConfig.DB.Host=readServerConfig("db","host")
+	ServerConfig.DB.Charset=readServerConfig("db","charset")
+	ServerConfig.DB.Protocol=readServerConfig("db","protocol")
+	return ServerConfig
 }

@@ -4,13 +4,17 @@ import (
 	"net"
 	"monitor/base"
 	"monitor/server/handler"
-	"strings"
+	"monitor/server/db"
 )
 
-var allow_iplist = strings.Split(base.ReadServerConfig("default","allow_iplist"),",")
-
+var ServerConfig base.ServerConfig
+var AllowIplist []string
+func init()  {
+	ServerConfig = base.GetConfig()
+	AllowIplist = db.GetAllowIpList()
+}
 func StartServer() {
-	service := ":"+base.ReadServerConfig("default","port")
+	service := ":"+ServerConfig.Default.Port
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
 	checkErr(err)
 	conn, err := net.ListenUDP("udp", udpAddr)
@@ -20,6 +24,8 @@ func StartServer() {
 	}
 }
 
+
+
 func handleClient(conn *net.UDPConn) {
 	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
@@ -27,14 +33,14 @@ func handleClient(conn *net.UDPConn) {
 		return
 	}
 	add := addr.IP.String()
-	if checkIp(allow_iplist,add){
+	if checkIp(add){
 		go handler.ToJson(buf[:n],add)
 	}
 }
 
-func checkIp(allow_iplist []string,ip string) bool{
+func checkIp(ip string) bool{
 	var is_in = bool(false)
-	for _,ipaddr := range allow_iplist{
+	for _,ipaddr := range AllowIplist{
 		if ipaddr == ip {
 			is_in = true
 			return is_in

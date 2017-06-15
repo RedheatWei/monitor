@@ -1,4 +1,4 @@
-package db
+package cpu
 
 import (
 	"monitor/base"
