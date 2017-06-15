@@ -15,6 +15,7 @@ func init()  {
 func ConnDB() *xorm.Engine{
 	dbconf := ServerConfig.DB
 	dbconn := fmt.Sprintf("%s:%s@%s(%s)/%s?charset=%s",dbconf.User,dbconf.Passwd,dbconf.Host,dbconf.Protocol,dbconf.Database,dbconf.Charset)
+	fmt.Println(dbconn)
 	var err error
 	engine, err = xorm.NewEngine(dbconf.Type, dbconn)
 	if err!=nil{
