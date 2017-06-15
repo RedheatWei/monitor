@@ -15,33 +15,46 @@ import (
 	"fmt"
 	"encoding/json"
 )
+var Server string
+func init(){
+	Server = base.ReadAgentConfig("default","server")
+}
 
-func CollectSysMemInfo() base.SysMemInfo{
+func CollectSysMemInfo(){
 	var SysMemInfo base.SysMemInfo
 	v,_ := mem.VirtualMemory()
 	s,_ := mem.SwapMemory()
 	SysMemInfo.SwapMemoryStat = *s
 	SysMemInfo.VirtualMemoryStat = *v
-	return SysMemInfo
+	SysMemInfo.Type = "SysMemInfo"
+	by,_ := json.Marshal(SysMemInfo)
+	network.UdpSend(Server,by)
+	//return SysMemInfo
 }
-func CollectSysCpuInfo() base.SysCpuInfo{
+func CollectSysCpuInfo(){
 	var SysCpuInfo base.SysCpuInfo
 	i,_ := cpu.Info()
 	//t,_ := cpu.Times()
 	SysCpuInfo.InfoStat = i
+	SysCpuInfo.Type = "SysCpuInfo"
 	//SysCpuInfo.TimesStat = t
-	return SysCpuInfo
+	//return SysCpuInfo
+	by,_ := json.Marshal(SysCpuInfo)
+	network.UdpSend(Server,by)
 }
-func CollectSysDiskInfo() base.SysDiskInfo{
+func CollectSysDiskInfo(){
 	var SysDiskInfo base.SysDiskInfo
 	i,_ := disk.IOCounters()
 	p,_ := disk.Partitions(false)
 	//u,_ := disk.Usage()
 	SysDiskInfo.IOCountersStat = i
 	SysDiskInfo.PartitionStat = p
-	return SysDiskInfo
+	SysDiskInfo.Type = "SysDiskInfo"
+	//return SysDiskInfo
+	by,_ := json.Marshal(SysDiskInfo)
+	network.UdpSend(Server,by)
 }
-func CollectSysHostInfo() base.SysHostInfo {
+func CollectSysHostInfo() {
 	var SysHostInfo base.SysHostInfo
 	i,_ := host.Info()
 	u,_ := host.Users()
@@ -49,23 +62,32 @@ func CollectSysHostInfo() base.SysHostInfo {
 	SysHostInfo.InfoStat = *i
 	SysHostInfo.UserStat = u
 	SysHostInfo.TemperatureStat = t
-	return SysHostInfo
+	SysHostInfo.Type = "SysHostInfo"
+	//return SysHostInfo
+	by,_ := json.Marshal(SysHostInfo)
+	network.UdpSend(Server,by)
 }
-func CollectSysLoadInfo() base.SysLoadInfo{
+func CollectSysLoadInfo() {
 	var SysLoadInfo base.SysLoadInfo
 	a,_ := load.Avg()
 	m,_ := load.Misc()
 	SysLoadInfo.AvgStat = *a
 	SysLoadInfo.MiscStat = *m
-	return SysLoadInfo
+	SysLoadInfo.Type = "SysLoadInfo"
+	//return SysLoadInfo
+	by,_ := json.Marshal(SysLoadInfo)
+	network.UdpSend(Server,by)
 }
-func CollectSysNetInfo() base.SysNetInfo{
+func CollectSysNetInfo() {
 	var SysNetInfo base.SysNetInfo
 	i,_ := net.IOCounters(false)
 	inf,_ := net.Interfaces()
 	SysNetInfo.IOCountersStat = i
 	SysNetInfo.InterfaceStat = inf
-	return SysNetInfo
+	SysNetInfo.Type = "SysNetInfo"
+	by,_ := json.Marshal(SysNetInfo)
+	network.UdpSend(Server,by)
+	//return SysNetInfo
 }
 func CollectSysProcessInfo(){
 	//var SysProcessInfo base.SysProcessInfo
@@ -73,32 +95,28 @@ func CollectSysProcessInfo(){
 func CollectSysInfo(){
 	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
 	for _,t := range sysinfo{
-		var data base.Senddata
-		data.Type = t
+		//var data base.Senddata
+		//data.Type = t
 		switch t {
 		case "SysMemInfo":
 			//data.SysMemInfo = CollectSysMemInfo()
-			data.Data = CollectSysMemInfo()
+			CollectSysMemInfo()
 		case "SysCpuInfo":
 			//data.SysCpuInfo = CollectSysCpuInfo()
-			data.Data = CollectSysCpuInfo()
+			CollectSysCpuInfo()
 		case "SysDiskInfo":
 			//data.SysDiskInfo = CollectSysDiskInfo()
-			data.Data = CollectSysDiskInfo()
+			CollectSysDiskInfo()
 		case "SysHostInfo":
 			//data.SysHostInfo = CollectSysHostInfo()
-			data.Data = CollectSysHostInfo()
+			CollectSysHostInfo()
 		case "SysLoadInfo":
 			//data.SysLoadInfo = CollectSysLoadInfo()
-			data.Data = CollectSysLoadInfo()
+			CollectSysLoadInfo()
 		case "SysNetInfo":
 			//data.SysNetInfo = CollectSysNetInfo()
-			data.Data = CollectSysNetInfo()
+			CollectSysNetInfo()
 		}
-		fmt.Println(data)
-		i,_ := json.Marshal(data)
-		fmt.Println(i)
-		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
 }

@@ -14,6 +14,7 @@ import (
 	//"github.com/shirou/gopsutil/process"
 )
 type JvmInfo struct {
+	Type           string `json:"Type"`
 	//class
 	LoadedClassCount      int32 `json:"LoadedClassCount"`
 	UnloadedClassCount    int32 `json:"UnloadedClassCount"`
@@ -42,34 +43,41 @@ type JvmInfo struct {
 	TimeStamp int64 `json:"TimeStamp"`
 }
 type SysMemInfo struct {
+	Type           string `json:"Type"`
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
 	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
 }
 type SysCpuInfo struct {
+	Type           string `json:"Type"`
 	InfoStat []cpu.InfoStat `json:"InfoStat"`
 	//TimesStat []cpu.TimesStat `json:"TimesStat"`
 }
 type SysDiskInfo struct {
+	Type           string `json:"Type"`
 	IOCountersStat map[string]disk.IOCountersStat `json:"IOCountersStat"`
 	PartitionStat []disk.PartitionStat `json:"PartitionStat"`
 	//UsageStat disk.UsageStat `json:"UsageStat"`
 }
 type SysHostInfo struct {
+	Type           string `json:"Type"`
 	InfoStat host.InfoStat `json:"InfoStat"`
 	TemperatureStat []host.TemperatureStat `json:"TemperatureStat"`
 	UserStat []host.UserStat `json:"UserStat"`
 }
 type SysLoadInfo struct {
+	Type           string `json:"Type"`
 	AvgStat load.AvgStat `json:"AvgStat"`
 	MiscStat load.MiscStat `json:"MiscStat"`
 }
 type SysNetInfo struct {
+	Type           string `json:"Type"`
 	//ConnectionStat net.ConnectionStat `json:"ConnectionStat"`
 	IOCountersStat []net.IOCountersStat `json:"IOCountersStat"`
 	InterfaceStat []net.InterfaceStat `json:"InterfaceStat"`
 	//ProtoCountersStat net.ProtoCountersStat `json:"ProtoCountersStat"`
 }
 type SysProcessInfo struct {
+	Type           string `json:"Type"`
 	//IOCountersStat process.IOCountersStat `json:"IOCountersStat"`
 	//MemoryInfoExStat process.MemoryInfoExStat `json:"MemoryInfoExStat"`
 	//MemoryInfoStat process.MemoryInfoStat `json:"MemoryInfoStat"`
@@ -86,18 +94,17 @@ type Addr struct {
 type InterfaceAddr struct {
 	Addr string `json:"addr"`
 }
-type Senddata struct {
-	Type           string `json:"Type"`
-	Data interface{}
-	//JvmInfo        JvmInfo `json:"JvmInfo"`
-	//SysMemInfo     SysMemInfo `json:"SysMemInfo"`
-	//SysCpuInfo     SysCpuInfo `json:"SysCpuInfo"`
-	//SysDiskInfo    SysDiskInfo `json:"SysDiskInfo"`
-	//SysHostInfo    SysHostInfo `json:"SysHostInfo"`
-	//SysLoadInfo    SysLoadInfo `json:"SysLoadInfo"`
-	//SysNetInfo     SysNetInfo `json:"SysNetInfo"`
-	//SysProcessInfo SysProcessInfo `json:"SysProcessInfo"`
-}
+//type Senddata struct {
+//	Type           string `json:"Type"`
+//	//JvmInfo        JvmInfo `json:"JvmInfo"`
+//	//SysMemInfo     SysMemInfo `json:"SysMemInfo"`
+//	//SysCpuInfo     SysCpuInfo `json:"SysCpuInfo"`
+//	//SysDiskInfo    SysDiskInfo `json:"SysDiskInfo"`
+//	//SysHostInfo    SysHostInfo `json:"SysHostInfo"`
+//	//SysLoadInfo    SysLoadInfo `json:"SysLoadInfo"`
+//	//SysNetInfo     SysNetInfo `json:"SysNetInfo"`
+//	//SysProcessInfo SysProcessInfo `json:"SysProcessInfo"`
+//}
 
 //get方法
 func HttpGet(url string) (n int,res []byte){

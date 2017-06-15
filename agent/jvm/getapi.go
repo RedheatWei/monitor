@@ -44,11 +44,11 @@ func dataHandle(url string) []byte{
 	jvminfo.CurrentThreadCpuTime = threading.Value.CurrentThreadCpuTime
 	jvminfo.ThreadCount = threading.Value.ThreadCount
 	jvminfo.DaemonThreadCount = threading.Value.DaemonThreadCount
-	var data base.Senddata
-	data.Type = "JvmInfo"
+	//var data base.Senddata
+	jvminfo.Type = "JvmInfo"
 	//data.JvmInfo = jvminfo
-	data.Data = jvminfo
-	i,_ := json.Marshal(data)
+	//data.Data = jvminfo
+	i,_ := json.Marshal(jvminfo)
 	return i
 }
 func CollectJvmInfo(baseUrl []string){
