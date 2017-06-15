@@ -12,7 +12,6 @@ import (
 	"monitor/base"
 	"monitor/network"
 	"time"
-	"fmt"
 	"encoding/json"
 )
 var Server string
