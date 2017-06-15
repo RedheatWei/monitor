@@ -92,6 +92,9 @@ func CollectSysInfo(){
 		fmt.Println(data)
 		i,_ := json.Marshal(data)
 		fmt.Println(i)
+		var j base.Senddata
+		json.Unmarshal(i,&j)
+		fmt.Println(j)
 		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
