@@ -13,6 +13,10 @@ var AllowIplist []map[string]interface{}
 func init()  {
 	ServerConfig = base.GetConfig()
 	AllowIplist = db.GetAllowIpList()
+	for j,k := range AllowIplist{
+		fmt.Println(j)
+		fmt.Println(k)
+	}
 }
 func StartServer() {
 	service := ":"+ServerConfig.Default.Port
@@ -34,10 +38,7 @@ func handleClient(conn *net.UDPConn) {
 		return
 	}
 	add := addr.IP.String()
-	for j,k := range AllowIplist{
-		fmt.Println(j)
-		fmt.Println(k)
-	}
+
 	//if checkIp(add){
 	go handler.ToJson(buf[:n],add)
 	//}
