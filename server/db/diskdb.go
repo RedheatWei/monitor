@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertDiskDB(js base.JvmInfo,addr string){
+func InsertDiskDB(js base.SysDiskInfo,addr string){
 	fmt.Println(js)
 }

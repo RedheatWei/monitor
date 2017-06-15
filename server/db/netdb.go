@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertNetDB(js base.JvmInfo,addr string){
+func InsertNetDB(js base.SysNetInfo,addr string){
 	fmt.Println(js)
 }

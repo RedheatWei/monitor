@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertLoadDB(js base.JvmInfo,addr string){
+func InsertLoadDB(js base.SysLoadInfo,addr string){
 	fmt.Println(js)
 }
