@@ -7,7 +7,6 @@ import (
 	"monitor/base"
 )
 func ToJson(rec []byte,addr string){
-	//json.Unmarshal(rec,&js)
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
