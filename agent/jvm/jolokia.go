@@ -17,6 +17,7 @@ type Jolokia struct {
 //获取Java程序pid
 func GetPid(jok *Jolokia) []string{
 	jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" list | grep -v 'jolokia' | cut -d' ' -f1"
+	fmt.Println(jolokia)
 	//cmd := exec.Command("/bin/sh", "-c", `java -jar /usr/local/jolokia/jolokia-jvm-1.3.6-agent.jar list | grep -v "jolokia" | cut -d' ' -f1`)
 	opBytes := execShell(jolokia)
 	pid_slice := strings.Split(string(opBytes),"\n")

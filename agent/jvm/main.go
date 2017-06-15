@@ -15,7 +15,6 @@ func init()  {
 }
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{AgentConfig.Jvm.Jolokiapath,AgentConfig.Jvm.Jolokianame,AgentConfig.Jvm.Portstart}
-	fmt.Println(AgentConfig)
 	pid_slice := GetPid(jok)
 	return jok,pid_slice
 }
