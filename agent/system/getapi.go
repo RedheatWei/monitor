@@ -71,8 +71,8 @@ func CollectSysProcessInfo(){
 }
 func CollectSysInfo(){
 	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
-	var data base.Senddata
 	for _,t := range sysinfo{
+		var data base.Senddata
 		data.Type = t
 		switch t {
 		case "SysMemInfo":
