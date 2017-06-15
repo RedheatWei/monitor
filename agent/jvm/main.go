@@ -15,6 +15,7 @@ func init()  {
 }
 func getArgs()(*Jolokia,[]string){
 	jok := &Jolokia{AgentConfig.Jvm.Jolokiapath,AgentConfig.Jvm.Jolokianame,AgentConfig.Jvm.Portstart}
+	fmt.Println(AgentConfig)
 	pid_slice := GetPid(jok)
 	return jok,pid_slice
 }
@@ -32,8 +33,6 @@ func getBaseUrl() []string{
 func Start() {
 
 	jok,pid_slice := getArgs()
-	fmt.Println(jok)
-	fmt.Println(pid_slice)
 	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
