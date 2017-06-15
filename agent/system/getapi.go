@@ -7,6 +7,7 @@ import (
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/net"
+	"github.com/bitly/go-simplejson"
 	//"github.com/shirou/gopsutil/process"
 	"monitor/base"
 	"monitor/network"
@@ -90,6 +91,7 @@ func CollectSysInfo(){
 		}
 		fmt.Println(data)
 		i,_ := json.Marshal(data)
+		fmt.Println(i)
 		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
