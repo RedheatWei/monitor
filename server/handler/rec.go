@@ -13,6 +13,8 @@ func ToJson(rec []byte,addr string){
 	//json.Unmarshal(rec,&js)
 	js, _ := simplejson.NewJson(rec)
 	fmt.Println(js)
+	x,_ := js.Map()
+	fmt.Println(x["Type"])
 	//switch js.Type {
 	//case "JvmInfo":
 	//	go db.InsertJvmDB(js.Data,addr)
