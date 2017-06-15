@@ -24,19 +24,15 @@ func GetPid(jok *Jolokia) []string{
 }
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
-	javapath := AgentConfig.Jvm.Javapath
-	if len(javapath)==0{
-		javapath = ""
-	}
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
-		bingPort(jok,pid,len(pid_slice),javapath)
+		bingPort(jok,pid,len(pid_slice))
 	}
 }
 //绑定端口
-func bingPort(jok *Jolokia,pid string,pid_num int,javapath string) int{
+func bingPort(jok *Jolokia,pid string,pid_num int) int{
 	portstart,_ := strconv.Atoi(jok.Portstart)
 	for port := portstart; port < portstart+pid_num; port++ {
-		jolokia := javapath+"java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
+		jolokia := "java -jar "+jok.Jolokiapath+jok.Jolokianame+" --host 127.0.0.1 --port="+strconv.Itoa(port)+" start "+pid
 		fmt.Println(jolokia)
 		opBytes := execShell(jolokia)
 		//fmt.Println(string(opBytes))

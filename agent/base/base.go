@@ -157,6 +157,5 @@ func GetConfig() AgentConfig{
 	AgentConfig.Jvm.Javapath=readAgentConfig("db","jolokiapath")
 	AgentConfig.Jvm.Jolokianame=readAgentConfig("db","jolokianame")
 	AgentConfig.Jvm.Portstart=readAgentConfig("db","portstart")
-	AgentConfig.Jvm.Javapath=readAgentConfig("db","javapath")
 	return AgentConfig
 }
