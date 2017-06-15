@@ -1,18 +1,20 @@
 package jvm
 
 import (
-	"monitor/base"
+	"monitor/agent/base"
 	"fmt"
 	"os"
 	"strconv"
 )
 var PortBinding []string
-var Frequency int64; var(
-	//met string = "read"
-	//args = []string{"Memory","Runtime","Threading","ClassLoading"} //OperatingSystem
-)
+var AgentConfig base.AgentConfig
+var Frequency int64
+//读取配置文件
+func init()  {
+	AgentConfig = base.GetConfig()
+}
 func getArgs()(*Jolokia,[]string){
-	jok := &Jolokia{base.ReadAgentConfig("jvm","jolokiapath"),base.ReadAgentConfig("jvm","jolokianame"),base.ReadAgentConfig("jvm","portstart")}
+	jok := &Jolokia{AgentConfig.Jvm.Jolokiapath,AgentConfig.Jvm.Jolokianame,AgentConfig.Jvm.Portstart}
 	pid_slice := GetPid(jok)
 	return jok,pid_slice
 }
@@ -30,7 +32,7 @@ func getBaseUrl() []string{
 func Start() {
 
 	jok,pid_slice := getArgs()
-	Frequency,_ = strconv.ParseInt(base.ReadAgentConfig("default","frequency"),10,64)
+	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
 		os.Exit(1)

@@ -7,9 +7,9 @@ import(
 	"strings"
 	"strconv"
 	"time"
-	"monitor/base"
 )
 
+//定义结构体
 type Jolokia struct {
 	Jolokiapath,Jolokianame,Portstart string
 }
@@ -24,7 +24,7 @@ func GetPid(jok *Jolokia) []string{
 }
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
-	javapath := base.ReadAgentConfig("jvm","javapath")
+	javapath := AgentConfig.Jvm.Javapath
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		bingPort(jok,pid,len(pid_slice),javapath)
 	}

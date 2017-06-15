@@ -2,9 +2,9 @@ package jvminfo
 
 import (
 	"encoding/json"
-	"monitor/base"
+	"monitor/agent/base"
 )
-//"Threading","ClassLoading" OperatingSystem
+
 type Info struct {
 	//Request runtimeRequest `json:"request"`
 	Value infoValue `json:"value"`
@@ -17,7 +17,7 @@ type infoValue struct {
 type config struct {
 	AgentId string `json:"agentId"`
 }
-
+//获取jvm基本信息
 func GetInfo(baseUrl string) (n int,info Info){
 	n,res := base.HttpGet(baseUrl)
 	if n==0{

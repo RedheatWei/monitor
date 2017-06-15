@@ -3,11 +3,12 @@ import (
 	"time"
 	"monitor/agent/jvm/jvminfo"
 	"encoding/json"
-	"monitor/network"
-	"monitor/base"
+	"monitor/agent/network"
+	"monitor/agent/base"
 )
 
 
+//把数据塞入结构体
 func dataHandle(url string) []byte{
 	_,info := jvminfo.GetInfo(url)
 	//if n != 1{
@@ -51,11 +52,12 @@ func dataHandle(url string) []byte{
 	i,_ := json.Marshal(jvminfo)
 	return i
 }
+//收集jvm信息
 func CollectJvmInfo(baseUrl []string){
 	for{
 		for _,url := range baseUrl {
 			data := dataHandle(url)
-			network.UdpSend(base.ReadAgentConfig("default","server"),data)
+			network.UdpSend(AgentConfig.Default.Server,data)
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)
 	}

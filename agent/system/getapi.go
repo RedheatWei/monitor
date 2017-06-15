@@ -8,16 +8,17 @@ import (
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/net"
 	//"github.com/shirou/gopsutil/process"
-	"monitor/base"
-	"monitor/network"
+	"monitor/agent/base"
+	"monitor/agent/network"
 	"time"
 	"encoding/json"
 )
 var Server string
-func init(){
-	Server = base.ReadAgentConfig("default","server")
+//读取配置文件
+func init()  {
+	Server = AgentConfig.Default.Server
 }
-
+//收集系统内存信息
 func CollectSysMemInfo(){
 	var SysMemInfo base.SysMemInfo
 	v,_ := mem.VirtualMemory()
@@ -27,31 +28,28 @@ func CollectSysMemInfo(){
 	SysMemInfo.Type = "SysMemInfo"
 	by,_ := json.Marshal(SysMemInfo)
 	network.UdpSend(Server,by)
-	//return SysMemInfo
 }
+//收集系统cpu信息
 func CollectSysCpuInfo(){
 	var SysCpuInfo base.SysCpuInfo
 	i,_ := cpu.Info()
-	//t,_ := cpu.Times()
 	SysCpuInfo.InfoStat = i
 	SysCpuInfo.Type = "SysCpuInfo"
-	//SysCpuInfo.TimesStat = t
-	//return SysCpuInfo
 	by,_ := json.Marshal(SysCpuInfo)
 	network.UdpSend(Server,by)
 }
+//收集系统磁盘信息
 func CollectSysDiskInfo(){
 	var SysDiskInfo base.SysDiskInfo
 	i,_ := disk.IOCounters()
 	p,_ := disk.Partitions(false)
-	//u,_ := disk.Usage()
 	SysDiskInfo.IOCountersStat = i
 	SysDiskInfo.PartitionStat = p
 	SysDiskInfo.Type = "SysDiskInfo"
-	//return SysDiskInfo
 	by,_ := json.Marshal(SysDiskInfo)
 	network.UdpSend(Server,by)
 }
+//收集系统主机信息
 func CollectSysHostInfo() {
 	var SysHostInfo base.SysHostInfo
 	i,_ := host.Info()
@@ -61,10 +59,10 @@ func CollectSysHostInfo() {
 	SysHostInfo.UserStat = u
 	SysHostInfo.TemperatureStat = t
 	SysHostInfo.Type = "SysHostInfo"
-	//return SysHostInfo
 	by,_ := json.Marshal(SysHostInfo)
 	network.UdpSend(Server,by)
 }
+//收集系统负载信息
 func CollectSysLoadInfo() {
 	var SysLoadInfo base.SysLoadInfo
 	a,_ := load.Avg()
@@ -72,10 +70,10 @@ func CollectSysLoadInfo() {
 	SysLoadInfo.AvgStat = *a
 	SysLoadInfo.MiscStat = *m
 	SysLoadInfo.Type = "SysLoadInfo"
-	//return SysLoadInfo
 	by,_ := json.Marshal(SysLoadInfo)
 	network.UdpSend(Server,by)
 }
+//收集系统网络信息
 func CollectSysNetInfo() {
 	var SysNetInfo base.SysNetInfo
 	i,_ := net.IOCounters(false)
@@ -85,34 +83,27 @@ func CollectSysNetInfo() {
 	SysNetInfo.Type = "SysNetInfo"
 	by,_ := json.Marshal(SysNetInfo)
 	network.UdpSend(Server,by)
-	//return SysNetInfo
 }
+//收集系统进程信息,没在使用
 func CollectSysProcessInfo(){
 	//var SysProcessInfo base.SysProcessInfo
 }
+//收集信息并发送
 func CollectSysInfo(){
 	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
 	for _,t := range sysinfo{
-		//var data base.Senddata
-		//data.Type = t
 		switch t {
 		case "SysMemInfo":
-			//data.SysMemInfo = CollectSysMemInfo()
 			CollectSysMemInfo()
 		case "SysCpuInfo":
-			//data.SysCpuInfo = CollectSysCpuInfo()
 			CollectSysCpuInfo()
 		case "SysDiskInfo":
-			//data.SysDiskInfo = CollectSysDiskInfo()
 			CollectSysDiskInfo()
 		case "SysHostInfo":
-			//data.SysHostInfo = CollectSysHostInfo()
 			CollectSysHostInfo()
 		case "SysLoadInfo":
-			//data.SysLoadInfo = CollectSysLoadInfo()
 			CollectSysLoadInfo()
 		case "SysNetInfo":
-			//data.SysNetInfo = CollectSysNetInfo()
 			CollectSysNetInfo()
 		}
 		time.Sleep(time.Duration(Frequency)*time.Second)

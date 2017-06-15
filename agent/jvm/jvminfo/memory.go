@@ -30,6 +30,7 @@ type memoryRequest struct {
 type objectname struct {
 	ObjectName string `json:"objectName"`
 }
+//获取jvm内存信息
 func GetMemory(baseUrl string) Memory{
 	res := ResGet(baseUrl,"Memory")
 	var memoryUsage Memory

@@ -19,7 +19,7 @@ type runtimeValue struct {
 	//InputArguments []string `json:"InputArguments"`
 	Uptime int64 `json:"Uptime"`
 }
-
+//获取jvm的runtime信息
 func GetRuntime(baseUrl string) Runtime{
 	res := ResGet(baseUrl,"Runtime")
 	var runtime Runtime

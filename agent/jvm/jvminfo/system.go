@@ -20,7 +20,7 @@ type operatingSystemValue struct {
 	TotalSwapSpaceSize int64 `json:"TotalSwapSpaceSize"`
 	AvailableProcessors int32 `json:"AvailableProcessors"`
 }
-
+//获取系统信息,此方法并未使用
 func GetOperatingSystem(baseUrl string) OperatingSystem{
 	res := ResGet(baseUrl,"OperatingSystem")
 	var operatingSystem OperatingSystem

@@ -1,7 +1,6 @@
 package jvminfo
 import "encoding/json"
 
-//"Threading","ClassLoading" OperatingSystem
 type Threading struct {
 	//Request runtimeRequest `json:"request"`
 	Value threadingValue `json:"value"`
@@ -15,7 +14,7 @@ type threadingValue struct {
 	ThreadCount int32 `json:"ThreadCount"`
 	DaemonThreadCount int32 `json:"DaemonThreadCount"`
 }
-
+//获取jvm线程信息
 func GetThreading(baseUrl string) Threading{
 	res := ResGet(baseUrl,"Threading")
 	var threading Threading
