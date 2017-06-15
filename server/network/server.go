@@ -2,6 +2,7 @@ package network
 
 import (
 	"net"
+	"fmt"
 	"monitor/server/base"
 	"monitor/server/handler"
 	"monitor/server/db"
@@ -18,9 +19,13 @@ func init()  {
 func StartServer() {
 	service := ":"+ServerConfig.Default.Port
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
-	checkErr(err)
+	if err!=nil{
+		fmt.Println(err)
+	}
 	conn, err := net.ListenUDP("udp", udpAddr)
-	checkErr(err)
+	if err!=nil{
+		fmt.Println(err)
+	}
 	for {
 		handleClient(conn)
 	}
