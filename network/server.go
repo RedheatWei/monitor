@@ -14,8 +14,8 @@ func init()  {
 	ServerConfig = base.GetConfig()
 	AllowIplist = db.GetAllowIpList()
 	for j,k := range AllowIplist{
-		fmt.Println(j)
-		fmt.Println(k)
+		//fmt.Println(j)
+		fmt.Println(k["ip"])
 	}
 }
 func StartServer() {
