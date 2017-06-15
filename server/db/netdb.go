@@ -1,0 +1,10 @@
+package db
+
+import (
+	"monitor/base"
+	"fmt"
+)
+
+func InsertNetDB(js base.JvmInfo,addr string){
+	fmt.Println(js)
+}
