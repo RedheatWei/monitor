@@ -6,14 +6,15 @@ import (
 	"monitor/server/handler"
 	"monitor/server/db"
 )
-
+//读取配置文件
 var ServerConfig base.ServerConfig
+//读取ip地址
 var AllowIplist []map[string]interface{}
 func init()  {
 	ServerConfig = base.GetConfig()
 	AllowIplist = db.GetAllowIpList()
-
 }
+//开启udp服务端
 func StartServer() {
 	service := ":"+ServerConfig.Default.Port
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
@@ -24,9 +25,7 @@ func StartServer() {
 		handleClient(conn)
 	}
 }
-
-
-
+//处理客户端的消息
 func handleClient(conn *net.UDPConn) {
 	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
@@ -39,7 +38,7 @@ func handleClient(conn *net.UDPConn) {
 		go handler.ToJson(buf[:n],add)
 	}
 }
-
+//检查ip是否通行
 func checkIp(ip string) bool{
 	var is_in = bool(false)
 	for _,ipaddr := range AllowIplist{
