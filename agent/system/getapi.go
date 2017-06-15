@@ -11,6 +11,7 @@ import (
 	"monitor/base"
 	"monitor/network"
 	"time"
+	"fmt"
 	"encoding/json"
 )
 
@@ -87,6 +88,7 @@ func CollectSysInfo(){
 		case "SysNetInfo":
 			data.SysNetInfo = CollectSysNetInfo()
 		}
+		fmt.Pringln(data)
 		i,_ := json.Marshal(data)
 		network.UdpSend(base.ReadAgentConfig("default","server"),i)
 		time.Sleep(time.Duration(Frequency)*time.Second)
