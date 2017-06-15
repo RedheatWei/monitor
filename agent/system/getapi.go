@@ -77,18 +77,23 @@ func CollectSysInfo(){
 		data.Type = t
 		switch t {
 		case "SysMemInfo":
-			data.SysMemInfo = CollectSysMemInfo()
+			//data.SysMemInfo = CollectSysMemInfo()
 			data.Data = CollectSysMemInfo()
 		case "SysCpuInfo":
-			data.SysCpuInfo = CollectSysCpuInfo()
+			//data.SysCpuInfo = CollectSysCpuInfo()
+			data.Data = CollectSysCpuInfo()
 		case "SysDiskInfo":
-			data.SysDiskInfo = CollectSysDiskInfo()
+			//data.SysDiskInfo = CollectSysDiskInfo()
+			data.Data = CollectSysDiskInfo()
 		case "SysHostInfo":
-			data.SysHostInfo = CollectSysHostInfo()
+			//data.SysHostInfo = CollectSysHostInfo()
+			data.Data = CollectSysHostInfo()
 		case "SysLoadInfo":
-			data.SysLoadInfo = CollectSysLoadInfo()
+			//data.SysLoadInfo = CollectSysLoadInfo()
+			data.Data = CollectSysLoadInfo()
 		case "SysNetInfo":
-			data.SysNetInfo = CollectSysNetInfo()
+			//data.SysNetInfo = CollectSysNetInfo()
+			data.Data = CollectSysNetInfo()
 		}
 		fmt.Println(data)
 		i,_ := json.Marshal(data)
