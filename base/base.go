@@ -95,7 +95,8 @@ type InterfaceAddr struct {
 	Addr string `json:"addr"`
 }
 //type Senddata struct {
-//	Type           string `json:"Type"`
+//	Data interface{}
+//	//Type           string `json:"Type"`
 //	//JvmInfo        JvmInfo `json:"JvmInfo"`
 //	//SysMemInfo     SysMemInfo `json:"SysMemInfo"`
 //	//SysCpuInfo     SysCpuInfo `json:"SysCpuInfo"`
