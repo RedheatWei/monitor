@@ -56,7 +56,6 @@ type Jvm struct {
 	Jolokiapath string
 	Jolokianame string
 	Portstart string
-	Javapath string
 }
 //系统内存信息
 type SysMemInfo struct {
@@ -154,7 +153,7 @@ func GetConfig() AgentConfig{
 	var AgentConfig AgentConfig
 	AgentConfig.Default.Server=readAgentConfig("default","server")
 	AgentConfig.Default.Frequency=readAgentConfig("default","frequency")
-	AgentConfig.Jvm.Javapath=readAgentConfig("jvm","jolokiapath")
+	AgentConfig.Jvm.Jolokiapath=readAgentConfig("jvm","jolokiapath")
 	AgentConfig.Jvm.Jolokianame=readAgentConfig("jvm","jolokianame")
 	AgentConfig.Jvm.Portstart=readAgentConfig("jvm","portstart")
 	return AgentConfig
