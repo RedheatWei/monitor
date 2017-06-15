@@ -25,6 +25,9 @@ func GetPid(jok *Jolokia) []string{
 //开启jolokia
 func StartJok(jok *Jolokia,pid_slice []string){
 	javapath := AgentConfig.Jvm.Javapath
+	if len(javapath)==0{
+		javapath = ""
+	}
 	for _,pid:=range pid_slice[:len(pid_slice)-1]{
 		bingPort(jok,pid,len(pid_slice),javapath)
 	}
