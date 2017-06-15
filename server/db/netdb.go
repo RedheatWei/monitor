@@ -6,5 +6,5 @@ import (
 )
 
 func InsertNetDB(js base.SysNetInfo,addr string){
-	fmt.Println(string(js))
+	fmt.Println(js)
 }

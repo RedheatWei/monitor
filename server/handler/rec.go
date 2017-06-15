@@ -5,8 +5,10 @@ import (
 	"github.com/bitly/go-simplejson"
 	"monitor/server/db"
 	"monitor/base"
+	"fmt"
 )
 func ToJson(rec []byte,addr string){
+	fmt.Println(string(rec))
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
