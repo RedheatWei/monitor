@@ -32,6 +32,8 @@ func getBaseUrl() []string{
 func Start() {
 
 	jok,pid_slice := getArgs()
+	fmt.Println(jok)
+	fmt.Println(pid_slice)
 	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
 	if len(pid_slice) == 0{
 		fmt.Println("Cannot found java process!")
