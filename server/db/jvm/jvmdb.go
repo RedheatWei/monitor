@@ -1,7 +1,7 @@
 package jvm
 
 import (
-	"monitor/base"
+	"monitor/server/base"
 	"monitor/server/db"
 	"fmt"
 )

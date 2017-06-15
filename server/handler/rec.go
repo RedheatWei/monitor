@@ -3,7 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"github.com/bitly/go-simplejson"
-	"monitor/base"
+	"monitor/server/base"
 	"fmt"
 	dbjvm "monitor/server/db/jvm"
 	dbcpu "monitor/server/db/cpu"
@@ -13,6 +13,7 @@ import (
 	dbmem "monitor/server/db/mem"
 	dbnet "monitor/server/db/net"
 )
+//转换json并插入数据库
 func  ToJson(rec []byte,addr string){
 	fmt.Println(string(rec))
 	js, _ := simplejson.NewJson(rec)

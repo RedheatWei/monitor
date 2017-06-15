@@ -3,7 +3,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/xormplus/xorm"
 	"fmt"
-	"monitor/base"
+	"monitor/server/base"
 )
 var engine *xorm.Engine
 

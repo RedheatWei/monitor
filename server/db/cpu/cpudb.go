@@ -1,7 +1,7 @@
 package cpu
 
 import (
-	"monitor/base"
+	"monitor/server/base"
 	"fmt"
 )
 

@@ -1,7 +1,7 @@
 package disk
 
 import (
-	"monitor/base"
+	"monitor/server/base"
 	"fmt"
 )
 

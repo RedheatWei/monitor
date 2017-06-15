@@ -1,9 +1,9 @@
 package main
 
 import (
-	"monitor/network"
+	"monitor/server/network"
 )
-
+//主函数
 func main() {
 	network.StartServer()
 }

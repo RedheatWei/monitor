@@ -1,7 +1,7 @@
 package net
 
 import (
-	"monitor/base"
+	"monitor/server/base"
 	"fmt"
 )
 

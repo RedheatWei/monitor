@@ -1,7 +1,7 @@
 package load
 
 import (
-	"monitor/base"
+	"monitor/server/base"
 	"fmt"
 )
 
