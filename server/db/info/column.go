@@ -2,7 +2,7 @@ package info
 
 type Server_info_ip struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
-	ServerId int32 `xorm:"notnull 'ServerId'"`
+	ServerId int64 `xorm:"notnull 'ServerId'"`
 	Ip string `xorm:"notnull 'Ip'"`
 	Type string `xorm:"notnull 'Type'"`
 	CreateTime int64 `xorm:"notnull created 'CreateTime'"`

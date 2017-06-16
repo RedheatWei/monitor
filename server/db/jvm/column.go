@@ -2,7 +2,7 @@ package jvm
 
 type Collect_jvm struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
-	ServerId int32 `xorm:"notnull 'ServerId'"`
+	ServerId int64 `xorm:"notnull 'ServerId'"`
 	LoadedClassCount      int32 `xorm:"notnull 'LoadedClassCount'"`
 	UnloadedClassCount    int32 `xorm:"notnull 'UnloadedClassCount'"`
 	TotalLoadedClassCount int32 `xorm:"notnull 'TotalLoadedClassCount'"`
