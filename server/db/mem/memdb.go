@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertMemDB(js base.SysMemInfo,addr string){
+func InsertMemDB(js base.SysMemInfo,addr string,serverid int32){
 	fmt.Println(js)
 }
