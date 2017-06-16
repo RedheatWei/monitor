@@ -3,17 +3,12 @@ package system
 import (
 	"monitor/agent/base"
 	"strconv"
-	"fmt"
 )
 var Frequency int64
 var AgentConfig base.AgentConfig
-//读取配置文件
-func init()  {
-	AgentConfig = base.GetConfig()
-	fmt.Println(AgentConfig.Default.Server)
-}
 //启动
 func Start() {
+	AgentConfig = base.GetConfig()
 	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
 	ch := make(chan int64)
 	go CollectSysInfo()
