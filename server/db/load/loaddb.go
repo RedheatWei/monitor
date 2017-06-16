@@ -16,6 +16,7 @@ func InsertLoadDB(js base.SysLoadInfo,serverid int64){
 	load.MiscStatprocsRunning = js.MiscStat.ProcsRunning
 	load.MiscStatprocsBlocked = js.MiscStat.ProcsBlocked
 	load.MiscStatctxt = js.MiscStat.Ctxt
+	load.TimeStamp = js.TimeStamp
 	affected, err := db.Insert(load)
 	if err != nil{
 		fmt.Println(err)

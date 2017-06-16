@@ -26,6 +26,7 @@ func CollectSysMemInfo(){
 	SysMemInfo.SwapMemoryStat = *s
 	SysMemInfo.VirtualMemoryStat = *v
 	SysMemInfo.Type = "SysMemInfo"
+	SysMemInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysMemInfo)
 	network.UdpSend(Server,by)
 }
@@ -35,6 +36,7 @@ func CollectSysCpuInfo(){
 	i,_ := cpu.Info()
 	SysCpuInfo.InfoStat = i
 	SysCpuInfo.Type = "SysCpuInfo"
+	SysCpuInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysCpuInfo)
 	network.UdpSend(Server,by)
 }
@@ -46,6 +48,7 @@ func CollectSysDiskInfo(){
 	SysDiskInfo.IOCountersStat = i
 	SysDiskInfo.PartitionStat = p
 	SysDiskInfo.Type = "SysDiskInfo"
+	SysDiskInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysDiskInfo)
 	network.UdpSend(Server,by)
 }
@@ -59,6 +62,7 @@ func CollectSysHostInfo() {
 	SysHostInfo.UserStat = u
 	SysHostInfo.TemperatureStat = t
 	SysHostInfo.Type = "SysHostInfo"
+	SysHostInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysHostInfo)
 	network.UdpSend(Server,by)
 }
@@ -70,6 +74,7 @@ func CollectSysLoadInfo() {
 	SysLoadInfo.AvgStat = *a
 	SysLoadInfo.MiscStat = *m
 	SysLoadInfo.Type = "SysLoadInfo"
+	SysLoadInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysLoadInfo)
 	network.UdpSend(Server,by)
 }
@@ -81,6 +86,7 @@ func CollectSysNetInfo() {
 	SysNetInfo.IOCountersStat = i
 	SysNetInfo.InterfaceStat = inf
 	SysNetInfo.Type = "SysNetInfo"
+	SysNetInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysNetInfo)
 	network.UdpSend(Server,by)
 }

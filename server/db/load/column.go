@@ -9,6 +9,7 @@ type Collect_load struct {
 	MiscStatprocsRunning      int `xorm:"notnull 'MiscStatprocsRunning'"`
 	MiscStatprocsBlocked      int `xorm:"notnull 'MiscStatprocsBlocked'"`
 	MiscStatctxt      int `xorm:"notnull 'MiscStatctxt'"`
+	TimeStamp      int64 `xorm:"notnull 'TimeStamp'"`
 	CreateTime int64 `xorm:"notnull created 'CreateTime'"`
 }
 

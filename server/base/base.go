@@ -62,12 +62,15 @@ type SysMemInfo struct {
 	Type           string `json:"Type"`
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
 	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
+	TimeStamp int64 `json:"TimeStamp"`
+
 }
 //系统cpu信息
 type SysCpuInfo struct {
 	Type           string `json:"Type"`
 	InfoStat []cpu.InfoStat `json:"InfoStat"`
 	//TimesStat []cpu.TimesStat `json:"TimesStat"`
+	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统磁盘信息
 type SysDiskInfo struct {
@@ -75,6 +78,7 @@ type SysDiskInfo struct {
 	IOCountersStat map[string]disk.IOCountersStat `json:"IOCountersStat"`
 	PartitionStat []disk.PartitionStat `json:"PartitionStat"`
 	//UsageStat disk.UsageStat `json:"UsageStat"`
+	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统主机信息
 type SysHostInfo struct {
@@ -82,12 +86,14 @@ type SysHostInfo struct {
 	InfoStat host.InfoStat `json:"InfoStat"`
 	TemperatureStat []host.TemperatureStat `json:"TemperatureStat"`
 	UserStat []host.UserStat `json:"UserStat"`
+	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统负载信息
 type SysLoadInfo struct {
 	Type           string `json:"Type"`
 	AvgStat load.AvgStat `json:"AvgStat"`
 	MiscStat load.MiscStat `json:"MiscStat"`
+	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统网络信息
 type SysNetInfo struct {
@@ -96,10 +102,12 @@ type SysNetInfo struct {
 	IOCountersStat []net.IOCountersStat `json:"IOCountersStat"`
 	InterfaceStat []net.InterfaceStat `json:"InterfaceStat"`
 	//ProtoCountersStat net.ProtoCountersStat `json:"ProtoCountersStat"`
+	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统进程信息
 type SysProcessInfo struct {
 	Type           string `json:"Type"`
+	TimeStamp int64 `json:"TimeStamp"`
 	//IOCountersStat process.IOCountersStat `json:"IOCountersStat"`
 	//MemoryInfoExStat process.MemoryInfoExStat `json:"MemoryInfoExStat"`
 	//MemoryInfoStat process.MemoryInfoStat `json:"MemoryInfoStat"`
