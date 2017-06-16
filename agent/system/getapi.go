@@ -92,8 +92,8 @@ func CollectSysProcessInfo(){
 }
 //收集信息并发送
 func CollectSysInfo(){
+	sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
 	for{
-		sysinfo := []string{"SysMemInfo","SysCpuInfo","SysDiskInfo","SysHostInfo","SysLoadInfo","SysNetInfo"}
 		for _,t := range sysinfo{
 			switch t {
 			case "SysMemInfo":
@@ -109,8 +109,7 @@ func CollectSysInfo(){
 			case "SysNetInfo":
 				CollectSysNetInfo()
 			}
+			time.Sleep(time.Duration(Frequency)*time.Second)
 		}
-		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
-
 }
