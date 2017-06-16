@@ -29,7 +29,7 @@ func InsertJvmDB(js base.JvmInfo,addr string){
 	jvm.DaemonThreadCount = js.DaemonThreadCount
 	jvm.AgentId = js.AgentId
 	jvm.TimeStamp = js.TimeStamp
-	jvm.ServerIp = addr
+	//jvm.ServerIp = addr
 	affected, err := db.Insert(jvm)
 	if err != nil{
 		fmt.Println(err)
