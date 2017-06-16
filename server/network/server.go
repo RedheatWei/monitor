@@ -26,13 +26,13 @@ func StartServer() {
 	if err!=nil{
 		fmt.Println(err)
 	}
-	fmt.Println(100)
 	for {
 		handleClient(conn)
 	}
 }
 //处理客户端的消息
 func handleClient(conn *net.UDPConn) {
+	fmt.Println(100)
 	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
 	if err != nil {
