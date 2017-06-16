@@ -30,7 +30,6 @@ func getBaseUrl() []string{
 }
 //启动
 func Start() {
-
 	jok,pid_slice := getArgs()
 	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
 	if len(pid_slice) == 0{
