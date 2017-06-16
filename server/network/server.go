@@ -33,8 +33,8 @@ func StartServer() {
 //处理客户端的消息
 func handleClient(conn *net.UDPConn) {
 	var buf [1024]byte
-	fmt.Println(100)
 	n, addr, err := conn.ReadFromUDP(buf[:])
+	fmt.Println(100)
 	if err != nil {
 		fmt.Println(err)
 	}
