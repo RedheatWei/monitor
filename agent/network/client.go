@@ -13,7 +13,7 @@ func UdpSend(server string,msg []byte){
 	defer conn.Close()
 	checkErr(err)
 	fmt.Println(server)
-	fmt.Println(msg)
+	fmt.Println(string(msg))
 	conn.Write(msg)
 }
 
