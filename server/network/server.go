@@ -26,6 +26,7 @@ func StartServer() {
 	if err!=nil{
 		fmt.Println(err)
 	}
+	fmt.Println(100)
 	for {
 		handleClient(conn)
 	}
@@ -35,7 +36,7 @@ func handleClient(conn *net.UDPConn) {
 	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
 	if err != nil {
-		return
+		fmt.Println(err)
 	}
 	add := addr.IP.String()
 	fmt.Println(n)
