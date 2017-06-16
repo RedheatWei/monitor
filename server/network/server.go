@@ -33,15 +33,12 @@ func StartServer() {
 }
 //处理客户端的消息
 func handleClient(conn *net.UDPConn) {
-	var buf [1024]byte
+	var buf [2048]byte
 	n, addr, err := conn.ReadFromUDP(buf[:])
-	fmt.Println(100)
 	if err != nil {
 		fmt.Println(err)
 	}
 	add := addr.IP.String()
-	fmt.Println(n)
-	fmt.Println(add)
 	if checkIp(add){
 		go handler.ToJson(buf[:n],add)
 	}
