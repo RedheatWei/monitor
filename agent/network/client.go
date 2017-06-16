@@ -12,7 +12,9 @@ func UdpSend(server string,msg []byte){
 	conn, err := net.DialUDP("udp", nil, udpAddr)
 	defer conn.Close()
 	checkErr(err)
-	conn.Write(append(msg,'\n'))
+	fmt.Println(server)
+	fmt.Println(msg)
+	conn.Write(msg)
 }
 
 func checkErr(err error) {

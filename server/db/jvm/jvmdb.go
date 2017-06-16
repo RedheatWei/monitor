@@ -31,8 +31,10 @@ func InsertJvmDB(js base.JvmInfo,addr string){
 	jvm.TimeStamp = js.TimeStamp
 	jvm.ServerIp = addr
 	affected, err := db.Insert(jvm)
+	if err != nil{
+		fmt.Println(err)
+	}
 	fmt.Println(affected)
-	fmt.Println(err)
 	//db := ConnDB()
 	//defer db.Close()
 	//stmt, err := db.Prepare("INSERT INTO collect_jvm(LoadedClassCount,UnloadedClassCount,TotalLoadedClassCount,HeapMemoryUsageInit,HeapMemoryUsageCommitted,HeapMemoryUsageMax,HeapMemoryUsageUsed,NonHeapMemoryUsageInit,NonHeapMemoryUsageCommitted,NonHeapMemoryUsageMax,NonHeapMemoryUsageUsed,ClassPath,Uptime,TotalStartedThreadCount,PeakThreadCount,CurrentThreadCpuTime,ThreadCount,DaemonThreadCount,AgentId,TimeStamp,ServerIp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
