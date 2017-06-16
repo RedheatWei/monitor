@@ -44,11 +44,11 @@ func handleClient(conn *net.UDPConn) {
 	}
 }
 //检查ip是否通行
-func checkIp(ip string) (bool,int32){
+func checkIp(ip string) (bool,int64){
 	var is_in = bool(false)
-	var serverid int32
+	var serverid int64
 	for _,ipaddr := range AllowIplist{
-		serverid = ipaddr["serverid"].(int32)
+		serverid = ipaddr["serverid"].(int64)
 		if ipaddr["ip"] == ip {
 			is_in = true
 			return is_in,serverid

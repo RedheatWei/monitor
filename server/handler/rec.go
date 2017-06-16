@@ -14,7 +14,7 @@ import (
 	dbnet "monitor/server/db/net"
 )
 //转换json并插入数据库
-func  ToJson(rec []byte,addr string,serverid int32){
+func  ToJson(rec []byte,addr string,serverid int64){
 	fmt.Println(string(rec))
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
