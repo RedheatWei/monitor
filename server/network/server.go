@@ -18,7 +18,6 @@ func init()  {
 //开启udp服务端
 func StartServer() {
 	service := ":"+ServerConfig.Default.Port
-	fmt.Println(service)
 	udpAddr, err := net.ResolveUDPAddr("udp4", service)
 	if err!=nil{
 		fmt.Println(err)
