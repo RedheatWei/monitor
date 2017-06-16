@@ -17,8 +17,8 @@ import (
 var Server string
 //读取配置文件
 func init()  {
-	Server = AgentConfig.Default.Server
-	fmt.Println(AgentConfig)
+	Server = base.GetConfig().Default.Server
+	fmt.Println(Server)
 }
 //收集系统内存信息
 func CollectSysMemInfo(){
