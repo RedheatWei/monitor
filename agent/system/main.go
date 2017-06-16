@@ -10,7 +10,7 @@ var AgentConfig base.AgentConfig
 //读取配置文件
 func init()  {
 	AgentConfig = base.GetConfig()
-	fmt.Println(AgentConfig)
+	fmt.Println(string(AgentConfig))
 }
 //启动
 func Start() {
