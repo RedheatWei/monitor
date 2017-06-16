@@ -26,7 +26,7 @@ func ConnDB() *xorm.Engine{
 func GetAllowIpList() []map[string]interface{}{
 	db := ConnDB()
 	//iplist := new(Server_info_ip)
-	sql := "SELECT ip FROM server_info_ip"
+	sql := "SELECT serverid,ip FROM server_info_ip"
 	results, err := db.Sql(sql).Query().List()
 	if err != nil{
 		fmt.Println(err)

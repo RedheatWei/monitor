@@ -47,6 +47,5 @@ func  ToJson(rec []byte,addr string){
 		var info base.SysNetInfo
 		json.Unmarshal(rec,&info)
 		go dbnet.InsertNetDB(info,addr)
-
 	}
 }

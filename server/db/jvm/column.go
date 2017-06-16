@@ -2,6 +2,7 @@ package jvm
 
 type Collect_jvm struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
+	ServerId int32 `xorm:"notnull 'ServerId'"`
 	LoadedClassCount      int32 `xorm:"notnull 'LoadedClassCount'"`
 	UnloadedClassCount    int32 `xorm:"notnull 'UnloadedClassCount'"`
 	TotalLoadedClassCount int32 `xorm:"notnull 'TotalLoadedClassCount'"`
@@ -23,5 +24,4 @@ type Collect_jvm struct {
 	AgentId   string `xorm:"notnull 'AgentId'"`
 	TimeStamp int64 `xorm:"notnull 'TimeStamp'"`
 	CreateTime int64 `xorm:"notnull created 'CreateTime'"`
-	ServerIp string `xorm:"notnull 'ServerIp'"`
 }
