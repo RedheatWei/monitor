@@ -38,7 +38,7 @@ func handleClient(conn *net.UDPConn) {
 		return
 	}
 	add := addr.IP.String()
-
+	fmt.Println(n)
 	if checkIp(add){
 		go handler.ToJson(buf[:n],add)
 	}
