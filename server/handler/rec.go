@@ -14,7 +14,7 @@ import (
 	dbnet "monitor/server/db/net"
 )
 //转换json并插入数据库
-func  ToJson(rec []byte,addr string,serverid int64){
+func  ToJson(rec []byte,serverid int64){
 	fmt.Println(string(rec))
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
@@ -22,30 +22,30 @@ func  ToJson(rec []byte,addr string,serverid int64){
 	case "JvmInfo":
 		var info base.JvmInfo
 		json.Unmarshal(rec,&info)
-		go dbjvm.InsertJvmDB(info,addr,serverid)
+		go dbjvm.InsertJvmDB(info,serverid)
 	case "SysMemInfo":
 		var info base.SysMemInfo
 		json.Unmarshal(rec,&info)
-		go dbmem.InsertMemDB(info,addr,serverid)
+		go dbmem.InsertMemDB(info,serverid)
 	case "SysCpuInfo":
 		var info base.SysCpuInfo
 		json.Unmarshal(rec,&info)
-		go dbcpu.InsertCpuDB(info,addr,serverid)
+		go dbcpu.InsertCpuDB(info,serverid)
 	case "SysDiskInfo":
 		var info base.SysDiskInfo
 		json.Unmarshal(rec,&info)
-		go dbdisk.InsertDiskDB(info,addr,serverid)
+		go dbdisk.InsertDiskDB(info,serverid)
 	case "SysHostInfo":
 		var info base.SysHostInfo
 		json.Unmarshal(rec,&info)
-		go dbhost.InsertHostDB(info,addr,serverid)
+		go dbhost.InsertHostDB(info,serverid)
 	case "SysLoadInfo":
 		var info base.SysLoadInfo
 		json.Unmarshal(rec,&info)
-		go dbload.InsertLoadDB(info,addr,serverid)
+		go dbload.InsertLoadDB(info,serverid)
 	case "SysNetInfo":
 		var info base.SysNetInfo
 		json.Unmarshal(rec,&info)
-		go dbnet.InsertNetDB(info,addr,serverid)
+		go dbnet.InsertNetDB(info,serverid)
 	}
 }

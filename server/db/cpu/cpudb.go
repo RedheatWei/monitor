@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertCpuDB(js base.SysCpuInfo,addr string,serverid int64){
+func InsertCpuDB(js base.SysCpuInfo,serverid int64){
 	fmt.Println(js)
 }

@@ -40,7 +40,7 @@ func handleClient(conn *net.UDPConn) {
 	add := addr.IP.String()
 	chk,serverid := checkIp(add)
 	if chk{
-		go handler.ToJson(buf[:n],add,serverid)
+		go handler.ToJson(buf[:n],serverid)
 	}
 }
 //检查ip是否通行

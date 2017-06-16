@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func InsertJvmDB(js base.JvmInfo,addr string,serverid int64){
+func InsertJvmDB(js base.JvmInfo,serverid int64){
 	db := db.ConnDB()
 	jvm := new(Collect_jvm)
 	jvm.LoadedClassCount = js.LoadedClassCount

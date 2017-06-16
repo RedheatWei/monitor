@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func InsertHostDB(js base.SysHostInfo,addr string,serverid int64){
+func InsertHostDB(js base.SysHostInfo,serverid int64){
 	fmt.Println(js)
 }
