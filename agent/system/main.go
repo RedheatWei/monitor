@@ -10,5 +10,7 @@ var AgentConfig base.AgentConfig
 func Start() {
 	AgentConfig = base.GetConfig()
 	Frequency,_ = strconv.ParseInt(AgentConfig.Default.Frequency,10,64)
-	CollectSysInfo()
+	ch := make(chan int64)
+	go CollectSysInfo()
+	ch <- Frequency
 }

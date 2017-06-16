@@ -12,13 +12,11 @@ import (
 	"monitor/agent/network"
 	"time"
 	"encoding/json"
-	"fmt"
 )
 var Server string
 //读取配置文件
 func init()  {
 	Server = base.GetConfig().Default.Server
-	fmt.Println(Server)
 }
 //收集系统内存信息
 func CollectSysMemInfo(){
