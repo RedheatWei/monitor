@@ -39,7 +39,8 @@ func insertUserStatDB(us []host.UserStat,serverid int64,timestamp int64,user_sta
 	userstats := make([]*Collect_host_userstat,user_stat_len)
 	//userstat := new(Collect_host_userstat)
 	for key,userstat_s := range us{
-		fmt.Println("key:",key)
+		//fmt.Println("key:",key)
+		userstats[key] = new(Collect_host_userstat)
 		userstats[key].ServerId = serverid
 		userstats[key].UserStatUser = userstat_s.User
 		userstats[key].UserStatTerminal = userstat_s.Terminal
