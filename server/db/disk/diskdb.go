@@ -28,13 +28,27 @@ func InsertDiskDB(js base.SysDiskInfo,serverid int64){
 }
 func insertIOStatDB(io map[string]disk.IOCountersStat,serverid int64,timestamp int64,stat_len int){
 	db := db.ConnDB()
-	userstats := make(map[string]*Collect_disk_iocountersstat,stat_len)
+	userstats := make([]*Collect_disk_iocountersstat,stat_len)
+	var i int = 0
 	for key,userstat_s := range io{
-		userstats[key] = new(Collect_disk_iocountersstat)
-		userstats[key].IOCountersStatDeviceName = key
-		userstats[key].ServerId = serverid
-		userstats[key].IOCountersStatname = userstat_s.Name
-		userstats[key].TimeStamp = timestamp
+		userstats[i] = new(Collect_disk_iocountersstat)
+		userstats[i].ServerId = serverid
+		userstats[i].IOCountersStatDeviceName = key
+		userstats[i].IOCountersStatreadCount = userstat_s.ReadCount
+		userstats[i].IOCountersStatmergedReadCount =  userstat_s.MergedReadCount
+		userstats[i].IOCountersStatwriteCount =  userstat_s.WriteCount
+		userstats[i].IOCountersStatmergedWriteCount =  userstat_s.MergedWriteCount
+		userstats[i].IOCountersStatreadBytes =  userstat_s.ReadBytes
+		userstats[i].IOCountersStatwriteBytes =  userstat_s.WriteBytes
+		userstats[i].IOCountersStatreadTime =  userstat_s.ReadTime
+		userstats[i].IOCountersStatwriteTime =  userstat_s.WriteTime
+		userstats[i].IOCountersStatiopsInProgress =  userstat_s.IopsInProgress
+		userstats[i].IOCountersStatioTime =  userstat_s.IoTime
+		userstats[i].IOCountersStatweightedIO =  userstat_s.WeightedIO
+		userstats[i].IOCountersStatname =  userstat_s.Name
+		userstats[i].IOCountersStatserialNumber =  userstat_s.SerialNumber
+		userstats[i].TimeStamp = timestamp
+		i++
 	}
 	affected, err := db.Insert(userstats)
 	if err != nil{
