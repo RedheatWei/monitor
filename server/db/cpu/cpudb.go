@@ -24,9 +24,9 @@ func InsertCpuDB(js base.SysCpuInfo,serverid int64){
 }
 func insertUserStatDB(is []cpu.InfoStat,serverid int64,timestamp int64,stat_len int){
 	db := db.ConnDB()
-	userstats := make([]*Collect_cpu_userstat,stat_len)
+	userstats := make([]*Collect_cpu_infostat,stat_len)
 	for key,userstat_s := range is{
-		userstats[key] = new(Collect_cpu_userstat)
+		userstats[key] = new(Collect_cpu_infostat)
 		userstats[key].ServerId = serverid
 		userstats[key].InfoStatcpu = userstat_s.CPU
 		userstats[key].InfoStatvendorId = userstat_s.VendorID

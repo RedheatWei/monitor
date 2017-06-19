@@ -8,7 +8,7 @@ type Collect_cpu struct {
 	CreateTime int64 `xorm:"notnull created 'CreateTime'"`
 }
 
-type Collect_cpu_userstat struct {
+type Collect_cpu_infostat struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
 	ServerId      int64 `xorm:"notnull 'Serverid'"`
 	InfoStatcpu int32 `xorm:"notnull 'InfoStatcpu'"`
