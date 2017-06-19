@@ -30,15 +30,17 @@ func InsertHostDB(js base.SysHostInfo,serverid int64){
 	fmt.Println(affected)
 	user_stat_len := len(js.UserStat)
 	fmt.Println(user_stat_len)
-	//if user_stat_len > 0{
-	//	insertUserStatDB(js.UserStat,serverid,js.TimeStamp,user_stat_len)
-	//}
+	if user_stat_len > 0{
+		insertUserStatDB(js.UserStat,serverid,js.TimeStamp,user_stat_len)
+	}
 }
 func insertUserStatDB(us []host.UserStat,serverid int64,timestamp int64,user_stat_len int){
 	db := db.ConnDB()
 	userstats := make([]*Collect_host_userstat,user_stat_len)
+	fmt.Println("make success")
 	//userstat := new(Collect_host_userstat)
 	for key,userstat_s := range us{
+		fmt.Println("key:",key)
 		userstats[key].ServerId = serverid
 		userstats[key].UserStatUser = userstat_s. User
 		userstats[key].UserStatTerminal = userstat_s.Terminal
