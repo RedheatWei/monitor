@@ -28,7 +28,7 @@ func InsertHostDB(js base.SysHostInfo,serverid int64){
 	if err != nil{
 		fmt.Println(err)
 	}
-	//insertUserStatDB(db,js.UserStat,serverid,js.TimeStamp)
+	insertUserStatDB(db,js.UserStat,serverid,js.TimeStamp)
 	//affected, err := db.Insert(js.UserStat)
 
 	fmt.Println(affected)
