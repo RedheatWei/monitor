@@ -5,6 +5,7 @@ import (
 	"monitor/server/base"
 	"fmt"
 	"monitor/server/db"
+	"github.com/xormplus/xorm"
 )
 func InsertHostDB(js base.SysHostInfo,serverid int64){
 	db := db.ConnDB()
@@ -27,11 +28,10 @@ func InsertHostDB(js base.SysHostInfo,serverid int64){
 	if err != nil{
 		fmt.Println(err)
 	}
-	insertUserStatDB(js.UserStat,serverid,js.TimeStamp)
+	insertUserStatDB(db,js.UserStat,serverid,js.TimeStamp)
 	fmt.Println(affected)
 }
-func insertUserStatDB(us []host.UserStat,serverid int64,timestamp int64){
-	db := db.ConnDB()
+func insertUserStatDB(db *xorm.Engine,us []host.UserStat,serverid int64,timestamp int64){
 	userstat := new(Collect_host_userstat)
 	for _,userstat_s := range us{
 		userstat.ServerId = serverid
