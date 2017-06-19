@@ -28,9 +28,9 @@ func InsertHostDB(js base.SysHostInfo,serverid int64){
 		fmt.Println(err)
 	}
 	fmt.Println(affected)
-	if len(js.UserStat) != 0{
-		insertUserStatDB(js.UserStat,serverid,js.TimeStamp)
-	}
+	//if len(js.UserStat) != 0{
+	//	insertUserStatDB(js.UserStat,serverid,js.TimeStamp)
+	//}
 }
 func insertUserStatDB(us []host.UserStat,serverid int64,timestamp int64){
 	db := db.ConnDB()
