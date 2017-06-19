@@ -1,6 +1,5 @@
 package cpu
 
-
 type Collect_cpu struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
 	ServerId      int64 `xorm:"notnull 'Serverid'"`
