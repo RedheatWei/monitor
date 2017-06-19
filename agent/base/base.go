@@ -63,7 +63,6 @@ type SysMemInfo struct {
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
 	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
 	TimeStamp int64 `json:"TimeStamp"`
-
 }
 //系统cpu信息
 type SysCpuInfo struct {

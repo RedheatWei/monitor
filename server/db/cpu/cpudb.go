@@ -19,10 +19,10 @@ func InsertCpuDB(js base.SysCpuInfo,serverid int64){
 	fmt.Println(affected)
 	stat_len := len(js.InfoStat)
 	if stat_len > 0{
-		insertUserStatDB(js.InfoStat,serverid,js.TimeStamp,stat_len)
+		insertInfoStatDB(js.InfoStat,serverid,js.TimeStamp,stat_len)
 	}
 }
-func insertUserStatDB(is []cpu.InfoStat,serverid int64,timestamp int64,stat_len int){
+func insertInfoStatDB(is []cpu.InfoStat,serverid int64,timestamp int64,stat_len int){
 	db := db.ConnDB()
 	userstats := make([]*Collect_cpu_infostat,stat_len)
 	for key,userstat_s := range is{
