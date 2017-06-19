@@ -28,22 +28,25 @@ func InsertHostDB(js base.SysHostInfo,serverid int64){
 	if err != nil{
 		fmt.Println(err)
 	}
-	insertUserStatDB(db,js.UserStat,serverid,js.TimeStamp)
+	//insertUserStatDB(db,js.UserStat,serverid,js.TimeStamp)
+	//affected, err := db.Insert(js.UserStat)
+
 	fmt.Println(affected)
 }
 func insertUserStatDB(db *xorm.Engine,us []host.UserStat,serverid int64,timestamp int64){
-	userstat := new(Collect_host_userstat)
-	for _,userstat_s := range us{
-		userstat.ServerId = serverid
-		userstat.UserStatUser = userstat_s. User
-		userstat.UserStatTerminal = userstat_s.Terminal
-		userstat.UserStatHost = userstat_s.Host
-		userstat.UserStatStarted = userstat_s.Started
-		userstat.TimeStamp = timestamp
-		affected, err := db.Insert(userstat)
-		if err != nil{
-			fmt.Println(err)
-		}
-		fmt.Println(affected)
+	userstats := make([]*Collect_host_userstat,1)
+	//userstat := new(Collect_host_userstat)
+	for key,userstat_s := range us{
+		userstats[key].ServerId = serverid
+		userstats[key].UserStatUser = userstat_s. User
+		userstats[key].UserStatTerminal = userstat_s.Terminal
+		userstats[key].UserStatHost = userstat_s.Host
+		userstats[key].UserStatStarted = userstat_s.Started
+		userstats[key].TimeStamp = timestamp
 	}
+	affected, err := db.Insert(userstats)
+	if err != nil{
+		fmt.Println(err)
+	}
+	fmt.Println(affected)
 }
