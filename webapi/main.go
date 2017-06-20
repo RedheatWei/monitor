@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "monitor/webapi/routers"
+	_ "webapi/routers"
 
 	"github.com/astaxie/beego"
 )

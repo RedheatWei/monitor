@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"monitor/webapi/models"
+	"webapi/models"
 	"encoding/json"
 
 	"github.com/astaxie/beego"
