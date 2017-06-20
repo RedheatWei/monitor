@@ -1,0 +1,3498 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/collect_cpu/": {
+            "get": {
+                "tags": [
+                    "collect_cpu"
+                ],
+                "description": "get CollectCpu",
+                "operationId": "CollectCpuController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpu"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_cpu"
+                ],
+                "description": "create CollectCpu",
+                "operationId": "CollectCpuController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectCpu content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectCpu"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_cpu/{id}": {
+            "get": {
+                "tags": [
+                    "collect_cpu"
+                ],
+                "description": "get CollectCpu by id",
+                "operationId": "CollectCpuController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpu"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_cpu"
+                ],
+                "description": "update the CollectCpu",
+                "operationId": "CollectCpuController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectCpu content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpu"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_cpu"
+                ],
+                "description": "delete the CollectCpu",
+                "operationId": "CollectCpuController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_cpu_infostat/": {
+            "get": {
+                "tags": [
+                    "collect_cpu_infostat"
+                ],
+                "description": "get CollectCpuInfostat",
+                "operationId": "CollectCpuInfostatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpuInfostat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_cpu_infostat"
+                ],
+                "description": "create CollectCpuInfostat",
+                "operationId": "CollectCpuInfostatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectCpuInfostat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpuInfostat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectCpuInfostat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_cpu_infostat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_cpu_infostat"
+                ],
+                "description": "get CollectCpuInfostat by id",
+                "operationId": "CollectCpuInfostatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpuInfostat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_cpu_infostat"
+                ],
+                "description": "update the CollectCpuInfostat",
+                "operationId": "CollectCpuInfostatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectCpuInfostat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpuInfostat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectCpuInfostat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_cpu_infostat"
+                ],
+                "description": "delete the CollectCpuInfostat",
+                "operationId": "CollectCpuInfostatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk/": {
+            "get": {
+                "tags": [
+                    "collect_disk"
+                ],
+                "description": "get CollectDisk",
+                "operationId": "CollectDiskController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDisk"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_disk"
+                ],
+                "description": "create CollectDisk",
+                "operationId": "CollectDiskController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDisk content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDisk"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectDisk"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk/{id}": {
+            "get": {
+                "tags": [
+                    "collect_disk"
+                ],
+                "description": "get CollectDisk by id",
+                "operationId": "CollectDiskController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDisk"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_disk"
+                ],
+                "description": "update the CollectDisk",
+                "operationId": "CollectDiskController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDisk content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDisk"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDisk"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_disk"
+                ],
+                "description": "delete the CollectDisk",
+                "operationId": "CollectDiskController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk_iocountersstat/": {
+            "get": {
+                "tags": [
+                    "collect_disk_iocountersstat"
+                ],
+                "description": "get CollectDiskIocountersstat",
+                "operationId": "CollectDiskIocountersstatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskIocountersstat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_disk_iocountersstat"
+                ],
+                "description": "create CollectDiskIocountersstat",
+                "operationId": "CollectDiskIocountersstatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDiskIocountersstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskIocountersstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectDiskIocountersstat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk_iocountersstat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_disk_iocountersstat"
+                ],
+                "description": "get CollectDiskIocountersstat by id",
+                "operationId": "CollectDiskIocountersstatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskIocountersstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_disk_iocountersstat"
+                ],
+                "description": "update the CollectDiskIocountersstat",
+                "operationId": "CollectDiskIocountersstatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDiskIocountersstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskIocountersstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskIocountersstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_disk_iocountersstat"
+                ],
+                "description": "delete the CollectDiskIocountersstat",
+                "operationId": "CollectDiskIocountersstatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk_partitionstat/": {
+            "get": {
+                "tags": [
+                    "collect_disk_partitionstat"
+                ],
+                "description": "get CollectDiskPartitionstat",
+                "operationId": "CollectDiskPartitionstatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskPartitionstat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_disk_partitionstat"
+                ],
+                "description": "create CollectDiskPartitionstat",
+                "operationId": "CollectDiskPartitionstatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDiskPartitionstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskPartitionstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectDiskPartitionstat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_disk_partitionstat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_disk_partitionstat"
+                ],
+                "description": "get CollectDiskPartitionstat by id",
+                "operationId": "CollectDiskPartitionstatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskPartitionstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_disk_partitionstat"
+                ],
+                "description": "update the CollectDiskPartitionstat",
+                "operationId": "CollectDiskPartitionstatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectDiskPartitionstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskPartitionstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectDiskPartitionstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_disk_partitionstat"
+                ],
+                "description": "delete the CollectDiskPartitionstat",
+                "operationId": "CollectDiskPartitionstatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_host/": {
+            "get": {
+                "tags": [
+                    "collect_host"
+                ],
+                "description": "get CollectHost",
+                "operationId": "CollectHostController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHost"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_host"
+                ],
+                "description": "create CollectHost",
+                "operationId": "CollectHostController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectHost content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectHost"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_host/{id}": {
+            "get": {
+                "tags": [
+                    "collect_host"
+                ],
+                "description": "get CollectHost by id",
+                "operationId": "CollectHostController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHost"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_host"
+                ],
+                "description": "update the CollectHost",
+                "operationId": "CollectHostController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectHost content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHost"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_host"
+                ],
+                "description": "delete the CollectHost",
+                "operationId": "CollectHostController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_host_userstat/": {
+            "get": {
+                "tags": [
+                    "collect_host_userstat"
+                ],
+                "description": "get CollectHostUserstat",
+                "operationId": "CollectHostUserstatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHostUserstat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_host_userstat"
+                ],
+                "description": "create CollectHostUserstat",
+                "operationId": "CollectHostUserstatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectHostUserstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHostUserstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectHostUserstat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_host_userstat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_host_userstat"
+                ],
+                "description": "get CollectHostUserstat by id",
+                "operationId": "CollectHostUserstatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHostUserstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_host_userstat"
+                ],
+                "description": "update the CollectHostUserstat",
+                "operationId": "CollectHostUserstatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectHostUserstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHostUserstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectHostUserstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_host_userstat"
+                ],
+                "description": "delete the CollectHostUserstat",
+                "operationId": "CollectHostUserstatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_jvm/": {
+            "get": {
+                "tags": [
+                    "collect_jvm"
+                ],
+                "description": "get CollectJvm",
+                "operationId": "CollectJvmController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectJvm"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_jvm"
+                ],
+                "description": "create CollectJvm",
+                "operationId": "CollectJvmController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectJvm content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectJvm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectJvm"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_jvm/{id}": {
+            "get": {
+                "tags": [
+                    "collect_jvm"
+                ],
+                "description": "get CollectJvm by id",
+                "operationId": "CollectJvmController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectJvm"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_jvm"
+                ],
+                "description": "update the CollectJvm",
+                "operationId": "CollectJvmController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectJvm content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectJvm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectJvm"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_jvm"
+                ],
+                "description": "delete the CollectJvm",
+                "operationId": "CollectJvmController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_load/": {
+            "get": {
+                "tags": [
+                    "collect_load"
+                ],
+                "description": "get CollectLoad",
+                "operationId": "CollectLoadController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectLoad"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_load"
+                ],
+                "description": "create CollectLoad",
+                "operationId": "CollectLoadController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectLoad content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectLoad"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectLoad"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_load/{id}": {
+            "get": {
+                "tags": [
+                    "collect_load"
+                ],
+                "description": "get CollectLoad by id",
+                "operationId": "CollectLoadController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectLoad"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_load"
+                ],
+                "description": "update the CollectLoad",
+                "operationId": "CollectLoadController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectLoad content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectLoad"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectLoad"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_load"
+                ],
+                "description": "delete the CollectLoad",
+                "operationId": "CollectLoadController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_mem/": {
+            "get": {
+                "tags": [
+                    "collect_mem"
+                ],
+                "description": "get CollectMem",
+                "operationId": "CollectMemController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectMem"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_mem"
+                ],
+                "description": "create CollectMem",
+                "operationId": "CollectMemController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectMem content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectMem"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectMem"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_mem/{id}": {
+            "get": {
+                "tags": [
+                    "collect_mem"
+                ],
+                "description": "get CollectMem by id",
+                "operationId": "CollectMemController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectMem"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_mem"
+                ],
+                "description": "update the CollectMem",
+                "operationId": "CollectMemController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectMem content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectMem"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectMem"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_mem"
+                ],
+                "description": "delete the CollectMem",
+                "operationId": "CollectMemController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net/": {
+            "get": {
+                "tags": [
+                    "collect_net"
+                ],
+                "description": "get CollectNet",
+                "operationId": "CollectNetController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNet"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_net"
+                ],
+                "description": "create CollectNet",
+                "operationId": "CollectNetController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNet content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectNet"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net/{id}": {
+            "get": {
+                "tags": [
+                    "collect_net"
+                ],
+                "description": "get CollectNet by id",
+                "operationId": "CollectNetController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNet"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_net"
+                ],
+                "description": "update the CollectNet",
+                "operationId": "CollectNetController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNet content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNet"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_net"
+                ],
+                "description": "delete the CollectNet",
+                "operationId": "CollectNetController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_interfacestat/": {
+            "get": {
+                "tags": [
+                    "collect_net_interfacestat"
+                ],
+                "description": "get CollectNetInterfacestat",
+                "operationId": "CollectNetInterfacestatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_net_interfacestat"
+                ],
+                "description": "create CollectNetInterfacestat",
+                "operationId": "CollectNetInterfacestatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetInterfacestat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectNetInterfacestat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_interfacestat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_net_interfacestat"
+                ],
+                "description": "get CollectNetInterfacestat by id",
+                "operationId": "CollectNetInterfacestatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_net_interfacestat"
+                ],
+                "description": "update the CollectNetInterfacestat",
+                "operationId": "CollectNetInterfacestatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetInterfacestat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_net_interfacestat"
+                ],
+                "description": "delete the CollectNetInterfacestat",
+                "operationId": "CollectNetInterfacestatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_interfacestat_addrs/": {
+            "get": {
+                "tags": [
+                    "collect_net_interfacestat_addrs"
+                ],
+                "description": "get CollectNetInterfacestatAddrs",
+                "operationId": "CollectNetInterfacestatAddrsController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestatAddrs"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_net_interfacestat_addrs"
+                ],
+                "description": "create CollectNetInterfacestatAddrs",
+                "operationId": "CollectNetInterfacestatAddrsController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetInterfacestatAddrs content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestatAddrs"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectNetInterfacestatAddrs"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_interfacestat_addrs/{id}": {
+            "get": {
+                "tags": [
+                    "collect_net_interfacestat_addrs"
+                ],
+                "description": "get CollectNetInterfacestatAddrs by id",
+                "operationId": "CollectNetInterfacestatAddrsController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestatAddrs"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_net_interfacestat_addrs"
+                ],
+                "description": "update the CollectNetInterfacestatAddrs",
+                "operationId": "CollectNetInterfacestatAddrsController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetInterfacestatAddrs content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestatAddrs"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetInterfacestatAddrs"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_net_interfacestat_addrs"
+                ],
+                "description": "delete the CollectNetInterfacestatAddrs",
+                "operationId": "CollectNetInterfacestatAddrsController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_iocountersstat/": {
+            "get": {
+                "tags": [
+                    "collect_net_iocountersstat"
+                ],
+                "description": "get CollectNetIocountersstat",
+                "operationId": "CollectNetIocountersstatController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetIocountersstat"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "collect_net_iocountersstat"
+                ],
+                "description": "create CollectNetIocountersstat",
+                "operationId": "CollectNetIocountersstatController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetIocountersstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetIocountersstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CollectNetIocountersstat"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/collect_net_iocountersstat/{id}": {
+            "get": {
+                "tags": [
+                    "collect_net_iocountersstat"
+                ],
+                "description": "get CollectNetIocountersstat by id",
+                "operationId": "CollectNetIocountersstatController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetIocountersstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "collect_net_iocountersstat"
+                ],
+                "description": "update the CollectNetIocountersstat",
+                "operationId": "CollectNetIocountersstatController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CollectNetIocountersstat content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetIocountersstat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.CollectNetIocountersstat"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "collect_net_iocountersstat"
+                ],
+                "description": "delete the CollectNetIocountersstat",
+                "operationId": "CollectNetIocountersstatController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/server_info_base/": {
+            "get": {
+                "tags": [
+                    "server_info_base"
+                ],
+                "description": "get ServerInfoBase",
+                "operationId": "ServerInfoBaseController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoBase"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "server_info_base"
+                ],
+                "description": "create ServerInfoBase",
+                "operationId": "ServerInfoBaseController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ServerInfoBase content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoBase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.ServerInfoBase"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/server_info_base/{id}": {
+            "get": {
+                "tags": [
+                    "server_info_base"
+                ],
+                "description": "get ServerInfoBase by id",
+                "operationId": "ServerInfoBaseController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoBase"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "server_info_base"
+                ],
+                "description": "update the ServerInfoBase",
+                "operationId": "ServerInfoBaseController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ServerInfoBase content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoBase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoBase"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "server_info_base"
+                ],
+                "description": "delete the ServerInfoBase",
+                "operationId": "ServerInfoBaseController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/server_info_ip/": {
+            "get": {
+                "tags": [
+                    "server_info_ip"
+                ],
+                "description": "get ServerInfoIp",
+                "operationId": "ServerInfoIpController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoIp"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "server_info_ip"
+                ],
+                "description": "create ServerInfoIp",
+                "operationId": "ServerInfoIpController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ServerInfoIp content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoIp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.ServerInfoIp"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/server_info_ip/{id}": {
+            "get": {
+                "tags": [
+                    "server_info_ip"
+                ],
+                "description": "get ServerInfoIp by id",
+                "operationId": "ServerInfoIpController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoIp"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "server_info_ip"
+                ],
+                "description": "update the ServerInfoIp",
+                "operationId": "ServerInfoIpController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ServerInfoIp content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoIp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.ServerInfoIp"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "server_info_ip"
+                ],
+                "description": "delete the ServerInfoIp",
+                "operationId": "ServerInfoIpController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.CollectCpu": {
+            "title": "CollectCpu",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectCpuInfostat": {
+            "title": "CollectCpuInfostat",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatcacheSize": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatcoreId": {
+                    "type": "string"
+                },
+                "InfoStatcores": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatcpu": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatfamily": {
+                    "type": "string"
+                },
+                "InfoStatmhz": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "InfoStatmicrocode": {
+                    "type": "string"
+                },
+                "InfoStatmodel": {
+                    "type": "string"
+                },
+                "InfoStatmodelName": {
+                    "type": "string"
+                },
+                "InfoStatphysicalId": {
+                    "type": "string"
+                },
+                "InfoStatstepping": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatvendorId": {
+                    "type": "string"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectDisk": {
+            "title": "CollectDisk",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectDiskIocountersstat": {
+            "title": "CollectDiskIocountersstat",
+            "type": "object",
+            "properties": {
+                "IOCountersStatDeviceName": {
+                    "type": "string"
+                },
+                "IOCountersStatioTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatiopsInProgress": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatmergedReadCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatmergedWriteCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatname": {
+                    "type": "string"
+                },
+                "IOCountersStatreadBytes": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatreadCount": {
+                    "type": "string"
+                },
+                "IOCountersStatreadTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatserialNumber": {
+                    "type": "string"
+                },
+                "IOCountersStatweightedIO": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatwriteBytes": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatwriteCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatwriteTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectDiskPartitionstat": {
+            "title": "CollectDiskPartitionstat",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PartitionStatdevice": {
+                    "type": "string"
+                },
+                "PartitionStatfstype": {
+                    "type": "string"
+                },
+                "PartitionStatmountpoint": {
+                    "type": "string"
+                },
+                "PartitionStatopts": {
+                    "type": "string"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectHost": {
+            "title": "CollectHost",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatbootTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStathostid": {
+                    "type": "string"
+                },
+                "InfoStathostname": {
+                    "type": "string"
+                },
+                "InfoStatkernelVersion": {
+                    "type": "string"
+                },
+                "InfoStatos": {
+                    "type": "string"
+                },
+                "InfoStatplatform": {
+                    "type": "string"
+                },
+                "InfoStatplatformFamily": {
+                    "type": "string"
+                },
+                "InfoStatplatformVersion": {
+                    "type": "string"
+                },
+                "InfoStatprocs": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatuptime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InfoStatvirtualizationRole": {
+                    "type": "string"
+                },
+                "InfoStatvirtualizationSystem": {
+                    "type": "string"
+                },
+                "Serverid": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectHostUserstat": {
+            "title": "CollectHostUserstat",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Serverid": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UserStatHost": {
+                    "type": "string"
+                },
+                "UserStatStarted": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UserStatTerminal": {
+                    "type": "string"
+                },
+                "UserStatUser": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CollectJvm": {
+            "title": "CollectJvm",
+            "type": "object",
+            "properties": {
+                "AgentId": {
+                    "type": "string"
+                },
+                "ClassPath": {
+                    "type": "string"
+                },
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CurrentThreadCpuTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "DaemonThreadCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "HeapMemoryUsageCommitted": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "HeapMemoryUsageInit": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "HeapMemoryUsageMax": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "HeapMemoryUsageUsed": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "LoadedClassCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NonHeapMemoryUsageCommitted": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NonHeapMemoryUsageInit": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NonHeapMemoryUsageMax": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NonHeapMemoryUsageUsed": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PeakThreadCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ThreadCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TotalLoadedClassCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TotalStartedThreadCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UnloadedClassCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Uptime": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectLoad": {
+            "title": "CollectLoad",
+            "type": "object",
+            "properties": {
+                "AvgStatload1": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "AvgStatload15": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "AvgStatload5": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "MiscStatctxt": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "MiscStatprocsBlocked": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "MiscStatprocsRunning": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectMem": {
+            "title": "CollectMem",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStatfree": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStatsin": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStatsout": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStattotal": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStatused": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "SwapMemoryStatusedPercent": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatactive": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatavailable": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatbuffers": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatcached": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatdirty": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatfree": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatinactive": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatpagetables": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatshared": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatslab": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatswapcached": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStattotal": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatused": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatusedPercent": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "VirtualMemoryStatwired": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatwriteback": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "VirtualMemoryStatwritebacktmp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectNet": {
+            "title": "CollectNet",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectNetInterfacestat": {
+            "title": "CollectNetInterfacestat",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InterfaceStathardwareaddr": {
+                    "type": "string"
+                },
+                "InterfaceStatmtu": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InterfaceStatname": {
+                    "type": "string"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CollectNetInterfacestatAddrs": {
+            "title": "CollectNetInterfacestatAddrs",
+            "type": "object",
+            "properties": {
+                "Addrsaddr": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CollectNetIocountersstat": {
+            "title": "CollectNetIocountersstat",
+            "type": "object",
+            "properties": {
+                "IOCountersStatbytesRecv": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatbytesSent": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatdropin": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatdropout": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStaterrin": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStaterrout": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatfifoin": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatfifoout": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatname": {
+                    "type": "string"
+                },
+                "IOCountersStatpacketsRecv": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IOCountersStatpacketsSent": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TimeStamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.ServerInfoBase": {
+            "title": "ServerInfoBase",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Server": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ServerInfoIp": {
+            "title": "ServerInfoIp",
+            "type": "object",
+            "properties": {
+                "CreateTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Ip": {
+                    "type": "string"
+                },
+                "ServerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "collect_cpu",
+            "description": "CollectCpuController operations for CollectCpu\n"
+        },
+        {
+            "name": "collect_cpu_infostat",
+            "description": "CollectCpuInfostatController operations for CollectCpuInfostat\n"
+        },
+        {
+            "name": "collect_disk",
+            "description": "CollectDiskController operations for CollectDisk\n"
+        },
+        {
+            "name": "collect_disk_iocountersstat",
+            "description": "CollectDiskIocountersstatController operations for CollectDiskIocountersstat\n"
+        },
+        {
+            "name": "collect_disk_partitionstat",
+            "description": "CollectDiskPartitionstatController operations for CollectDiskPartitionstat\n"
+        },
+        {
+            "name": "collect_host",
+            "description": "CollectHostController operations for CollectHost\n"
+        },
+        {
+            "name": "collect_host_userstat",
+            "description": "CollectHostUserstatController operations for CollectHostUserstat\n"
+        },
+        {
+            "name": "collect_jvm",
+            "description": "CollectJvmController operations for CollectJvm\n"
+        },
+        {
+            "name": "collect_load",
+            "description": "CollectLoadController operations for CollectLoad\n"
+        },
+        {
+            "name": "collect_mem",
+            "description": "CollectMemController operations for CollectMem\n"
+        },
+        {
+            "name": "collect_net",
+            "description": "CollectNetController operations for CollectNet\n"
+        },
+        {
+            "name": "collect_net_interfacestat",
+            "description": "CollectNetInterfacestatController operations for CollectNetInterfacestat\n"
+        },
+        {
+            "name": "collect_net_interfacestat_addrs",
+            "description": "CollectNetInterfacestatAddrsController operations for CollectNetInterfacestatAddrs\n"
+        },
+        {
+            "name": "collect_net_iocountersstat",
+            "description": "CollectNetIocountersstatController operations for CollectNetIocountersstat\n"
+        },
+        {
+            "name": "server_info_base",
+            "description": "ServerInfoBaseController operations for ServerInfoBase\n"
+        },
+        {
+            "name": "server_info_ip",
+            "description": "ServerInfoIpController operations for ServerInfoIp\n"
+        }
+    ]
+}
