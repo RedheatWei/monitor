@@ -1,11 +1,5 @@
 package models
 
-import (
-	//"github.com/xormplus/xorm"
-	//_ "github.com/go-sql-driver/mysql"
-	//"github.com/astaxie/beego"
-)
-
 type Collect_jvm struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
 	ServerId int64 `xorm:"notnull 'ServerId'"`
