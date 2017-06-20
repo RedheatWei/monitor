@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"monitor/webapi/controllers"
+	"webapi/controllers"
 
 	"github.com/astaxie/beego"
 )

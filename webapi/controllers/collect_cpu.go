@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-	"monitor/webapi/models"
+	"webapi/models"
 
 	"github.com/astaxie/beego"
 )
