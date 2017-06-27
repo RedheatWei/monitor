@@ -43,12 +43,19 @@ func CollectSysCpuInfo(){
 //收集系统磁盘信息
 func CollectSysDiskInfo(){
 	var SysDiskInfo base.SysDiskInfo
+	var u *disk.UsageStat
+	var us []disk.UsageStat
 	i,_ := disk.IOCounters()
 	p,_ := disk.Partitions(false)
+	for _,v := range p{
+		u,_ = disk.Usage(v.Mountpoint)
+		us = append(us,*u)
+	}
 	SysDiskInfo.IOCountersStat = i
 	SysDiskInfo.PartitionStat = p
 	SysDiskInfo.Type = "SysDiskInfo"
 	SysDiskInfo.TimeStamp = time.Now().Unix()
+	SysDiskInfo.UsageStat = us
 	by,_ := json.Marshal(SysDiskInfo)
 	network.UdpSend(Server,by)
 }
