@@ -77,7 +77,7 @@ type SysDiskInfo struct {
 	Type           string `json:"Type"`
 	IOCountersStat map[string]disk.IOCountersStat `json:"IOCountersStat"`
 	PartitionStat []disk.PartitionStat `json:"PartitionStat"`
-	//UsageStat disk.UsageStat `json:"UsageStat"`
+	UsageStat []disk.UsageStat `json:"UsageStat"`
 	TimeStamp int64 `json:"TimeStamp"`
 }
 //系统主机信息

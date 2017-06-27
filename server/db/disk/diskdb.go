@@ -25,6 +25,10 @@ func InsertDiskDB(js base.SysDiskInfo,serverid int64){
 	if stat_len2 > 0{
 		insertPartitionStatDB(js.PartitionStat,serverid,js.TimeStamp,stat_len2)
 	}
+	stat_len3 := len(js.UsageStat)
+	if stat_len3 > 0 {
+		insertUsageStatDB(js.UsageStat,serverid,js.TimeStamp,stat_len3)
+	}
 }
 func insertIOStatDB(io map[string]disk.IOCountersStat,serverid int64,timestamp int64,stat_len int){
 	db := db.ConnDB()
@@ -73,4 +77,29 @@ func insertPartitionStatDB(partition []disk.PartitionStat,serverid int64,timesta
 		fmt.Println(err)
 	}
 	fmt.Println(affected)
+}
+func insertUsageStatDB(us []disk.UsageStat,serverid int64,timestamp int64,stat_len int){
+	db := db.ConnDB()
+	usagestats := make([]*Collect_disk_usagestat,stat_len)
+	for key,userstat_s := range us{
+		usagestats[key] = new(Collect_disk_usagestat)
+		usagestats[key].ServerId = serverid
+		usagestats[key].UsageStatPath = userstat_s.Path
+		usagestats[key].UsageStatFstype = userstat_s.Fstype
+		usagestats[key].UsageStatTotal = userstat_s.Total
+		usagestats[key].UsageStatFree = userstat_s.Free
+		usagestats[key].UsageStatUsed = userstat_s.Used
+		usagestats[key].UsageStatUsedPercent = userstat_s.UsedPercent
+		usagestats[key].UsageStatInodesTotal = userstat_s.InodesTotal
+		usagestats[key].UsageStatInodesUsed = userstat_s.InodesUsed
+		usagestats[key].UsageStatInodesFree = userstat_s.InodesFree
+		usagestats[key].UsageStatInodesUsedPercent = userstat_s.InodesUsedPercent
+		usagestats[key].TimeStamp = timestamp
+	}
+	affected, err := db.Insert(usagestats)
+	if err != nil{
+		fmt.Println(err)
+	}
+	fmt.Println(affected)
+
 }

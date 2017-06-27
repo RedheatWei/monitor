@@ -36,3 +36,18 @@ type Collect_disk_partitionstat struct {
 	PartitionStatopts  string `xorm:"notnull 'PartitionStatopts'"`
 	TimeStamp      int64 `xorm:"notnull 'TimeStamp'"`
 }
+type Collect_disk_usagestat struct {
+	Id int64 `xorm:"autoincr notnull unique 'id'"`
+	ServerId      int64 `xorm:"notnull 'Serverid'"`
+	UsageStatPath string  `xorm:"notnull 'UsageStatPath'"`
+	UsageStatFstype string `xorm:"notnull 'UsageStatFstype'"`
+	UsageStatTotal uint64 `xorm:"notnull 'UsageStatTotal'"`
+	UsageStatFree uint64 `xorm:"notnull 'UsageStatFree'"`
+	UsageStatUsed uint64 `xorm:"notnull 'UsageStatUsed'"`
+	UsageStatUsedPercent float64 `xorm:"notnull 'UsageStatUsedPercent'"`
+	UsageStatInodesTotal uint64 `xorm:"notnull 'UsageStatInodesTotal'"`
+	UsageStatInodesUsed uint64 `xorm:"notnull 'UsageStatInodesUsed'"`
+	UsageStatInodesFree uint64 `xorm:"notnull 'UsageStatInodesFree'"`
+	UsageStatInodesUsedPercent float64 `xorm:"notnull 'UsageStatInodesUsedPercent'"`
+	TimeStamp      int64 `xorm:"notnull 'TimeStamp'"`
+}
