@@ -121,7 +121,7 @@ func CollectSysInfo(){
 			case "SysNetInfo":
 				CollectSysNetInfo()
 			}
-			time.Sleep(time.Duration(Frequency)*time.Second)
 		}
+		time.Sleep(time.Duration(Frequency)*time.Second)
 	}
 }
