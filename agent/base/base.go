@@ -61,6 +61,7 @@ type Jvm struct {
 type SysMemInfo struct {
 	Type           string `json:"Type"`
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
+	SysMemoryStatPercent float64 `json:"SysMemoryStatPercent"`
 	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
 	TimeStamp int64 `json:"TimeStamp"`
 }

@@ -14,6 +14,7 @@ func InsertMemDB(js base.SysMemInfo,serverid int64){
 	mem.VirtualMemoryStatavailable = js.VirtualMemoryStat.Available
 	mem.VirtualMemoryStatused = js.VirtualMemoryStat.Used
 	mem.VirtualMemoryStatusedPercent = js.VirtualMemoryStat.UsedPercent
+	mem.SysMemoryStatPercent = js.SysMemoryStatPercent
 	mem.VirtualMemoryStatfree = js.VirtualMemoryStat.Free
 	mem.VirtualMemoryStatactive = js.VirtualMemoryStat.Active
 	mem.VirtualMemoryStatinactive = js.VirtualMemoryStat.Inactive

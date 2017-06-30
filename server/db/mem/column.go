@@ -7,6 +7,7 @@ type Collect_mem struct {
 	VirtualMemoryStatavailable uint64 `xorm:"notnull 'VirtualMemoryStatavailable'"`
 	VirtualMemoryStatused uint64 `xorm:"notnull 'VirtualMemoryStatused'"`
 	VirtualMemoryStatusedPercent float64 `xorm:"notnull 'VirtualMemoryStatusedPercent'"`
+	SysMemoryStatPercent float64 `xorm:"notnull 'SysMemoryStatPercent'"`
 	VirtualMemoryStatfree uint64 `xorm:"notnull 'VirtualMemoryStatfree'"`
 	VirtualMemoryStatactive uint64 `xorm:"notnull 'VirtualMemoryStatactive'"`
 	VirtualMemoryStatinactive uint64 `xorm:"notnull 'VirtualMemoryStatinactive'"`

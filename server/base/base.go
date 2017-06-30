@@ -62,6 +62,7 @@ type SysMemInfo struct {
 	Type           string `json:"Type"`
 	VirtualMemoryStat mem.VirtualMemoryStat `json:"VirtualMemoryStat"`
 	SwapMemoryStat mem.SwapMemoryStat `json:"SwapMemoryStat"`
+	SysMemoryStatPercent float64 `json:"SysMemoryStatPercent"`
 	TimeStamp int64 `json:"TimeStamp"`
 
 }

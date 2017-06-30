@@ -25,6 +25,7 @@ func CollectSysMemInfo(){
 	s,_ := mem.SwapMemory()
 	SysMemInfo.SwapMemoryStat = *s
 	SysMemInfo.VirtualMemoryStat = *v
+	SysMemInfo.SysMemoryStatPercent = float64(v.Total-v.Free)/float64(v.Total) * 100.0
 	SysMemInfo.Type = "SysMemInfo"
 	SysMemInfo.TimeStamp = time.Now().Unix()
 	by,_ := json.Marshal(SysMemInfo)
