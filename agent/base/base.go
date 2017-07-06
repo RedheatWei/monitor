@@ -53,6 +53,7 @@ type Default struct {
 	Frequency string
 }
 type Jvm struct {
+	On string
 	Jolokiapath string
 	Jolokianame string
 	Portstart string
@@ -160,7 +161,9 @@ func readAgentConfig(mod,par string) string{
 func GetConfig() AgentConfig{
 	var AgentConfig AgentConfig
 	AgentConfig.Default.Server=readAgentConfig("default","server")
+	AgentConfig.Default.Server=readAgentConfig("default","server")
 	AgentConfig.Default.Frequency=readAgentConfig("default","frequency")
+	AgentConfig.Jvm.On=readAgentConfig("jvm","on")
 	AgentConfig.Jvm.Jolokiapath=readAgentConfig("jvm","jolokiapath")
 	AgentConfig.Jvm.Jolokianame=readAgentConfig("jvm","jolokianame")
 	AgentConfig.Jvm.Portstart=readAgentConfig("jvm","portstart")
