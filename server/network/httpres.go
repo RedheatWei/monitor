@@ -3,7 +3,7 @@ package network
 import (
 	"net/http"
 	"io/ioutil"
-	"fmt"
+
 	"strings"
 )
 

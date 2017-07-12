@@ -2,13 +2,13 @@ package load
 
 import (
 	"monitor/server/base"
-	"monitor/server/db/opentsdb"
+	//"monitor/server/db/opentsdb"
 	"fmt"
 	"time"
 )
 
 func InsertLoadDB(js base.SysLoadInfo,server string){
-	_,err := opentsdb.ConnDb()
+	//_,err := opentsdb.ConnDb()
 	if err != nil{
 		fmt.Println(err)
 	}
