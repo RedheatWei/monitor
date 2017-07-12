@@ -40,6 +40,7 @@ func handleClient(conn *net.UDPConn) {
 	add := addr.IP.String()
 	chk,serverid,server := checkIp(add)
 	if chk{
+		fmt.Println(ServerConfig.OpentsDb.Enable)
 		if ServerConfig.OpentsDb.Enable=="true"{
 			go handler.ToTsJson(buf[:n],server)
 		}else{
