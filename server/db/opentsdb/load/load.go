@@ -9,9 +9,9 @@ import (
 
 func InsertLoadDB(js base.SysLoadInfo,server string){
 	//_,err := opentsdb.ConnDb()
-	if err != nil{
-		fmt.Println(err)
-	}
+	//if err != nil{
+	//	fmt.Println(err)
+	//}
 	var load Collect_load
 	load.Metric = "collect.sys.server"
 	load.Value = server
