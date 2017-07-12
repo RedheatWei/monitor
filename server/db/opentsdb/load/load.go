@@ -31,5 +31,6 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	//fmt.Println()
 	//var load_js Collect_load
 	//json.Unmarshal(b,&load_js)
+	fmt.Println(string(b))
 	opentsdb.SendToTsDb(string(b))
 }
