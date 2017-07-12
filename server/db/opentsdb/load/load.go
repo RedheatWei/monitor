@@ -24,5 +24,5 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	load.Tags.MiscStatprocsBlocked = js.MiscStat.ProcsBlocked
 	load.Tags.MiscStatctxt = js.MiscStat.Ctxt
 	load.Tags.TimeStamp = js.TimeStamp
-	fmt.Println(json.Marshal(load))
+	fmt.Println(string(json.Marshal(load)))
 }
