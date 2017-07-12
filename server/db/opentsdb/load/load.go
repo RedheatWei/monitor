@@ -18,6 +18,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	load.Value = js.AvgStat.Load1
 	load.TimeStamp = time.Now().Unix()
 	load.Tags.Server = server
+	load.Tags.CtimeStamp = js.TimeStamp
 	b,err := json.Marshal(load)
 	if err!=nil{
 		fmt.Println(err)

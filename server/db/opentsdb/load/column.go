@@ -8,6 +8,7 @@ type Collect_load struct {
 }
 type Tags struct {
 	Server string `json:"server"`
+	CtimeStamp int64 `json:"ctime_stamp"`
 }
 //type Tags struct {
 //	AvgStatload1      float64 `json:"AvgStatload1"`
