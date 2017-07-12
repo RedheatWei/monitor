@@ -51,7 +51,6 @@ func handleClient(conn *net.UDPConn) {
 }
 //检查ip是否通行
 func checkIp(ip string) (bool,int64,string){
-	fmt.Println(ip)
 	var is_in = bool(false)
 	var serverid int64
 	var server string
