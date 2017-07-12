@@ -2,17 +2,17 @@ package load
 
 import (
 	"monitor/server/base"
-	//"monitor/server/db/opentsdb"
 	"fmt"
 	"time"
 	"encoding/json"
+	"monitor/server/db/opentsdb"
 )
 
 func InsertLoadDB(js base.SysLoadInfo,server string){
-	//_,err := opentsdb.ConnDb()
-	//if err != nil{
-	//	fmt.Println(err)
-	//}
+	_,err := opentsdb.ConnDb()
+	if err != nil{
+		fmt.Println(err)
+	}
 	load := new(Collect_load)
 	load.Metric = "collect.sys.server"
 	load.Value = server
@@ -28,5 +28,5 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	if err!=nil{
 		fmt.Println(err)
 	}
-	fmt.Println(string(b))
+	opentsdb.SendToTsDb(string(b))
 }
