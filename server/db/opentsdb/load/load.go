@@ -5,6 +5,7 @@ import (
 	//"monitor/server/db/opentsdb"
 	"fmt"
 	"time"
+	"encoding/json"
 )
 
 func InsertLoadDB(js base.SysLoadInfo,server string){
@@ -12,7 +13,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	//if err != nil{
 	//	fmt.Println(err)
 	//}
-	var load Collect_load
+	load := new(Collect_load)
 	load.Metric = "collect.sys.server"
 	load.Value = server
 	load.TimeStamp = time.Now().Unix()
@@ -23,5 +24,5 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	load.Tags.MiscStatprocsBlocked = js.MiscStat.ProcsBlocked
 	load.Tags.MiscStatctxt = js.MiscStat.Ctxt
 	load.Tags.TimeStamp = js.TimeStamp
-	fmt.Println(string(load))
+	fmt.Println(json.Marshal(load))
 }
