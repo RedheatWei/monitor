@@ -14,16 +14,10 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 		fmt.Println(err)
 	}
 	load := new(Collect_load)
-	load.Metric = "collect.sys.server"
-	load.Value = server
+	load.Metric = "sys.load.1m"
+	load.Value = js.AvgStat.Load1
 	load.TimeStamp = time.Now().Unix()
-	load.Tags.AvgStatload1 = js.AvgStat.Load1
-	load.Tags.AvgStatload5 = js.AvgStat.Load5
-	load.Tags.AvgStatload15 = js.AvgStat.Load15
-	load.Tags.MiscStatprocsRunning = js.MiscStat.ProcsRunning
-	load.Tags.MiscStatprocsBlocked = js.MiscStat.ProcsBlocked
-	load.Tags.MiscStatctxt = js.MiscStat.Ctxt
-	load.Tags.TimeStamp = js.TimeStamp
+	load.Tags.Server = server
 	b,err := json.Marshal(load)
 	if err!=nil{
 		fmt.Println(err)
