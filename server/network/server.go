@@ -52,6 +52,7 @@ func checkIp(ip string) (bool,int64,string){
 	var is_in = bool(false)
 	var serverid int64
 	var server string
+	fmt.Println(AllowIplist)
 	for _,ipaddr := range AllowIplist{
 		serverid = ipaddr["serverid"].(int64)
 		server = ipaddr["server"].(string)
