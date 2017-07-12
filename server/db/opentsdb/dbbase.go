@@ -22,6 +22,7 @@ func SendToTsDb(data string){
 	agentConfig := base.GetConfig()
 	host := agentConfig.OpentsDb.Host
 	url := host+"/api/put?summary"
+	fmt.Println(url)
 	res,err := HttpPost(url,data)
 	if err != nil{
 		fmt.Println(err)
