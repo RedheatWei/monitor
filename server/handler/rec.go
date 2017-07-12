@@ -51,7 +51,7 @@ func  ToJson(rec []byte,serverid int64){
 	}
 }
 func ToTsJson(rec []byte,server string){
-	fmt.Println(string(rec))
+	//fmt.Println(string(rec))
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
