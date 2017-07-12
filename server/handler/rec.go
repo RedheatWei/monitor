@@ -77,6 +77,7 @@ func ToTsJson(rec []byte,server string){
 	//	go dbhost.InsertHostDB(info,server)
 	case "SysLoadInfo":
 		var info base.SysLoadInfo
+		json.Unmarshal(rec,&info)
 		go tsload.InsertLoadDB(info,server)
 	//case "SysNetInfo":
 	//	var info base.SysNetInfo
