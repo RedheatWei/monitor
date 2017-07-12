@@ -4,7 +4,8 @@ import (
 	"github.com/shirou/gopsutil/host"
 	"monitor/server/base"
 	"fmt"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
+
 )
 func InsertHostDB(js base.SysHostInfo,serverid int64){
 	db := db.ConnDB()

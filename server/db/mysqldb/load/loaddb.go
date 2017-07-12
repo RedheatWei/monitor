@@ -3,7 +3,8 @@ package load
 import (
 	"monitor/server/base"
 	"fmt"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
+
 )
 
 func InsertLoadDB(js base.SysLoadInfo,serverid int64){

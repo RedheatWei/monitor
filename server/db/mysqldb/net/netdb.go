@@ -3,7 +3,8 @@ package net
 import (
 	"monitor/server/base"
 	"fmt"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
+
 	"github.com/shirou/gopsutil/net"
 
 )

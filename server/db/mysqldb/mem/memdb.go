@@ -3,7 +3,8 @@ package mem
 import (
 	"monitor/server/base"
 	"fmt"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
+
 )
 
 func InsertMemDB(js base.SysMemInfo,serverid int64){

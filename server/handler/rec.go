@@ -5,6 +5,7 @@ import (
 	"github.com/bitly/go-simplejson"
 	"monitor/server/base"
 	"fmt"
+	"time"
 	dbjvm "monitor/server/db/mysqldb/jvm"
 	dbcpu "monitor/server/db/mysqldb/cpu"
 	dbdisk "monitor/server/db/mysqldb/disk"
@@ -12,8 +13,8 @@ import (
 	dbload "monitor/server/db/mysqldb/load"
 	dbmem "monitor/server/db/mysqldb/mem"
 	dbnet "monitor/server/db/mysqldb/net"
+
 	tsload "monitor/server/db/opentsdb/load"
-	"time"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverid int64){

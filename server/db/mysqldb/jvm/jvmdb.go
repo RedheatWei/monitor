@@ -2,7 +2,8 @@ package jvm
 
 import (
 	"monitor/server/base"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
+
 	"fmt"
 )
 

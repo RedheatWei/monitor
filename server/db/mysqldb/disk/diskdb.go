@@ -4,7 +4,7 @@ import (
 	"monitor/server/base"
 	"fmt"
 	"github.com/shirou/gopsutil/disk"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
 )
 
 func InsertDiskDB(js base.SysDiskInfo,serverid int64){
