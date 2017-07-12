@@ -42,7 +42,6 @@ func httpGet(url string) ([]byte,error){
 }
 
 func HttpPost(url,data string) ([]byte,error){
-	fmt.Println(url)
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", url, strings.NewReader(data))
 	if err != nil {
