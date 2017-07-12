@@ -147,6 +147,7 @@ func GetConfig() ServerConfig{
 	ServerConfig.DB.Host=readServerConfig("db","host")
 	ServerConfig.DB.Charset=readServerConfig("db","charset")
 	ServerConfig.DB.Protocol=readServerConfig("db","protocol")
-	ServerConfig.O
+	ServerConfig.OpentsDb.Enable=readServerConfig("opentsdb","enable")
+	ServerConfig.OpentsDb.Host=readServerConfig("opentsdb","host")
 	return ServerConfig
 }
