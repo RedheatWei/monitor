@@ -1,4 +1,4 @@
-package db
+package mysqldb
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/xormplus/xorm"
@@ -26,7 +26,7 @@ func ConnDB() *xorm.Engine{
 func GetAllowIpList() []map[string]interface{}{
 	db := ConnDB()
 	//iplist := new(Server_info_ip)
-	sql := "SELECT serverid,ip FROM server_info_ip"
+	sql := "SELECT * FROM server_info_ip,server_info_base WHERE server_info_base.id=server_info_ip.serverid"
 	results, err := db.Sql(sql).Query().List()
 	if err != nil{
 		fmt.Println(err)

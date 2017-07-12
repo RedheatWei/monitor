@@ -1,4 +1,4 @@
-package db
+package mysqldb
 type Server_info_base struct {
 	Id int64 `xorm:"autoincr notnull unique 'id'"`
 	Server      string `xorm:"notnull 'Server'"`

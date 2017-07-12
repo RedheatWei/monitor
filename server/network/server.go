@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"monitor/server/base"
 	"monitor/server/handler"
-	"monitor/server/db"
+	db "monitor/server/db/mysqldb"
 )
 //读取配置文件
 var ServerConfig base.ServerConfig
@@ -38,22 +38,28 @@ func handleClient(conn *net.UDPConn) {
 		fmt.Println(err)
 	}
 	add := addr.IP.String()
-	chk,serverid := checkIp(add)
+	chk,serverid,server := checkIp(add)
 	if chk{
-		go handler.ToJson(buf[:n],serverid)
+		if ServerConfig.OpentsDb.Enable=="true"{
+			go handler.ToTsJson(buf[:n],server)
+		}else{
+			go handler.ToJson(buf[:n],serverid)
+		}
 	}
 }
 //检查ip是否通行
-func checkIp(ip string) (bool,int64){
+func checkIp(ip string) (bool,int64,string){
 	var is_in = bool(false)
 	var serverid int64
+	var server string
 	for _,ipaddr := range AllowIplist{
 		serverid = ipaddr["serverid"].(int64)
+		server = ipaddr["server"].(string)
 		if ipaddr["ip"] == ip {
 			is_in = true
-			return is_in,serverid
+			return is_in,serverid,server
 		}
 	}
 	serverid = 0
-	return is_in,serverid
+	return is_in,serverid,server
 }

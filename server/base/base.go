@@ -44,6 +44,8 @@ type JvmInfo struct {
 type ServerConfig struct {
 	Default Default
 	DB DB
+	OpentsDb OpentsDb
+
 }
 type Default struct {
 	Port string
@@ -56,6 +58,10 @@ type DB struct {
 	Host string
 	Charset string
 	Protocol string
+}
+type OpentsDb struct {
+	Enable string
+	Host string
 }
 //系统内存信息
 type SysMemInfo struct {
@@ -141,5 +147,6 @@ func GetConfig() ServerConfig{
 	ServerConfig.DB.Host=readServerConfig("db","host")
 	ServerConfig.DB.Charset=readServerConfig("db","charset")
 	ServerConfig.DB.Protocol=readServerConfig("db","protocol")
+	ServerConfig.O
 	return ServerConfig
 }

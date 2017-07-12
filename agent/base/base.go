@@ -58,6 +58,7 @@ type Jvm struct {
 	Jolokianame string
 	Portstart string
 }
+
 //系统内存信息
 type SysMemInfo struct {
 	Type           string `json:"Type"`

@@ -5,13 +5,15 @@ import (
 	"github.com/bitly/go-simplejson"
 	"monitor/server/base"
 	"fmt"
-	dbjvm "monitor/server/db/jvm"
-	dbcpu "monitor/server/db/cpu"
-	dbdisk "monitor/server/db/disk"
-	dbhost "monitor/server/db/host"
-	dbload "monitor/server/db/load"
-	dbmem "monitor/server/db/mem"
-	dbnet "monitor/server/db/net"
+	dbjvm "monitor/server/db/mysqldb/jvm"
+	dbcpu "monitor/server/db/mysqldb/cpu"
+	dbdisk "monitor/server/db/mysqldb/disk"
+	dbhost "monitor/server/db/mysqldb/host"
+	dbload "monitor/server/db/mysqldb/load"
+	dbmem "monitor/server/db/mysqldb/mem"
+	dbnet "monitor/server/db/mysqldb/net"
+	tsload "monitor/server/db/opentsdb/load"
+	"time"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverid int64){
@@ -47,5 +49,43 @@ func  ToJson(rec []byte,serverid int64){
 		var info base.SysNetInfo
 		json.Unmarshal(rec,&info)
 		go dbnet.InsertNetDB(info,serverid)
+	}
+}
+func ToTsJson(rec []byte,server string){
+	fmt.Println(string(rec))
+	js, _ := simplejson.NewJson(rec)
+	js_map,_ := js.Map()
+	switch js_map["Type"] {
+	//case "JvmInfo":
+	//	var info base.JvmInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbjvm.InsertJvmDB(info,server)
+	//case "SysMemInfo":
+	//	var info base.SysMemInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbmem.InsertMemDB(info,server)
+	//case "SysCpuInfo":
+	//	var info base.SysCpuInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbcpu.InsertCpuDB(info,server)
+	//case "SysDiskInfo":
+	//	var info base.SysDiskInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbdisk.InsertDiskDB(info,server)
+	//case "SysHostInfo":
+	//	var info base.SysHostInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbhost.InsertHostDB(info,server)
+	case "SysLoadInfo":
+		var info tsload.Collect_load
+		info.Metric="collect.sys.server"
+		info.Value=server
+		info.TimeStamp=time.Now().Unix()
+		info.Tags=string(rec)
+		go tsload.InsertLoadDB(string(info))
+	//case "SysNetInfo":
+	//	var info base.SysNetInfo
+	//	json.Unmarshal(rec,&info)
+	//	go dbnet.InsertNetDB(info,server)
 	}
 }
