@@ -2,7 +2,7 @@ package opentsdb
 
 import (
 	"monitor/server/network"
-	"monitor/agent/base"
+	"monitor/server/base"
 	"fmt"
 )
 func ConnDb() ([]byte,error){

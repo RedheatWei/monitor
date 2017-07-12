@@ -5,7 +5,6 @@ import (
 	"github.com/bitly/go-simplejson"
 	"monitor/server/base"
 	"fmt"
-	"time"
 	dbjvm "monitor/server/db/mysqldb/jvm"
 	dbcpu "monitor/server/db/mysqldb/cpu"
 	dbdisk "monitor/server/db/mysqldb/disk"
@@ -13,7 +12,6 @@ import (
 	dbload "monitor/server/db/mysqldb/load"
 	dbmem "monitor/server/db/mysqldb/mem"
 	dbnet "monitor/server/db/mysqldb/net"
-
 	tsload "monitor/server/db/opentsdb/load"
 )
 //转换json并插入数据库
@@ -78,12 +76,8 @@ func ToTsJson(rec []byte,server string){
 	//	json.Unmarshal(rec,&info)
 	//	go dbhost.InsertHostDB(info,server)
 	case "SysLoadInfo":
-		var info tsload.Collect_load
-		info.Metric="collect.sys.server"
-		info.Value=server
-		info.TimeStamp=time.Now().Unix()
-		info.Tags=string(rec)
-		go tsload.InsertLoadDB(string(info))
+		var info base.SysLoadInfo
+		go tsload.InsertLoadDB(info,server)
 	//case "SysNetInfo":
 	//	var info base.SysNetInfo
 	//	json.Unmarshal(rec,&info)
