@@ -1,11 +1,10 @@
 package load
 
 type Collect_load struct {
-	Metric string `json:"Metric"`
-	TimeStamp int64 `json:"TimeStamp"`
-	Value string `json:"Value"`
-	//Tags Tags `json:"Tags"`
-	Tags Tags `json:"Tags"`
+	Metric string `json:"metric"`
+	TimeStamp int64 `json:"timestamp"`
+	Value string `json:"value"`
+	Tags Tags `json:"tags"`
 }
 type Tags struct {
 	AvgStatload1      float64 `json:"AvgStatload1"`
