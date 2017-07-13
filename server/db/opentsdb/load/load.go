@@ -19,19 +19,17 @@ type loadDB struct {
 }
 //主函数
 func InsertLoadDB(js base.SysLoadInfo,server string){
-	load := new(Collect_load)
 	var loadDB loadDB
-	loadDB.AvgStatload1 = load1(load,js,server)
-	loadDB.AvgStatload5 = load5(load,js,server)
-	loadDB.AvgStatload15 = load15(load,js,server)
-	loadDB.MiscStatprocsRunning = procsRunning(load,js,server)
-	loadDB.MiscStatprocsBlocked = procsBlocked(load,js,server)
-	loadDB.MiscStatctxt = ctxt(load,js,server)
-	t := reflect.TypeOf(loadDB)
+	loadDB.AvgStatload1 = load1(js,server)
+	loadDB.AvgStatload5 = load5(js,server)
+	loadDB.AvgStatload15 = load15(js,server)
+	loadDB.MiscStatprocsRunning = procsRunning(js,server)
+	loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
+	loadDB.MiscStatctxt = ctxt(js,server)
+	//t := reflect.TypeOf(loadDB)
 	v := reflect.ValueOf(loadDB)
-	for k := 0; k < t.NumField(); k++{
+	for k := 0; k < v.NumField(); k++{
 		val := v.Field(k).Interface()
-		fmt.Println(v)
 		b,err := json.Marshal(val)
 		if err!=nil{
 			fmt.Println(err)
@@ -44,7 +42,8 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	}
 }
 //1分钟load
-func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func load1(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.1m"
 	load.Value = js.AvgStat.Load1
 	load.TimeStamp = time.Now().Unix()
@@ -53,7 +52,8 @@ func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
 	return load
 }
 //5分钟load
-func load5(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func load5(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.5m"
 	load.Value = js.AvgStat.Load5
 	load.TimeStamp = time.Now().Unix()
@@ -62,7 +62,8 @@ func load5(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
 	return load
 }
 //15分钟load
-func load15(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func load15(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.15m"
 	load.Value = js.AvgStat.Load15
 	load.TimeStamp = time.Now().Unix()
@@ -71,7 +72,8 @@ func load15(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
 	return load
 }
 //procsRunning
-func procsRunning(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func procsRunning(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.procsRunning"
 	load.Value = float64(js.MiscStat.ProcsRunning)
 	load.TimeStamp = time.Now().Unix()
@@ -80,7 +82,8 @@ func procsRunning(load *Collect_load,js base.SysLoadInfo,server string) *Collect
 	return load
 }
 //procsBlocked
-func procsBlocked(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func procsBlocked(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.procsBlocked"
 	load.Value = float64(js.MiscStat.ProcsBlocked)
 	load.TimeStamp = time.Now().Unix()
@@ -89,7 +92,8 @@ func procsBlocked(load *Collect_load,js base.SysLoadInfo,server string) *Collect
 	return load
 }
 //ctxt
-func ctxt(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
+func ctxt(js base.SysLoadInfo,server string) *Collect_load{
+	load := new(Collect_load)
 	load.Metric = "sys.load.ctxt"
 	load.Value = float64(js.MiscStat.Ctxt)
 	load.TimeStamp = time.Now().Unix()
