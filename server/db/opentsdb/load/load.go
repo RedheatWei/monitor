@@ -27,7 +27,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	for k := 0; k < t.NumField(); k++{
 		val := v.Field(k).Interface()
 		fmt.Println(val)
-		if val != nil{
+		if val != nil || &val != nil{
 			b,err := json.Marshal(val)
 			if err!=nil{
 				fmt.Println(err)
