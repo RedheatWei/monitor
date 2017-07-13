@@ -10,12 +10,12 @@ import (
 )
 //定义收集的项目
 type loadDB struct {
-	AvgStatload1 *opentsdb.Collect_load
-	AvgStatload5 *opentsdb.Collect_load
-	AvgStatload15 *opentsdb.Collect_load
-	MiscStatprocsRunning *opentsdb.Collect_load
-	MiscStatprocsBlocked *opentsdb.Collect_load
-	MiscStatctxt *opentsdb.Collect_load
+	AvgStatload1 *opentsdb.Collect
+	AvgStatload5 *opentsdb.Collect
+	AvgStatload15 *opentsdb.Collect
+	MiscStatprocsRunning *opentsdb.Collect
+	MiscStatprocsBlocked *opentsdb.Collect
+	MiscStatctxt *opentsdb.Collect
 }
 //主函数
 func InsertLoadDB(js base.SysLoadInfo,server string){
@@ -27,6 +27,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
 	loadDB.MiscStatctxt = ctxt(js,server)
 	v := reflect.ValueOf(loadDB)
+	var sli_str []string
 	for k := 0; k < v.NumField(); k++{
 		val := v.Field(k).Interface()
 		b,err := json.Marshal(val)
@@ -36,67 +37,68 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 		str := string(b)
 		fmt.Println(str)
 		if str != "null"{
-			opentsdb.SendToTsDb(str)
+			sli_str = append(sli_str,str)
 		}
 	}
+	opentsdb.SendToTsDb(string(sli_str))
 }
 //1分钟load
-func load1(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.1m"
-	load.Value = js.AvgStat.Load1
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func load1(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.1m"
+	collect.Value = js.AvgStat.Load1
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }
 //5分钟load
-func load5(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.5m"
-	load.Value = js.AvgStat.Load5
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func load5(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.5m"
+	collect.Value = js.AvgStat.Load5
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }
 //15分钟load
-func load15(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.15m"
-	load.Value = js.AvgStat.Load15
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func load15(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.15m"
+	collect.Value = js.AvgStat.Load15
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }
 //procsRunning
-func procsRunning(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.procsRunning"
-	load.Value = float64(js.MiscStat.ProcsRunning)
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func procsRunning(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.procsRunning"
+	collect.Value = float64(js.MiscStat.ProcsRunning)
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }
 //procsBlocked
-func procsBlocked(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.procsBlocked"
-	load.Value = float64(js.MiscStat.ProcsBlocked)
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func procsBlocked(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.procsBlocked"
+	collect.Value = float64(js.MiscStat.ProcsBlocked)
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }
 //ctxt
-func ctxt(js base.SysLoadInfo,server string) *opentsdb.Collect_load{
-	load := new(opentsdb.Collect_load)
-	load.Metric = "sys.load.ctxt"
-	load.Value = float64(js.MiscStat.Ctxt)
-	load.TimeStamp = time.Now().Unix()
-	load.Tags.Server = server
-	load.Tags.CtimeStamp = js.TimeStamp
-	return load
+func ctxt(js base.SysLoadInfo,server string) *opentsdb.Collect{
+	collect := new(opentsdb.Collect)
+	collect.Metric = "sys.load.ctxt"
+	collect.Value = float64(js.MiscStat.Ctxt)
+	collect.TimeStamp = time.Now().Unix()
+	collect.Tags.Server = server
+	collect.Tags.CtimeStamp = js.TimeStamp
+	return collect
 }

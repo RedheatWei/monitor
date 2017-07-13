@@ -1,6 +1,6 @@
 package opentsdb
 
-type Collect_load struct {
+type Collect struct {
 	Metric string `json:"metric"`
 	TimeStamp int64 `json:"timestamp"`
 	Value float64 `json:"value"`
