@@ -17,11 +17,15 @@ func ConnDb() ([]byte,error){
 	}
 	return res,nil
 }
-
 func SendToTsDb(data string){
 	agentConfig := base.GetConfig()
 	host := agentConfig.OpentsDb.Host
 	url := host+"/api/put?summary"
+	defer func(){
+		if err:=recover();err!=nil{
+			fmt.Println(err)
+		}
+	}()
 	res,err := HttpPost(url,data)
 	if err != nil{
 		fmt.Println(err)
