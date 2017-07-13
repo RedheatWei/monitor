@@ -6,7 +6,7 @@ import (
 	"time"
 	"reflect"
 	"encoding/json"
-	//"monitor/server/db/opentsdb"
+	"monitor/server/db/opentsdb"
 )
 
 type loadDB struct {
@@ -30,7 +30,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 			fmt.Println(err)
 		}
 		fmt.Println(string(b))
-		//opentsdb.SendToTsDb(string(b))
+		opentsdb.SendToTsDb(string(b))
 	}
 }
 func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
