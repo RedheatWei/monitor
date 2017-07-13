@@ -41,7 +41,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 		//if str != "null"{
 		//}
 	}
-	fmt.Println(str)
+	//fmt.Println(str)
 	opentsdb.SendToTsDb(string(str))
 }
 //1分钟load
