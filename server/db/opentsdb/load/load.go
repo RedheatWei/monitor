@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"monitor/server/db/opentsdb"
 )
-
+//定义收集的项目
 type loadDB struct {
 	AvgStatload1 *Collect_load
 	AvgStatload5 *Collect_load
@@ -17,7 +17,7 @@ type loadDB struct {
 	MiscStatprocsBlocked *Collect_load
 	MiscStatctxt *Collect_load
 }
-
+//主函数
 func InsertLoadDB(js base.SysLoadInfo,server string){
 	load := new(Collect_load)
 	var loadDB loadDB
@@ -27,7 +27,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	for k := 0; k < t.NumField(); k++{
 		val := v.Field(k).Interface()
 		fmt.Println(val)
-		if val != nil && val != &nil{
+		if val != nil{
 			b,err := json.Marshal(val)
 			if err!=nil{
 				fmt.Println(err)
@@ -36,6 +36,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 		}
 	}
 }
+//1分钟load
 func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
 	load.Metric = "sys.load.1m"
 	load.Value = js.AvgStat.Load1
