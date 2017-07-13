@@ -10,22 +10,22 @@ import (
 )
 //定义收集的项目
 type loadDB struct {
-	avgStatload1 *opentsdb.Collect
-	avgStatload5 *opentsdb.Collect
-	avgStatload15 *opentsdb.Collect
-	miscStatprocsRunning *opentsdb.Collect
-	miscStatprocsBlocked *opentsdb.Collect
-	miscStatctxt *opentsdb.Collect
+	AvgStatload1 *opentsdb.Collect
+	AvgStatload5 *opentsdb.Collect
+	AvgStatload15 *opentsdb.Collect
+	MiscStatprocsRunning *opentsdb.Collect
+	MiscStatprocsBlocked *opentsdb.Collect
+	MiscStatctxt *opentsdb.Collect
 }
 //主函数
 func InsertLoadDB(js base.SysLoadInfo,server string){
 	var loadDB loadDB
-	loadDB.avgStatload1 = avgStatload1(js,server)
-	loadDB.avgStatload5 = avgStatload5(js,server)
-	loadDB.avgStatload15 = avgStatload15(js,server)
-	loadDB.miscStatprocsRunning = miscStatprocsRunning(js,server)
-	loadDB.miscStatprocsBlocked = miscStatprocsBlocked(js,server)
-	loadDB.miscStatctxt = miscStatctxt(js,server)
+	loadDB.AvgStatload1 = avgStatload1(js,server)
+	loadDB.AvgStatload5 = avgStatload5(js,server)
+	loadDB.AvgStatload15 = avgStatload15(js,server)
+	loadDB.MiscStatprocsRunning = miscStatprocsRunning(js,server)
+	loadDB.MiscStatprocsBlocked = miscStatprocsBlocked(js,server)
+	loadDB.MiscStatctxt = miscStatctxt(js,server)
 	v := reflect.ValueOf(loadDB)
 	var sli_str []interface{}
 	for k := 0; k < v.NumField(); k++{

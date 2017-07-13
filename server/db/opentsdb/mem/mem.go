@@ -10,58 +10,58 @@ import (
 )
 //定义收集的项目
 type memDB struct {
-	virtualMemoryStattotal *opentsdb.Collect
-	virtualMemoryStatavailable *opentsdb.Collect
-	virtualMemoryStatused *opentsdb.Collect
-	virtualMemoryStatusedPercent *opentsdb.Collect
-	sysMemoryStatPercent *opentsdb.Collect
-	virtualMemoryStatfree *opentsdb.Collect
-	virtualMemoryStatactive *opentsdb.Collect
-	virtualMemoryStatinactive *opentsdb.Collect
-	virtualMemoryStatwired *opentsdb.Collect
-	virtualMemoryStatbuffers *opentsdb.Collect
-	virtualMemoryStatcached *opentsdb.Collect
-	virtualMemoryStatwriteback *opentsdb.Collect
-	virtualMemoryStatdirty *opentsdb.Collect
-	virtualMemoryStatwritebacktmp *opentsdb.Collect
-	virtualMemoryStatshared *opentsdb.Collect
-	virtualMemoryStatslab *opentsdb.Collect
-	virtualMemoryStatpagetables *opentsdb.Collect
-	virtualMemoryStatswapcached *opentsdb.Collect
-	swapMemoryStattotal *opentsdb.Collect
-	swapMemoryStatused *opentsdb.Collect
-	swapMemoryStatfree *opentsdb.Collect
-	swapMemoryStatusedPercent *opentsdb.Collect
-	swapMemoryStatsin *opentsdb.Collect
-	swapMemoryStatsout *opentsdb.Collect
+	VirtualMemoryStattotal *opentsdb.Collect
+	VirtualMemoryStatavailable *opentsdb.Collect
+	VirtualMemoryStatused *opentsdb.Collect
+	VirtualMemoryStatusedPercent *opentsdb.Collect
+	SysMemoryStatPercent *opentsdb.Collect
+	VirtualMemoryStatfree *opentsdb.Collect
+	VirtualMemoryStatactive *opentsdb.Collect
+	VirtualMemoryStatinactive *opentsdb.Collect
+	VirtualMemoryStatwired *opentsdb.Collect
+	VirtualMemoryStatbuffers *opentsdb.Collect
+	VirtualMemoryStatcached *opentsdb.Collect
+	VirtualMemoryStatwriteback *opentsdb.Collect
+	VirtualMemoryStatdirty *opentsdb.Collect
+	VirtualMemoryStatwritebacktmp *opentsdb.Collect
+	VirtualMemoryStatshared *opentsdb.Collect
+	VirtualMemoryStatslab *opentsdb.Collect
+	VirtualMemoryStatpagetables *opentsdb.Collect
+	VirtualMemoryStatswapcached *opentsdb.Collect
+	SwapMemoryStattotal *opentsdb.Collect
+	SwapMemoryStatused *opentsdb.Collect
+	SwapMemoryStatfree *opentsdb.Collect
+	SwapMemoryStatusedPercent *opentsdb.Collect
+	SwapMemoryStatsin *opentsdb.Collect
+	SwapMemoryStatsout *opentsdb.Collect
 }
 //主函数
 func InsertMemDB(js base.SysMemInfo,server string){
 	var memDB memDB
-	memDB.virtualMemoryStattotal = virtualMemoryStattotal(js,server)
-	memDB.virtualMemoryStatavailable = virtualMemoryStatavailable(js,server)
-	memDB.virtualMemoryStatused = virtualMemoryStatused(js,server)
-	memDB.virtualMemoryStatusedPercent = virtualMemoryStatusedPercent(js,server)
-	memDB.sysMemoryStatPercent = sysMemoryStatPercent(js,server)
-	memDB.virtualMemoryStatfree = virtualMemoryStatfree(js,server)
-	memDB.virtualMemoryStatactive = virtualMemoryStatactive(js,server)
-	memDB.virtualMemoryStatinactive = virtualMemoryStatinactive(js,server)
-	memDB.virtualMemoryStatwired = virtualMemoryStatwired(js,server)
-	memDB.virtualMemoryStatbuffers = virtualMemoryStatbuffers(js,server)
-	memDB.virtualMemoryStatcached = virtualMemoryStatcached(js,server)
-	memDB.virtualMemoryStatwriteback = virtualMemoryStatwriteback(js,server)
-	memDB.virtualMemoryStatdirty = virtualMemoryStatdirty(js,server)
-	memDB.virtualMemoryStatwritebacktmp = virtualMemoryStatwritebacktmp(js,server)
-	memDB.virtualMemoryStatshared = virtualMemoryStatshared(js,server)
-	memDB.virtualMemoryStatslab = virtualMemoryStatslab(js,server)
-	memDB.virtualMemoryStatpagetables = virtualMemoryStatpagetables(js,server)
-	memDB.virtualMemoryStatswapcached = virtualMemoryStatswapcached(js,server)
-	memDB.swapMemoryStattotal = swapMemoryStattotal(js,server)
-	memDB.swapMemoryStatused = swapMemoryStatused(js,server)
-	memDB.swapMemoryStatfree = swapMemoryStatfree(js,server)
-	memDB.swapMemoryStatusedPercent = swapMemoryStatusedPercent(js,server)
-	memDB.swapMemoryStatsin = swapMemoryStatsin(js,server)
-	memDB.swapMemoryStatsout = swapMemoryStatsout(js,server)
+	memDB.VirtualMemoryStattotal = virtualMemoryStattotal(js,server)
+	memDB.VirtualMemoryStatavailable = virtualMemoryStatavailable(js,server)
+	memDB.VirtualMemoryStatused = virtualMemoryStatused(js,server)
+	memDB.VirtualMemoryStatusedPercent = virtualMemoryStatusedPercent(js,server)
+	memDB.SysMemoryStatPercent = sysMemoryStatPercent(js,server)
+	memDB.VirtualMemoryStatfree = virtualMemoryStatfree(js,server)
+	memDB.VirtualMemoryStatactive = virtualMemoryStatactive(js,server)
+	memDB.VirtualMemoryStatinactive = virtualMemoryStatinactive(js,server)
+	memDB.VirtualMemoryStatwired = virtualMemoryStatwired(js,server)
+	memDB.VirtualMemoryStatbuffers = virtualMemoryStatbuffers(js,server)
+	memDB.VirtualMemoryStatcached = virtualMemoryStatcached(js,server)
+	memDB.VirtualMemoryStatwriteback = virtualMemoryStatwriteback(js,server)
+	memDB.VirtualMemoryStatdirty = virtualMemoryStatdirty(js,server)
+	memDB.VirtualMemoryStatwritebacktmp = virtualMemoryStatwritebacktmp(js,server)
+	memDB.VirtualMemoryStatshared = virtualMemoryStatshared(js,server)
+	memDB.VirtualMemoryStatslab = virtualMemoryStatslab(js,server)
+	memDB.VirtualMemoryStatpagetables = virtualMemoryStatpagetables(js,server)
+	memDB.VirtualMemoryStatswapcached = virtualMemoryStatswapcached(js,server)
+	memDB.SwapMemoryStattotal = swapMemoryStattotal(js,server)
+	memDB.SwapMemoryStatused = swapMemoryStatused(js,server)
+	memDB.SwapMemoryStatfree = swapMemoryStatfree(js,server)
+	memDB.SwapMemoryStatusedPercent = swapMemoryStatusedPercent(js,server)
+	memDB.SwapMemoryStatsin = swapMemoryStatsin(js,server)
+	memDB.SwapMemoryStatsout = swapMemoryStatsout(js,server)
 	v := reflect.ValueOf(memDB)
 	var sli_str []interface{}
 	for k := 0; k < v.NumField(); k++{
