@@ -22,11 +22,11 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	load := new(Collect_load)
 	var loadDB loadDB
 	loadDB.AvgStatload1 = load1(load,js,server)
-	loadDB.AvgStatload1 = load5(load,js,server)
-	loadDB.AvgStatload1 = load15(load,js,server)
-	loadDB.AvgStatload1 = procsRunning(load,js,server)
-	loadDB.AvgStatload1 = procsBlocked(load,js,server)
-	loadDB.AvgStatload1 = ctxt(load,js,server)
+	loadDB.AvgStatload5 = load5(load,js,server)
+	loadDB.AvgStatload15 = load15(load,js,server)
+	loadDB.MiscStatprocsRunning = procsRunning(load,js,server)
+	loadDB.MiscStatprocsBlocked = procsBlocked(load,js,server)
+	loadDB.MiscStatctxt = ctxt(load,js,server)
 	t := reflect.TypeOf(loadDB)
 	v := reflect.ValueOf(loadDB)
 	for k := 0; k < t.NumField(); k++{
