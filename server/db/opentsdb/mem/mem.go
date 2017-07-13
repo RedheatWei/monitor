@@ -186,7 +186,8 @@ func virtualMemoryStatpagetables(js base.SysMemInfo,server string) *opentsdb.Col
 	collect.Metric = "sys.mem.virtualMemoryStatpagetables"
 	collect.Value = float64(js.VirtualMemoryStat.PageTables)
 	return collect
-}func virtualMemoryStatswapcached(js base.SysMemInfo,server string) *opentsdb.Collect{
+}
+func virtualMemoryStatswapcached(js base.SysMemInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
 	collect.Metric = "sys.mem.virtualMemoryStatswapcached"
 	collect.Value = float64(js.VirtualMemoryStat.SwapCached)
