@@ -13,6 +13,7 @@ import (
 	dbmem "monitor/server/db/mysqldb/mem"
 	dbnet "monitor/server/db/mysqldb/net"
 	tsload "monitor/server/db/opentsdb/load"
+	tsmem "monitor/server/db/opentsdb/mem"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverid int64){
@@ -59,10 +60,10 @@ func ToTsJson(rec []byte,server string){
 	//	var info base.JvmInfo
 	//	json.Unmarshal(rec,&info)
 	//	go dbjvm.InsertJvmDB(info,server)
-	//case "SysMemInfo":
-	//	var info base.SysMemInfo
-	//	json.Unmarshal(rec,&info)
-	//	go dbmem.InsertMemDB(info,server)
+	case "SysMemInfo":
+		var info base.SysMemInfo
+		json.Unmarshal(rec,&info)
+		go tsmem.InsertMemDB(info,server)
 	//case "SysCpuInfo":
 	//	var info base.SysCpuInfo
 	//	json.Unmarshal(rec,&info)

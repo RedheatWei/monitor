@@ -7,7 +7,7 @@ import (
 
 )
 
-func InsertMemDB(js base.SysMemInfo,serverid int64){
+func InsertMemDB(js base.SysMemInfo,server string){
 	db := db.ConnDB()
 	mem := new(Collect_mem)
 	mem.ServerId = serverid
