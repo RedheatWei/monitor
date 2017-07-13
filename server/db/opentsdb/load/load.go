@@ -30,14 +30,16 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	var sli_str []interface{}
 	var str string
 	for k := 0; k < v.NumField(); k++{
-		val := v.Field(k).Interface()
-		fmt.Println(v.Field(k))
-		sli_str = append(sli_str,val)
-		b,err := json.Marshal(sli_str)
-		if err!=nil{
-			fmt.Println(err)
+		if ! v.Field(k).IsNil(){
+			val := v.Field(k).Interface()
+			fmt.Println(v.Field(k))
+			sli_str = append(sli_str,val)
+			b,err := json.Marshal(sli_str)
+			if err!=nil{
+				fmt.Println(err)
+			}
+			str = string(b)
 		}
-		str = string(b)
 		//if str != "null"{
 		//}
 	}
