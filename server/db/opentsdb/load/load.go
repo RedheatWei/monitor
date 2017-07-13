@@ -25,12 +25,15 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	t := reflect.TypeOf(loadDB)
 	v := reflect.ValueOf(loadDB)
 	for k := 0; k < t.NumField(); k++{
-		b,err := json.Marshal(v.Field(k).Interface())
-		if err!=nil{
-			fmt.Println(err)
+		val := v.Field(k).Interface()
+		if val != nil{
+			b,err := json.Marshal(val)
+			if err!=nil{
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+			opentsdb.SendToTsDb(string(b))
 		}
-		fmt.Println(string(b))
-		opentsdb.SendToTsDb(string(b))
 	}
 }
 func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
