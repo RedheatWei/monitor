@@ -19,6 +19,7 @@ func ConnDb() ([]byte,error){
 }
 
 func SendToTsDb(data string){
+	fmt.Println(data)
 	agentConfig := base.GetConfig()
 	host := agentConfig.OpentsDb.Host
 	url := host+"/api/put?summary"

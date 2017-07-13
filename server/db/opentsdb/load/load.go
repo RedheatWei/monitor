@@ -74,8 +74,7 @@ func avgStatload15(js base.SysLoadInfo,server string) *opentsdb.Collect{
 func miscStatprocsRunning(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
 	collect.Metric = "sys.load.miscStatprocsRunning"
-	//collect.Value = float64(js.MiscStat.ProcsRunning)
-	collect.Value = js.MiscStat.ProcsRunning
+	collect.Value = float64(js.MiscStat.ProcsRunning)
 	return collect
 }
 //procsBlocked
