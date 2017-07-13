@@ -10,22 +10,22 @@ import (
 )
 //定义收集的项目
 type loadDB struct {
-	AvgStatload1 *opentsdb.Collect
-	AvgStatload5 *opentsdb.Collect
-	AvgStatload15 *opentsdb.Collect
-	MiscStatprocsRunning *opentsdb.Collect
-	MiscStatprocsBlocked *opentsdb.Collect
-	MiscStatctxt *opentsdb.Collect
+	avgStatload1 *opentsdb.Collect
+	avgStatload5 *opentsdb.Collect
+	avgStatload15 *opentsdb.Collect
+	miscStatprocsRunning *opentsdb.Collect
+	miscStatprocsBlocked *opentsdb.Collect
+	miscStatctxt *opentsdb.Collect
 }
 //主函数
 func InsertLoadDB(js base.SysLoadInfo,server string){
 	var loadDB loadDB
-	loadDB.AvgStatload1 = load1(js,server)
-	loadDB.AvgStatload5 = load5(js,server)
-	loadDB.AvgStatload15 = load15(js,server)
-	loadDB.MiscStatprocsRunning = procsRunning(js,server)
-	loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
-	loadDB.MiscStatctxt = ctxt(js,server)
+	loadDB.avgStatload1 = avgStatload1(js,server)
+	loadDB.avgStatload5 = avgStatload5(js,server)
+	loadDB.avgStatload15 = avgStatload15(js,server)
+	loadDB.miscStatprocsRunning = miscStatprocsRunning(js,server)
+	loadDB.miscStatprocsBlocked = miscStatprocsBlocked(js,server)
+	loadDB.miscStatctxt = miscStatctxt(js,server)
 	v := reflect.ValueOf(loadDB)
 	var sli_str []interface{}
 	for k := 0; k < v.NumField(); k++{
@@ -49,45 +49,46 @@ func createCollect(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	return collect
 }
 //1分钟load
-func load1(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func avgStatload1(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.1m"
+	collect.Metric = "sys.load.avgStatload1"
 	collect.Value = js.AvgStat.Load1
 	return collect
 	return collect
 }
 //5分钟load
-func load5(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func avgStatload5(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.5m"
+	collect.Metric = "sys.load.avgStatload5"
 	collect.Value = js.AvgStat.Load5
 	return collect
 }
 //15分钟load
-func load15(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func avgStatload15(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.15m"
+	collect.Metric = "sys.load.avgStatload15"
 	collect.Value = js.AvgStat.Load15
 	return collect
 }
 //procsRunning
-func procsRunning(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func miscStatprocsRunning(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.procsRunning"
-	collect.Value = float64(js.MiscStat.ProcsRunning)
+	collect.Metric = "sys.load.miscStatprocsRunning"
+	//collect.Value = float64(js.MiscStat.ProcsRunning)
+	collect.Value = js.MiscStat.ProcsRunning
 	return collect
 }
 //procsBlocked
-func procsBlocked(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func miscStatprocsBlocked(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.procsBlocked"
+	collect.Metric = "sys.load.miscStatprocsBlocked"
 	collect.Value = float64(js.MiscStat.ProcsBlocked)
 	return collect
 }
 //ctxt
-func ctxt(js base.SysLoadInfo,server string) *opentsdb.Collect{
+func miscStatctxt(js base.SysLoadInfo,server string) *opentsdb.Collect{
 	collect := createCollect(js,server)
-	collect.Metric = "sys.load.ctxt"
+	collect.Metric = "sys.load.miscStatctxt"
 	collect.Value = float64(js.MiscStat.Ctxt)
 	return collect
 }

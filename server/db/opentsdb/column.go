@@ -3,7 +3,7 @@ package opentsdb
 type Collect struct {
 	Metric string `json:"metric"`
 	TimeStamp int64 `json:"timestamp"`
-	Value float64 `json:"value"`
+	Value interface{} `json:"value"`
 	Tags Tags `json:"tags"`
 }
 type Tags struct {
