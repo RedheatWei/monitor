@@ -61,5 +61,5 @@ func checkIp(ip string) (bool,base.ServerIpInfo){
 			return is_in,serverIpInfo
 		}
 	}
-	return is_in,nil
+	return is_in,serverIpInfo
 }
