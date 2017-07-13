@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"io/ioutil"
 	"strings"
-	"time"
 )
 func ConnDb() ([]byte,error){
 	agentConfig := base.GetConfig()
