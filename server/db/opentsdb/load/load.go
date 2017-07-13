@@ -22,9 +22,9 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	var loadDB loadDB
 	loadDB.AvgStatload1 = load1(js,server)
 	loadDB.AvgStatload5 = load5(js,server)
-	loadDB.AvgStatload15 = load15(js,server)
-	loadDB.MiscStatprocsRunning = procsRunning(js,server)
-	loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
+	//loadDB.AvgStatload15 = load15(js,server)
+	//loadDB.MiscStatprocsRunning = procsRunning(js,server)
+	//loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
 	loadDB.MiscStatctxt = ctxt(js,server)
 	v := reflect.ValueOf(loadDB)
 	var sli_str []interface{}
