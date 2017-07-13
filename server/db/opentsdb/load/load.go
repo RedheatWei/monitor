@@ -31,6 +31,7 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 			if err!=nil{
 				fmt.Println(err)
 			}
+			fmt.Println(string(b))
 			opentsdb.SendToTsDb(string(b))
 		}
 	}
