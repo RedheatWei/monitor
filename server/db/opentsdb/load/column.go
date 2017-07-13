@@ -10,12 +10,12 @@ type Tags struct {
 	Server string `json:"server"`
 	CtimeStamp int64 `json:"ctime_stamp"`
 }
-//type Tags struct {
-//	AvgStatload1      float64 `json:"AvgStatload1"`
-//	AvgStatload5      float64 `json:"AvgStatload5"`
-//	AvgStatload15      float64 `json:"AvgStatload15"`
-//	MiscStatprocsRunning      int `json:"MiscStatprocsRunning"`
-//	MiscStatprocsBlocked      int `json:"MiscStatprocsBlocked"`
-//	MiscStatctxt      int `json:"MiscStatctxt"`
-//	TimeStamp      int64 `json:"TimeStamp"`
-//}
+type Collect struct {
+	AvgStatload1      float64 `json:"AvgStatload1"`
+	AvgStatload5      float64 `json:"AvgStatload5"`
+	AvgStatload15      float64 `json:"AvgStatload15"`
+	MiscStatprocsRunning      int `json:"MiscStatprocsRunning"`
+	MiscStatprocsBlocked      int `json:"MiscStatprocsBlocked"`
+	MiscStatctxt      int `json:"MiscStatctxt"`
+	TimeStamp      int64 `json:"TimeStamp"`
+}
