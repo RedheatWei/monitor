@@ -30,9 +30,8 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	t := reflect.TypeOf(loadDB)
 	v := reflect.ValueOf(loadDB)
 	for k := 0; k < t.NumField(); k++{
-		fmt.Println(k)
 		val := v.Field(k).Interface()
-		fmt.Println(val)
+		fmt.Println(v)
 		b,err := json.Marshal(val)
 		if err!=nil{
 			fmt.Println(err)
