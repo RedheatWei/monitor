@@ -27,20 +27,21 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	loadDB.MiscStatprocsBlocked = procsBlocked(js,server)
 	loadDB.MiscStatctxt = ctxt(js,server)
 	v := reflect.ValueOf(loadDB)
-	var sli_str []string
+	var sli_str []interface{}
+	var str string
 	for k := 0; k < v.NumField(); k++{
 		val := v.Field(k).Interface()
-		b,err := json.Marshal(val)
+		sli_str = append(sli_str,val)
+		b,err := json.Marshal(sli_str)
 		if err!=nil{
 			fmt.Println(err)
 		}
-		str := string(b)
+		str = string(b)
 		fmt.Println(str)
-		if str != "null"{
-			sli_str = append(sli_str,str)
-		}
+		//if str != "null"{
+		//}
 	}
-	opentsdb.SendToTsDb(string(sli_str))
+	opentsdb.SendToTsDb(string(str))
 }
 //1分钟load
 func load1(js base.SysLoadInfo,server string) *opentsdb.Collect{
