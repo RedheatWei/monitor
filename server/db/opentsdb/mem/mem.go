@@ -36,32 +36,32 @@ type memDB struct {
 	SwapMemoryStatsout *opentsdb.Collect
 }
 //主函数
-func InsertMemDB(js base.SysMemInfo,server string){
+func InsertMemDB(js base.SysMemInfo,serverIpInfo base.ServerIpInfo){
 	var memDB memDB
-	memDB.VirtualMemoryStattotal = virtualMemoryStattotal(js,server)
-	memDB.VirtualMemoryStatavailable = virtualMemoryStatavailable(js,server)
-	memDB.VirtualMemoryStatused = virtualMemoryStatused(js,server)
-	memDB.VirtualMemoryStatusedPercent = virtualMemoryStatusedPercent(js,server)
-	memDB.SysMemoryStatPercent = sysMemoryStatPercent(js,server)
-	memDB.VirtualMemoryStatfree = virtualMemoryStatfree(js,server)
-	memDB.VirtualMemoryStatactive = virtualMemoryStatactive(js,server)
-	memDB.VirtualMemoryStatinactive = virtualMemoryStatinactive(js,server)
-	memDB.VirtualMemoryStatwired = virtualMemoryStatwired(js,server)
-	memDB.VirtualMemoryStatbuffers = virtualMemoryStatbuffers(js,server)
-	memDB.VirtualMemoryStatcached = virtualMemoryStatcached(js,server)
-	memDB.VirtualMemoryStatwriteback = virtualMemoryStatwriteback(js,server)
-	memDB.VirtualMemoryStatdirty = virtualMemoryStatdirty(js,server)
-	memDB.VirtualMemoryStatwritebacktmp = virtualMemoryStatwritebacktmp(js,server)
-	memDB.VirtualMemoryStatshared = virtualMemoryStatshared(js,server)
-	memDB.VirtualMemoryStatslab = virtualMemoryStatslab(js,server)
-	memDB.VirtualMemoryStatpagetables = virtualMemoryStatpagetables(js,server)
-	memDB.VirtualMemoryStatswapcached = virtualMemoryStatswapcached(js,server)
-	memDB.SwapMemoryStattotal = swapMemoryStattotal(js,server)
-	memDB.SwapMemoryStatused = swapMemoryStatused(js,server)
-	memDB.SwapMemoryStatfree = swapMemoryStatfree(js,server)
-	memDB.SwapMemoryStatusedPercent = swapMemoryStatusedPercent(js,server)
-	memDB.SwapMemoryStatsin = swapMemoryStatsin(js,server)
-	memDB.SwapMemoryStatsout = swapMemoryStatsout(js,server)
+	memDB.VirtualMemoryStattotal = virtualMemoryStattotal(js,serverIpInfo)
+	memDB.VirtualMemoryStatavailable = virtualMemoryStatavailable(js,serverIpInfo)
+	memDB.VirtualMemoryStatused = virtualMemoryStatused(js,serverIpInfo)
+	memDB.VirtualMemoryStatusedPercent = virtualMemoryStatusedPercent(js,serverIpInfo)
+	memDB.SysMemoryStatPercent = sysMemoryStatPercent(js,serverIpInfo)
+	memDB.VirtualMemoryStatfree = virtualMemoryStatfree(js,serverIpInfo)
+	memDB.VirtualMemoryStatactive = virtualMemoryStatactive(js,serverIpInfo)
+	memDB.VirtualMemoryStatinactive = virtualMemoryStatinactive(js,serverIpInfo)
+	memDB.VirtualMemoryStatwired = virtualMemoryStatwired(js,serverIpInfo)
+	memDB.VirtualMemoryStatbuffers = virtualMemoryStatbuffers(js,serverIpInfo)
+	memDB.VirtualMemoryStatcached = virtualMemoryStatcached(js,serverIpInfo)
+	memDB.VirtualMemoryStatwriteback = virtualMemoryStatwriteback(js,serverIpInfo)
+	memDB.VirtualMemoryStatdirty = virtualMemoryStatdirty(js,serverIpInfo)
+	memDB.VirtualMemoryStatwritebacktmp = virtualMemoryStatwritebacktmp(js,serverIpInfo)
+	memDB.VirtualMemoryStatshared = virtualMemoryStatshared(js,serverIpInfo)
+	memDB.VirtualMemoryStatslab = virtualMemoryStatslab(js,serverIpInfo)
+	memDB.VirtualMemoryStatpagetables = virtualMemoryStatpagetables(js,serverIpInfo)
+	memDB.VirtualMemoryStatswapcached = virtualMemoryStatswapcached(js,serverIpInfo)
+	memDB.SwapMemoryStattotal = swapMemoryStattotal(js,serverIpInfo)
+	memDB.SwapMemoryStatused = swapMemoryStatused(js,serverIpInfo)
+	memDB.SwapMemoryStatfree = swapMemoryStatfree(js,serverIpInfo)
+	memDB.SwapMemoryStatusedPercent = swapMemoryStatusedPercent(js,serverIpInfo)
+	memDB.SwapMemoryStatsin = swapMemoryStatsin(js,serverIpInfo)
+	memDB.SwapMemoryStatsout = swapMemoryStatsout(js,serverIpInfo)
 	v := reflect.ValueOf(memDB)
 	var sli_str []interface{}
 	for k := 0; k < v.NumField(); k++{
@@ -77,154 +77,155 @@ func InsertMemDB(js base.SysMemInfo,server string){
 	opentsdb.SendToTsDb(string(b))
 }
 //组合数据,便于修改tag
-func createCollect(js base.SysMemInfo,server string) *opentsdb.Collect{
+func createCollect(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
 	collect := new(opentsdb.Collect)
 	collect.TimeStamp = time.Now().Unix()
-	collect.Tags.Server = server
+	collect.Tags.Server = serverIpInfo.Server
+	collect.Tags.Ip = serverIpInfo.Ip
 	collect.Tags.CtimeStamp = js.TimeStamp
 	return collect
 }
 
-func virtualMemoryStattotal(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStattotal(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStattotal"
 	collect.Value = float64(js.VirtualMemoryStat.Total)
 	return collect
 }
-func virtualMemoryStatavailable(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatavailable(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatavailable"
 	collect.Value = float64(js.VirtualMemoryStat.Available)
 	return collect
 }
-func virtualMemoryStatused(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatused(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatused"
 	collect.Value = float64(js.VirtualMemoryStat.Used)
 	return collect
 }
-func virtualMemoryStatusedPercent(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatusedPercent(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatusedPercent"
 	collect.Value = js.VirtualMemoryStat.UsedPercent
 	return collect
 }
-func sysMemoryStatPercent(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func sysMemoryStatPercent(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.sysMemoryStatPercent"
 	collect.Value = js.SysMemoryStatPercent
 	return collect
 }
-func virtualMemoryStatfree(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatfree(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatfree"
 	collect.Value = float64(js.VirtualMemoryStat.Free)
 	return collect
 }
-func virtualMemoryStatactive(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatactive(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatactive"
 	collect.Value = float64(js.VirtualMemoryStat.Active)
 	return collect
 }
-func virtualMemoryStatinactive(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatinactive(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.1m"
 	collect.Value = float64(js.VirtualMemoryStat.Active)
 	return collect
 }
-func virtualMemoryStatwired(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatwired(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatwired"
 	collect.Value = float64(js.VirtualMemoryStat.Wired)
 	return collect
 }
-func virtualMemoryStatbuffers(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatbuffers(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatbuffers"
 	collect.Value = float64(js.VirtualMemoryStat.Buffers)
 	return collect
 }
-func virtualMemoryStatcached(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatcached(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatcached"
 	collect.Value = float64(js.VirtualMemoryStat.Cached)
 	return collect
 }
-func virtualMemoryStatwriteback(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatwriteback(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatwriteback"
 	collect.Value = float64(js.VirtualMemoryStat.Writeback)
 	return collect
 }
-func virtualMemoryStatdirty(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatdirty(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatdirty"
 	collect.Value = float64(js.VirtualMemoryStat.Dirty)
 	return collect
 }
-func virtualMemoryStatwritebacktmp(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatwritebacktmp(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatwritebacktmp"
 	collect.Value = float64(js.VirtualMemoryStat.WritebackTmp)
 	return collect
 }
-func virtualMemoryStatshared(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatshared(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatshared"
 	collect.Value = float64(js.VirtualMemoryStat.Shared)
 	return collect
 }
-func virtualMemoryStatslab(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatslab(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatslab"
 	collect.Value = float64(js.VirtualMemoryStat.Slab)
 	return collect
 }
-func virtualMemoryStatpagetables(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatpagetables(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatpagetables"
 	collect.Value = float64(js.VirtualMemoryStat.PageTables)
 	return collect
 }
-func virtualMemoryStatswapcached(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func virtualMemoryStatswapcached(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.mem.virtualMemoryStatswapcached"
 	collect.Value = float64(js.VirtualMemoryStat.SwapCached)
 	return collect
 }
-func swapMemoryStattotal(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStattotal(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStattotal"
 	collect.Value = float64(js.SwapMemoryStat.Total)
 	return collect
 }
-func swapMemoryStatused(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStatused(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStatused"
 	collect.Value = float64(js.SwapMemoryStat.Used)
 	return collect
 }
-func swapMemoryStatfree(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStatfree(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStatfree"
 	collect.Value = float64(js.SwapMemoryStat.Free)
 	return collect
 }
-func swapMemoryStatusedPercent(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStatusedPercent(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStatusedPercent"
 	collect.Value = float64(js.SwapMemoryStat.UsedPercent)
 	return collect
 }
-func swapMemoryStatsin(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStatsin(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStatsin"
 	collect.Value = float64(js.SwapMemoryStat.Sin)
 	return collect
 }
-func swapMemoryStatsout(js base.SysMemInfo,server string) *opentsdb.Collect{
-	collect := createCollect(js,server)
+func swapMemoryStatsout(js base.SysMemInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect{
+	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.swap.swapMemoryStatsout"
 	collect.Value = float64(js.SwapMemoryStat.Sout)
 	return collect

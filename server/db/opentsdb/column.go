@@ -9,4 +9,5 @@ type Collect struct {
 type Tags struct {
 	Server string `json:"server"`
 	CtimeStamp int64 `json:"ctime_stamp"`
+	Ip string `json:"ip"`
 }

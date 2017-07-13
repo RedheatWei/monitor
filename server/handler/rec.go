@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/bitly/go-simplejson"
 	"monitor/server/base"
-	"fmt"
 	dbjvm "monitor/server/db/mysqldb/jvm"
 	dbcpu "monitor/server/db/mysqldb/cpu"
 	dbdisk "monitor/server/db/mysqldb/disk"
@@ -16,8 +15,8 @@ import (
 	tsmem "monitor/server/db/opentsdb/mem"
 )
 //转换json并插入数据库
-func  ToJson(rec []byte,serverid int64){
-	fmt.Println(string(rec))
+func  ToJson(rec []byte,serverIpInfo base.ServerIpInfo){
+	serverid := serverIpInfo.ServerId
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
@@ -51,8 +50,7 @@ func  ToJson(rec []byte,serverid int64){
 		go dbnet.InsertNetDB(info,serverid)
 	}
 }
-func ToTsJson(rec []byte,server string){
-	//fmt.Println(string(rec))
+func ToTsJson(rec []byte,serverIpInfo base.ServerIpInfo){
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
@@ -63,7 +61,7 @@ func ToTsJson(rec []byte,server string){
 	case "SysMemInfo":
 		var info base.SysMemInfo
 		json.Unmarshal(rec,&info)
-		go tsmem.InsertMemDB(info,server)
+		go tsmem.InsertMemDB(info,serverIpInfo)
 	//case "SysCpuInfo":
 	//	var info base.SysCpuInfo
 	//	json.Unmarshal(rec,&info)
@@ -79,7 +77,7 @@ func ToTsJson(rec []byte,server string){
 	case "SysLoadInfo":
 		var info base.SysLoadInfo
 		json.Unmarshal(rec,&info)
-		go tsload.InsertLoadDB(info,server)
+		go tsload.InsertLoadDB(info,serverIpInfo)
 	//case "SysNetInfo":
 	//	var info base.SysNetInfo
 	//	json.Unmarshal(rec,&info)

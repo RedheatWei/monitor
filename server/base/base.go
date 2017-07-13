@@ -131,6 +131,12 @@ type Addr struct {
 type InterfaceAddr struct {
 	Addr string `json:"addr"`
 }
+type ServerIpInfo struct {
+	Server string
+	ServerId int64
+	Ip string
+	Type string
+}
 //读取服务端配置文件
 func readServerConfig(mod,par string) string{
 	config:= new(conf.Config)

@@ -38,28 +38,28 @@ func handleClient(conn *net.UDPConn) {
 		fmt.Println(err)
 	}
 	add := addr.IP.String()
-	chk,serverid,server := checkIp(add)
+	chk,serverIpInfo := checkIp(add)
 	if chk{
 		if ServerConfig.OpentsDb.Enable=="true"{
-			go handler.ToTsJson(buf[:n],server)
+			go handler.ToTsJson(buf[:n],serverIpInfo)
 		}else{
-			go handler.ToJson(buf[:n],serverid)
+			go handler.ToJson(buf[:n],serverIpInfo)
 		}
 	}
 }
 //检查ip是否通行
-func checkIp(ip string) (bool,int64,string){
+func checkIp(ip string) (bool,base.ServerIpInfo){
 	var is_in = bool(false)
-	var serverid int64
-	var server string
+	var serverIpInfo base.ServerIpInfo
 	for _,ipaddr := range AllowIplist{
-		serverid = ipaddr["serverid"].(int64)
-		server = ipaddr["server"].(string)
 		if ipaddr["ip"] == ip {
 			is_in = true
-			return is_in,serverid,server
+			serverIpInfo.ServerId = ipaddr["serverid"].(int64)
+			serverIpInfo.Server = ipaddr["server"].(string)
+			serverIpInfo.Ip = ipaddr["ip"].(string)
+			serverIpInfo.Type = ipaddr["type"].(string)
+			return is_in,serverIpInfo
 		}
 	}
-	serverid = 0
-	return is_in,serverid,server
+	return is_in,nil
 }
