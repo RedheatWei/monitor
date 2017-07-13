@@ -4,9 +4,9 @@ import (
 	"monitor/server/base"
 	"fmt"
 	"time"
-	//"encoding/json"
-	//"monitor/server/db/opentsdb"
 	"reflect"
+	"encoding/json"
+	"monitor/server/db/opentsdb"
 )
 
 type loadDB struct {
@@ -25,13 +25,12 @@ func InsertLoadDB(js base.SysLoadInfo,server string){
 	t := reflect.TypeOf(loadDB)
 	v := reflect.ValueOf(loadDB)
 	for k := 0; k < t.NumField(); k++{
-		fmt.Println(v.Field(k).Interface())
+		b,err := json.Marshal(v.Field(k).Interface())
+		if err!=nil{
+			fmt.Println(err)
+		}
+		opentsdb.SendToTsDb(string(b))
 	}
-	//b,err := json.Marshal(load)
-	//if err!=nil{
-	//	fmt.Println(err)
-	//}
-	//opentsdb.SendToTsDb(string(b))
 }
 func load1(load *Collect_load,js base.SysLoadInfo,server string) *Collect_load{
 	load.Metric = "sys.load.1m"
