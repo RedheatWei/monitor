@@ -23,7 +23,8 @@ type diskDB struct {
 //主函数
 func InsertDiskDB(js base.SysDiskInfo,serverIpInfo base.ServerIpInfo){
 	var diskDB diskDB
-	var sli_all_disk [][]interface{}
+	//var sli_all_disk [][]interface{}
+	var sli_str []interface{}
 	for _,usage_stat := range js.UsageStat{
 		diskDB.UsageStatTotal = usageStatTotal(js,serverIpInfo,usage_stat)
 		diskDB.UsageStatFree = usageStatFree(js,serverIpInfo,usage_stat)
@@ -34,16 +35,15 @@ func InsertDiskDB(js base.SysDiskInfo,serverIpInfo base.ServerIpInfo){
 		diskDB.UsageStatInodesFree = usageStatInodesFree(js,serverIpInfo,usage_stat)
 		diskDB.UsageStatInodesUsedPercent = usageStatInodesUsedPercent(js,serverIpInfo,usage_stat)
 		v := reflect.ValueOf(diskDB)
-		var sli_str []interface{}
 		for k := 0; k < v.NumField(); k++{
 			if ! v.Field(k).IsNil(){
 				val := v.Field(k).Interface()
 				sli_str = append(sli_str,val)
 			}
 		}
-		sli_all_disk = append(sli_all_disk,sli_str)
+		//sli_all_disk = append(sli_all_disk,sli_str)
 	}
-	b,err := json.Marshal(sli_all_disk)
+	b,err := json.Marshal(sli_str)
 	if err!=nil{
 		fmt.Println(err)
 	}
