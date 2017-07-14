@@ -21,6 +21,10 @@ type jvmDB struct {
 	PeakThreadCount *opentsdb.Collect_jvm
 	ThreadCount *opentsdb.Collect_jvm
 	DaemonThreadCount *opentsdb.Collect_jvm
+	HeapMemoryUsageInit *opentsdb.Collect_jvm
+	HeapMemoryUsageMax *opentsdb.Collect_jvm
+	NonHeapMemoryUsageInit *opentsdb.Collect_jvm
+	NonHeapMemoryUsageMax *opentsdb.Collect_jvm
 }
 //主函数
 func InsertJvmDB(js base.JvmInfo,serverIpInfo base.ServerIpInfo){
@@ -36,6 +40,10 @@ func InsertJvmDB(js base.JvmInfo,serverIpInfo base.ServerIpInfo){
 	jvmDB.PeakThreadCount = peakThreadCount(js,serverIpInfo)
 	jvmDB.ThreadCount = threadCount(js,serverIpInfo)
 	jvmDB.DaemonThreadCount = daemonThreadCount(js,serverIpInfo)
+	jvmDB.HeapMemoryUsageInit = heapMemoryUsageInit(js,serverIpInfo)
+	jvmDB.HeapMemoryUsageMax = heapMemoryUsageMax(js,serverIpInfo)
+	jvmDB.NonHeapMemoryUsageInit = nonHeapMemoryUsageInit(js,serverIpInfo)
+	jvmDB.NonHeapMemoryUsageMax = nonHeapMemoryUsageMax(js,serverIpInfo)
 	v := reflect.ValueOf(jvmDB)
 	var sli_str []interface{}
 	for k := 0; k < v.NumField(); k++{
@@ -61,10 +69,6 @@ func createCollect(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Col
 	collect.Tags.AgentId = js.AgentId
 	collect.Tags.CurrentThreadCpuTime = js.CurrentThreadCpuTime
 	collect.Tags.Uptime = js.Uptime
-	collect.Tags.HeapMemoryUsageInit = js.HeapMemoryUsageInit
-	collect.Tags.HeapMemoryUsageMax = js.HeapMemoryUsageMax
-	collect.Tags.NonHeapMemoryUsageInit = js. NonHeapMemoryUsageInit
-	collect.Tags.NonHeapMemoryUsageMax = js.NonHeapMemoryUsageMax
 	return collect
 }
 func loadedClassCount(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect_jvm{
@@ -131,5 +135,29 @@ func daemonThreadCount(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb
 	collect := createCollect(js,serverIpInfo)
 	collect.Metric = "sys.jvm.daemonThreadCount"
 	collect.Value = float64(js.DaemonThreadCount)
+	return collect
+}
+func heapMemoryUsageInit(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect_jvm{
+	collect := createCollect(js,serverIpInfo)
+	collect.Metric = "sys.jvm.heapMemoryUsageInit"
+	collect.Value = float64(js.HeapMemoryUsageInit)
+	return collect
+}
+func heapMemoryUsageMax(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect_jvm{
+	collect := createCollect(js,serverIpInfo)
+	collect.Metric = "sys.jvm.heapMemoryUsageMax"
+	collect.Value = float64(js.HeapMemoryUsageMax)
+	return collect
+}
+func nonHeapMemoryUsageInit(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect_jvm{
+	collect := createCollect(js,serverIpInfo)
+	collect.Metric = "sys.jvm.nonHeapMemoryUsageInit"
+	collect.Value = float64(js.NonHeapMemoryUsageInit)
+	return collect
+}
+func nonHeapMemoryUsageMax(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Collect_jvm{
+	collect := createCollect(js,serverIpInfo)
+	collect.Metric = "sys.jvm.nonHeapMemoryUsageMax"
+	collect.Value = float64(js.NonHeapMemoryUsageMax)
 	return collect
 }
