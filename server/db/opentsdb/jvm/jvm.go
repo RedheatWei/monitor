@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"encoding/json"
 	"monitor/server/db/opentsdb"
+	"strings"
 )
 //定义收集的项目
 type jvmDB struct {
@@ -65,7 +66,7 @@ func createCollect(js base.JvmInfo,serverIpInfo base.ServerIpInfo) *opentsdb.Col
 	collect.Tags.Server = serverIpInfo.Server
 	collect.Tags.Ip = serverIpInfo.Ip
 	collect.Tags.CtimeStamp = js.TimeStamp
-	collect.Tags.ClassPath = js.ClassPath
+	collect.Tags.ClassPath = strings.Replace(js.ClassPath,":","_",-1)
 	collect.Tags.AgentId = js.AgentId
 	collect.Tags.CurrentThreadCpuTime = js.CurrentThreadCpuTime
 	collect.Tags.Uptime = js.Uptime
