@@ -14,7 +14,6 @@ import (
 	tsload "monitor/server/db/opentsdb/load"
 	tsmem "monitor/server/db/opentsdb/mem"
 	tsdisk "monitor/server/db/opentsdb/disk"
-	"github.com/shirou/gopsutil/disk"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverIpInfo base.ServerIpInfo){
