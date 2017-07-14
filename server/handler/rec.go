@@ -13,6 +13,8 @@ import (
 	dbnet "monitor/server/db/mysqldb/net"
 	tsload "monitor/server/db/opentsdb/load"
 	tsmem "monitor/server/db/opentsdb/mem"
+	tsdisk "monitor/server/db/opentsdb/disk"
+	"github.com/shirou/gopsutil/disk"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverIpInfo base.ServerIpInfo){
@@ -66,10 +68,10 @@ func ToTsJson(rec []byte,serverIpInfo base.ServerIpInfo){
 	//	var info base.SysCpuInfo
 	//	json.Unmarshal(rec,&info)
 	//	go dbcpu.InsertCpuDB(info,server)
-	//case "SysDiskInfo":
-	//	var info base.SysDiskInfo
-	//	json.Unmarshal(rec,&info)
-	//	go dbdisk.InsertDiskDB(info,server)
+	case "SysDiskInfo":
+		var info base.SysDiskInfo
+		json.Unmarshal(rec,&info)
+		go tsdisk.InsertDiskDB(info,serverIpInfo)
 	//case "SysHostInfo":
 	//	var info base.SysHostInfo
 	//	json.Unmarshal(rec,&info)
