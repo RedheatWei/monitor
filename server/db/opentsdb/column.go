@@ -33,14 +33,8 @@ type Tags_jvm struct {
 	Server string `json:"server"`
 	CtimeStamp int64 `json:"ctime_stamp"`
 	Ip string `json:"ip"`
-
 	ClassPath string `json:"class_path"`
 	AgentId string `json:"agent_id"`
 	CurrentThreadCpuTime int64
 	Uptime int64 `json:"uptime"`
-	HeapMemoryUsageInit int64 `json:"heap_memory_usage_init"`
-	HeapMemoryUsageMax int64 `json:"heap_memory_usage_max"`
-	NonHeapMemoryUsageInit int64 `json:"non_heap_memory_usage_init"`
-	NonHeapMemoryUsageMax int64 `json:"non_heap_memory_usage_max"`
-
 }
