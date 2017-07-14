@@ -47,6 +47,7 @@ func InsertDiskDB(js base.SysDiskInfo,serverIpInfo base.ServerIpInfo){
 	if err!=nil{
 		fmt.Println(err)
 	}
+	fmt.Println(string(b))
 	opentsdb.SendToTsDb(string(b))
 }
 //组合数据,便于修改tag
