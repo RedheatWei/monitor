@@ -23,7 +23,6 @@ type diskDB struct {
 //主函数
 func InsertDiskDB(js base.SysDiskInfo,serverIpInfo base.ServerIpInfo){
 	var diskDB diskDB
-	//var sli_all_disk [][]interface{}
 	var sli_str []interface{}
 	for _,usage_stat := range js.UsageStat{
 		diskDB.UsageStatTotal = usageStatTotal(js,serverIpInfo,usage_stat)
@@ -41,13 +40,11 @@ func InsertDiskDB(js base.SysDiskInfo,serverIpInfo base.ServerIpInfo){
 				sli_str = append(sli_str,val)
 			}
 		}
-		//sli_all_disk = append(sli_all_disk,sli_str)
 	}
 	b,err := json.Marshal(sli_str)
 	if err!=nil{
 		fmt.Println(err)
 	}
-	fmt.Println(string(b))
 	opentsdb.SendToTsDb(string(b))
 }
 //组合数据,便于修改tag

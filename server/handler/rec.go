@@ -14,6 +14,7 @@ import (
 	tsload "monitor/server/db/opentsdb/load"
 	tsmem "monitor/server/db/opentsdb/mem"
 	tsdisk "monitor/server/db/opentsdb/disk"
+	tsjvm "monitor/server/db/opentsdb/jvm"
 )
 //转换json并插入数据库
 func  ToJson(rec []byte,serverIpInfo base.ServerIpInfo){
@@ -55,10 +56,10 @@ func ToTsJson(rec []byte,serverIpInfo base.ServerIpInfo){
 	js, _ := simplejson.NewJson(rec)
 	js_map,_ := js.Map()
 	switch js_map["Type"] {
-	//case "JvmInfo":
-	//	var info base.JvmInfo
-	//	json.Unmarshal(rec,&info)
-	//	go dbjvm.InsertJvmDB(info,server)
+	case "JvmInfo":
+		var info base.JvmInfo
+		json.Unmarshal(rec,&info)
+		go tsjvm.InsertJvmDB(info,serverIpInfo)
 	case "SysMemInfo":
 		var info base.SysMemInfo
 		json.Unmarshal(rec,&info)
