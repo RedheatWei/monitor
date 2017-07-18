@@ -38,3 +38,15 @@ type Tags_jvm struct {
 	CurrentThreadCpuTime int64
 	Uptime int64 `json:"uptime"`
 }
+type Collect_net struct {
+	Metric string `json:"metric"`
+	TimeStamp int64 `json:"timestamp"`
+	Value float64 `json:"value"`
+	Tags Tags_net `json:"tags"`
+}
+type Tags_net struct {
+	Server string `json:"server"`
+	CtimeStamp int64 `json:"ctime_stamp"`
+	Ip string `json:"ip"`
+	IOCountersStatname string `json:"io_counters_statname"`
+}
