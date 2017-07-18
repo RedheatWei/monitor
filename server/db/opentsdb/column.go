@@ -35,7 +35,7 @@ type Tags_jvm struct {
 	Ip string `json:"ip"`
 	ClassPath string `json:"class_path"`
 	AgentId string `json:"agent_id"`
-	CurrentThreadCpuTime int64
+	CurrentThreadCpuTime int64 `json:"current_thread_cpu_time"`
 	Uptime int64 `json:"uptime"`
 }
 type Collect_net struct {
