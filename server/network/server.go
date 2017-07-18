@@ -42,11 +42,12 @@ func handleClient(conn *net.UDPConn) {
 	if chk{
 		go handler.ToTsJson(buf[:n],serverIpInfo)
 		go handler.ToJson(buf[:n],serverIpInfo)
-		//if ServerConfig.OpentsDb.Enable=="true"{
-		//	go handler.ToTsJson(buf[:n],serverIpInfo)
-		//}else{
-		//	go handler.ToJson(buf[:n],serverIpInfo)
-		//}
+		if ServerConfig.OpentsDb.Enable=="true"{
+			go handler.ToJson(buf[:n],serverIpInfo)
+			go handler.ToTsJson(buf[:n],serverIpInfo)
+		}else{
+			go handler.ToJson(buf[:n],serverIpInfo)
+		}
 	}
 }
 //检查ip是否通行
