@@ -89,7 +89,7 @@ func CollectSysLoadInfo() {
 //收集系统网络信息
 func CollectSysNetInfo() {
 	var SysNetInfo base.SysNetInfo
-	i,_ := net.IOCounters(false)
+	i,_ := net.IOCounters(true)
 	inf,_ := net.Interfaces()
 	SysNetInfo.IOCountersStat = i
 	SysNetInfo.InterfaceStat = inf
